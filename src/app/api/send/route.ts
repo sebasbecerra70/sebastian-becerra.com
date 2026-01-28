@@ -21,16 +21,24 @@ export async function POST(req: Request) {
     if (!zodSuccess)
       return Response.json({ error: zodError?.message }, { status: 400 });
 
-    // Check if RESEND_API_KEY is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.log("Contact form submission:", zodData);
+    // Use dummy API key if not configured
+    const apiKey = process.env.RESEND_API_KEY || 're_dummy_key_not_configured';
+    
+    // If using dummy key, just log and return success
+    if (apiKey === 're_dummy_key_not_configured') {
+      console.log("📧 Contact form submission (dummy mode):", {
+        from: zodData.fullName,
+        email: zodData.email,
+        message: zodData.message
+      });
       return Response.json({ 
-        success: true, 
-        message: "Contact form is not configured yet. Please reach out via email." 
+        success: true,
+        id: 'dummy_' + Date.now(),
+        message: "Message received! (Email service not configured)" 
       });
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(apiKey);
     const { data: resendData, error: resendError } = await resend.emails.send({
       from: "Porfolio <onboarding@resend.dev>",
       to: [config.email],
