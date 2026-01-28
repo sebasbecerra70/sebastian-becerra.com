@@ -12,7 +12,8 @@ const Email = z.object({
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log(body);
+    console.log("📧 Contact form submission:", body);
+    
     const {
       success: zodSuccess,
       data: zodData,
@@ -26,11 +27,7 @@ export async function POST(req: Request) {
     
     // If using dummy key, just log and return success
     if (apiKey === 're_dummy_key_not_configured') {
-      console.log("📧 Contact form submission (dummy mode):", {
-        from: zodData.fullName,
-        email: zodData.email,
-        message: zodData.message
-      });
+      console.log("⚠️ RESEND_API_KEY not configured - running in dummy mode");
       return Response.json({ 
         success: true,
         id: 'dummy_' + Date.now(),
@@ -38,11 +35,13 @@ export async function POST(req: Request) {
       });
     }
 
+    console.log("🚀 Sending email via Resend...");
     const resend = new Resend(apiKey);
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Porfolio <onboarding@resend.dev>",
+      from: "Contact Form <onboarding@resend.dev>",
       to: [config.email],
-      subject: "Contact me from portfolio",
+      replyTo: zodData.email,
+      subject: `New contact from ${zodData.fullName}`,
       react: EmailTemplate({
         fullName: zodData.fullName,
         email: zodData.email,
@@ -51,11 +50,16 @@ export async function POST(req: Request) {
     });
 
     if (resendError) {
-      return Response.json({ resendError }, { status: 500 });
+      console.error("❌ Resend error:", resendError);
+      return Response.json({ 
+        error: `Email service error: ${JSON.stringify(resendError)}` 
+      }, { status: 500 });
     }
 
+    console.log("✅ Email sent successfully:", resendData);
     return Response.json(resendData);
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error("❌ API error:", error);
+    return Response.json({ error: String(error) }, { status: 500 });
   }
 }
