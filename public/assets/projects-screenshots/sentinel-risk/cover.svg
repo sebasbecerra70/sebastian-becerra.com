@@ -1,0 +1,84 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1629;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b91c1c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151a2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgGradient)"/>
+  <rect width="1600" height="120" fill="url(#headerGrad)"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">Sentinel-Risk</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Risk Management Dashboard</text>
+  <rect x="60" y="150" width="300" height="140" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <text x="90" y="185" font-family="Arial, sans-serif" font-size="13" fill="#ef4444" font-weight="bold">Active Threats</text>
+  <text x="90" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ef4444">12</text>
+  <text x="90" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">↑ 3 new threats detected</text>
+  <rect x="400" y="150" width="300" height="140" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <text x="430" y="185" font-family="Arial, sans-serif" font-size="13" fill="#ef4444" font-weight="bold">Risk Score</text>
+  <text x="430" y="235" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="#ef4444">6/10</text>
+  <text x="430" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">Moderate risk level</text>
+  <rect x="740" y="150" width="300" height="140" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <text x="770" y="185" font-family="Arial, sans-serif" font-size="13" fill="#ef4444" font-weight="bold">Compliance</text>
+  <text x="770" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#10b981">99.2%</text>
+  <text x="770" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">2 policy violations</text>
+  <rect x="1080" y="150" width="300" height="140" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <text x="1110" y="185" font-family="Arial, sans-serif" font-size="13" fill="#ef4444" font-weight="bold">Last Audit</text>
+  <text x="1110" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#fbbf24">5</text>
+  <text x="1110" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">days since last review</text>
+  <rect x="1420" y="150" width="120" height="140" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <text x="1440" y="185" font-family="Arial, sans-serif" font-size="13" fill="#ef4444" font-weight="bold">Status</text>
+  <circle cx="1480" cy="220" r="8" fill="#fbbf24"/>
+  <text x="1480" y="240" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fbbf24">Warning</text>
+  <text x="1440" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">Action needed</text>
+  <rect x="60" y="330" width="1480" height="600" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+  <text x="100" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ef4444">Threat Assessment Matrix</text>
+  <line x1="100" y1="410" x2="1500" y2="410" stroke="#ef4444" stroke-width="1" opacity="0.3"/>
+  <line x1="60" y1="470" x2="1540" y2="470" stroke="#ef4444" stroke-width="1" opacity="0.2"/>
+  <line x1="60" y1="530" x2="1540" y2="530" stroke="#ef4444" stroke-width="1" opacity="0.2"/>
+  <line x1="60" y1="590" x2="1540" y2="590" stroke="#ef4444" stroke-width="1" opacity="0.2"/>
+  <line x1="60" y1="650" x2="1540" y2="650" stroke="#ef4444" stroke-width="1" opacity="0.2"/>
+  <rect x="100" y="430" width="280" height="50" fill="rgba(239,68,68,0.1)" rx="4"/>
+  <text x="125" y="460" font-family="Arial" font-size="12" font-weight="bold" fill="#ef4444">Critical: 3 threats</text>
+  <text x="320" y="460" font-family="Arial" font-size="11" fill="white">Ransomware, Breach, DDoS</text>
+  <rect x="100" y="490" width="280" height="50" fill="rgba(251,191,36,0.1)" rx="4"/>
+  <text x="125" y="520" font-family="Arial" font-size="12" font-weight="bold" fill="#fbbf24">High: 4 threats</text>
+  <text x="320" y="520" font-family="Arial" font-size="11" fill="white">Malware, Injection, Exposure</text>
+  <rect x="100" y="550" width="280" height="50" fill="rgba(59,130,246,0.1)" rx="4"/>
+  <text x="125" y="580" font-family="Arial" font-size="12" font-weight="bold" fill="#3b82f6">Medium: 5 threats</text>
+  <text x="320" y="580" font-family="Arial" font-size="11" fill="white">Phishing, Misconfiguration</text>
+  <rect x="100" y="610" width="280" height="50" fill="rgba(16,185,129,0.1)" rx="4"/>
+  <text x="125" y="640" font-family="Arial" font-size="12" font-weight="bold" fill="#10b981">Low: 2 threats</text>
+  <text x="320" y="640" font-family="Arial" font-size="11" fill="white">Vulnerabilities, Policy gaps</text>
+  <circle cx="500" cy="460" r="28" fill="#ef4444" opacity="0.8"/>
+  <text x="500" y="468" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">3</text>
+  <circle cx="700" cy="460" r="28" fill="#fbbf24" opacity="0.8"/>
+  <text x="700" y="468" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#0a0f1f">4</text>
+  <circle cx="900" cy="460" r="28" fill="#3b82f6" opacity="0.8"/>
+  <text x="900" y="468" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">5</text>
+  <circle cx="1100" cy="460" r="28" fill="#10b981" opacity="0.8"/>
+  <text x="1100" y="468" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">2</text>
+  <text x="450" y="320" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">Threat Count</text>
+  <text x="650" y="320" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">Threat Count</text>
+  <text x="850" y="320" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">Threat Count</text>
+  <text x="1050" y="320" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">Threat Count</text>
+  <rect x="1200" y="430" width="320" height="230" fill="rgba(239,68,68,0.05)" rx="8"/>
+  <text x="1230" y="460" font-family="Arial" font-size="13" font-weight="bold" fill="#ef4444">Recent Incidents</text>
+  <text x="1230" y="490" font-family="Arial" font-size="11" fill="white">• SQL Injection detected (2h ago)</text>
+  <text x="1230" y="510" font-family="Arial" font-size="11" fill="white">• Certificate expiry warning (5h ago)</text>
+  <text x="1230" y="530" font-family="Arial" font-size="11" fill="white">• Unusual network traffic (8h ago)</text>
+  <text x="1230" y="550" font-family="Arial" font-size="11" fill="white">• Failed auth attempts x47 (1d ago)</text>
+  <text x="1230" y="570" font-family="Arial" font-size="11" fill="white">• Vulnerability scan findings (1d ago)</text>
+  <text x="1230" y="590" font-family="Arial" font-size="11" fill="white">• Policy violation noted (2d ago)</text>
+  <text x="1230" y="610" font-family="Arial" font-size="11" fill="white">• Patch deployment complete (3d ago)</text>
+  <rect x="0" y="960" width="1600" height="40" fill="rgba(0,0,0,0.3)"/>
+  <text x="60" y="985" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">Last updated: Today at 14:32 UTC</text>
+  <text x="1450" y="985" font-family="Arial, sans-serif" font-size="11" fill="#ef4444">⚠ Review required</text>
+</svg>

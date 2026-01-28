@@ -1,0 +1,126 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1629;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151a2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgGradient)"/>
+  <rect width="1600" height="120" fill="url(#headerGrad)"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">RoutePulse</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Order Fulfillment Process</text>
+  <!-- Workflow Steps -->
+  <rect x="80" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="165" cy="190" r="18" fill="#14b8a6"/>
+  <text x="165" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">1</text>
+  <text x="165" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Order Placed</text>
+  <text x="165" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Customer submit</text>
+  <!-- Arrow -->
+  <path d="M 250 220 L 295 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="305,220 295,215 295,225" fill="#14b8a6"/>
+  <!-- Step 2 -->
+  <rect x="315" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="400" cy="190" r="18" fill="#14b8a6"/>
+  <text x="400" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">2</text>
+  <text x="400" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Warehouse Pick</text>
+  <text x="400" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Inventory pull</text>
+  <!-- Arrow -->
+  <path d="M 485 220 L 530 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="540,220 530,215 530,225" fill="#14b8a6"/>
+  <!-- Step 3 -->
+  <rect x="550" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="635" cy="190" r="18" fill="#14b8a6"/>
+  <text x="635" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">3</text>
+  <text x="635" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Pack Order</text>
+  <text x="635" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Prepare shipment</text>
+  <!-- Arrow -->
+  <path d="M 720 220 L 765 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="775,220 765,215 765,225" fill="#14b8a6"/>
+  <!-- Step 4 -->
+  <rect x="785" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="870" cy="190" r="18" fill="#14b8a6"/>
+  <text x="870" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">4</text>
+  <text x="870" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Route Optimize</text>
+  <text x="870" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Plan logistics</text>
+  <!-- Arrow -->
+  <path d="M 955 220 L 1000 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="1010,220 1000,215 1000,225" fill="#14b8a6"/>
+  <!-- Step 5 -->
+  <rect x="1020" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="1105" cy="190" r="18" fill="#14b8a6"/>
+  <text x="1105" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">5</text>
+  <text x="1105" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Dispatch</text>
+  <text x="1105" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Send vehicle</text>
+  <!-- Arrow -->
+  <path d="M 1190 220 L 1235 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="1245,220 1235,215 1235,225" fill="#14b8a6"/>
+  <!-- Step 6 -->
+  <rect x="1255" y="160" width="170" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="1340" cy="190" r="18" fill="#14b8a6"/>
+  <text x="1340" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">6</text>
+  <text x="1340" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">In Transit</text>
+  <text x="1340" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">On the road</text>
+  <!-- Arrow -->
+  <path d="M 1425 220 L 1470 220" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="1480,220 1470,215 1470,225" fill="#14b8a6"/>
+  <!-- Step 7 -->
+  <rect x="1490" y="160" width="120" height="120" rx="10" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="2"/>
+  <circle cx="1550" cy="190" r="18" fill="#14b8a6"/>
+  <text x="1550" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">7</text>
+  <text x="1550" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Delivered</text>
+  <text x="1550" y="260" text-anchor="middle" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.6)">Complete</text>
+  <!-- Metrics Section -->
+  <rect x="60" y="330" width="1480" height="620" rx="12" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="1" opacity="0.8"/>
+  <text x="100" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#14b8a6">Process Performance & Timing Analysis</text>
+  <!-- Timing metrics -->
+  <rect x="100" y="410" width="280" height="160" fill="rgba(20,184,166,0.1)" rx="8"/>
+  <text x="130" y="440" font-family="Arial" font-size="12" font-weight="bold" fill="#14b8a6">Order Placement → Warehouse Pick</text>
+  <text x="130" y="465" font-family="Arial" font-size="11" fill="white">Average Time: 12 minutes</text>
+  <text x="130" y="485" font-family="Arial" font-size="11" fill="white">SLA Target: 15 minutes</text>
+  <text x="130" y="505" font-family="Arial" font-size="10" fill="#10b981">✓ On target (80% compliance)</text>
+  <text x="130" y="525" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.7)">Peak time: 2 PM (18m avg)</text>
+  <text x="130" y="542" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.7)">Off-peak: 11 PM (8m avg)</text>
+  <rect x="420" y="410" width="280" height="160" fill="rgba(20,184,166,0.1)" rx="8"/>
+  <text x="450" y="440" font-family="Arial" font-size="12" font-weight="bold" fill="#14b8a6">Warehouse Pick → Pack Order</text>
+  <text x="450" y="465" font-family="Arial" font-size="11" fill="white">Average Time: 18 minutes</text>
+  <text x="450" y="485" font-family="Arial" font-size="11" fill="white">SLA Target: 20 minutes</text>
+  <text x="450" y="505" font-family="Arial" font-size="10" fill="#10b981">✓ Exceeding target (92% compliance)</text>
+  <text x="450" y="525" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.7)">Avg items/order: 3.2</text>
+  <text x="450" y="542" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.7)">Complex orders: +5m</text>
+  <rect x="740" y="410" width="280" height="160" fill="rgba(20,184,166,0.1)" rx="8"/>
+  <text x="770" y="440" font-family="Arial" font-size="12" font-weight="bold" fill="#14b8a6\">Pack Order → Dispatch</text>
+  <text x="770\" y=\"465\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Average Time: 8 minutes</text>
+  <text x=\"770\" y=\"485\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">SLA Target: 10 minutes</text>
+  <text x=\"770\" y=\"505\" font-family=\"Arial\" font-size=\"10\" fill=\"#10b981\">✓ Best performer (98% compliance)</text>
+  <text x=\"770\" y=\"525\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Automated: 85%</text>
+  <text x=\"770\" y=\"542\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Manual: 15%</text>
+  <rect x=\"1060\" y=\"410\" width=\"280\" height=\"160\" fill=\"rgba(20,184,166,0.1)\" rx=\"8\"/>
+  <text x=\"1090\" y=\"440\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"#14b8a6\">Dispatch → In Transit</text>
+  <text x=\"1090\" y=\"465\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Average Time: 5 minutes</text>
+  <text x=\"1090\" y=\"485\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">SLA Target: 5 minutes</text>
+  <text x=\"1090\" y=\"505\" font-family=\"Arial\" font-size=\"10\" fill=\"#10b981\">✓ Meeting target (88% compliance)</text>
+  <text x=\"1090\" y=\"525\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Load factor: 87%</text>
+  <text x=\"1090\" y=\"542\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Delays: 2.3%</text>
+  <!-- End-to-End Metrics -->
+  <rect x=\"100\" y=\"600\" width=\"1380\" height=\"300\" fill=\"rgba(20,184,166,0.05)\" rx=\"8\"/>
+  <text x=\"130\" y=\"630\" font-family=\"Arial\" font-size=\"13\" font-weight=\"bold\" fill=\"#14b8a6\">End-to-End Process Metrics</text>
+  <line x1=\"130\" y1=\"640\" x2=\"1450\" y2=\"640\" stroke=\"#14b8a6\" stroke-width=\"1\" opacity=\"0.2\"/>
+  <text x=\"130\" y=\"670\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Total Cycle Time (Order → Delivery): Average 3.2 days | SLA: 4 days | Compliance: 96.8% on-time delivery</text>
+  <text x=\"130\" y=\"695\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Processing Time (Order → Dispatch): 43 minutes avg | Peak: 52 min | Off-peak: 38 min | Target: 45 minutes</text>
+  <text x=\"130\" y=\"720\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Transit Time (Dispatch → Delivery): Varies by route | Avg 3.1 days | Optimization potential: Route consolidation could save 4-6 hours</text>
+  <text x=\"130\" y=\"745\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Quality Metrics: First-delivery success: 97.2% | Returns: 2.1% | Damage claims: 0.3% | Customer satisfaction: 4.7/5</text>
+  <text x=\"130\" y=\"770\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Cost Analysis: Avg cost per order: $4.20 | Fuel: $2.10 | Labor: $1.50 | Overhead: $0.60 | Revenue per order: $24.50</text>
+  <text x=\"130\" y=\"795\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Volume: Daily throughput: 12,400 orders | Peak capacity: 15,000 | Utilization: 82.7% | Growth: +18% YoY</text>
+  <text x=\"130\" y=\"820\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Bottlenecks & Opportunities: Route optimization could save 12% | Warehouse automation: +8% throughput | Partner logistics: +15% capacity</text>
+  <rect x=\"0\" y=\"960\" width=\"1600\" height=\"40\" fill=\"rgba(0,0,0,0.3)\"/>
+  <text x=\"60\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"rgba(255,255,255,0.5)\">Last updated: Today at 14:32 UTC</text>
+  <text x=\"1450\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"#14b8a6\">Process optimized</text>
+</svg>

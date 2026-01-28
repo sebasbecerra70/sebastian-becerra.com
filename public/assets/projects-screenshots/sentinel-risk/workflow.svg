@@ -1,0 +1,122 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1629;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b91c1c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151a2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgGradient)"/>
+  <rect width="1600" height="120" fill="url(#headerGrad)"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">Sentinel-Risk</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">Incident Response Workflow</text>
+  <!-- Stage 1: Detection -->
+  <rect x="80" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="170" cy="190" r="18" fill="#ef4444"/>
+  <text x="170" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">1</text>
+  <text x="170" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Detection</text>
+  <text x="170" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Threat identified</text>
+  <!-- Arrow -->
+  <path d="M 260 220 L 310 220" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="320,220 310,215 310,225" fill="#ef4444"/>
+  <!-- Stage 2: Analysis -->
+  <rect x="330" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="420" cy="190" r="18" fill="#ef4444"/>
+  <text x="420" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">2</text>
+  <text x="420" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Analysis</text>
+  <text x="420" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Assess impact</text>
+  <!-- Arrow -->
+  <path d="M 510 220 L 560 220" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="570,220 560,215 560,225" fill="#ef4444"/>
+  <!-- Stage 3: Containment -->
+  <rect x="580" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="670" cy="190" r="18" fill="#ef4444"/>
+  <text x="670" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">3</text>
+  <text x="670" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Containment</text>
+  <text x="670" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Isolate threat</text>
+  <!-- Arrow -->
+  <path d="M 760 220 L 810 220" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="820,220 810,215 810,225" fill="#ef4444"/>
+  <!-- Stage 4: Eradication -->
+  <rect x="830" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="920" cy="190" r="18" fill="#ef4444"/>
+  <text x="920" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">4</text>
+  <text x="920" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Eradication</text>
+  <text x="920" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Remove threat</text>
+  <!-- Arrow -->
+  <path d="M 1010 220 L 1060 220" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="1070,220 1060,215 1060,225" fill="#ef4444"/>
+  <!-- Stage 5: Recovery -->
+  <rect x="1080" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="1170" cy="190" r="18" fill="#ef4444"/>
+  <text x="1170" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">5</text>
+  <text x="1170" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Recovery</text>
+  <text x="1170" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Restore systems</text>
+  <!-- Arrow -->
+  <path d="M 1260 220 L 1310 220" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="1320,220 1310,215 1310,225" fill="#ef4444"/>
+  <!-- Stage 6: Lessons Learned -->
+  <rect x="1330" y="160" width="180" height="120" rx="10" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="1420" cy="190" r="18" fill="#ef4444"/>
+  <text x="1420" y="200" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">6</text>
+  <text x="1420" y="245" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="white">Post-Mortem</text>
+  <text x="1420" y="260" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)">Review & improve</text>
+  <!-- Metrics Section -->
+  <rect x="60" y="330" width="1480" height="620" rx="12" fill="url(#cardGrad)" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+  <text x="100" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ef4444">Incident Response Metrics & SLAs</text>
+  <!-- Detection SLA -->
+  <rect x="100" y="410" width="340" height="180" fill="rgba(239,68,68,0.1)" rx="8"/>
+  <text x="130" y="440" font-family="Arial" font-size="13" font-weight="bold" fill="#ef4444">Detection & Analysis</text>
+  <text x="130" y="465" font-family="Arial" font-size="11" fill="white">Mean Time to Detect: 8h 24m</text>
+  <text x="130" y="485" font-family="Arial" font-size="11" fill="white">SLA Target: 4 hours</text>
+  <text x="130" y="505" font-family="Arial" font-size="11" fill="white">Compliance: 62% on-time</text>
+  <text x="130" y="530" font-family="Arial" font-size="10" fill="#fbbf24">⚠ Needs improvement</text>
+  <text x="130" y="565" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.7)\">Last incident: 2024-01-26</text>
+  <text x="130" y="580" font-family="Arial" font-size="10\" fill=\"rgba(255,255,255,0.7)\">Detection Time: 12h 15m</text>
+  <!-- Containment SLA -->
+  <rect x=\"480\" y=\"410\" width=\"340\" height=\"180\" fill=\"rgba(239,68,68,0.1)\" rx=\"8\"/>
+  <text x=\"510\" y=\"440\" font-family=\"Arial\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Containment & Eradication</text>
+  <text x=\"510\" y=\"465\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Mean Time to Contain: 3h 22m</text>
+  <text x=\"510\" y=\"485\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">SLA Target: 2 hours</text>
+  <text x=\"510\" y=\"505\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Compliance: 78% on-time</text>
+  <text x=\"510\" y=\"530\" font-family=\"Arial\" font-size=\"10\" fill=\"#fbbf24\">→ On track</text>
+  <text x=\"510\" y=\"565\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Actions completed: 45</text>
+  <text x=\"510\" y=\"580\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Escalations: 3</text>
+  <!-- Recovery SLA -->
+  <rect x=\"860\" y=\"410\" width=\"340\" height=\"180\" fill=\"rgba(16,185,129,0.1)\" rx=\"8\"/>
+  <text x=\"890\" y=\"440\" font-family=\"Arial\" font-size=\"13\" font-weight=\"bold\" fill=\"#10b981\">Recovery & Notification</text>
+  <text x=\"890\" y=\"465\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Mean Time to Recover: 1h 45m</text>
+  <text x=\"890\" y=\"485\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">SLA Target: 1 hour</text>
+  <text x=\"890\" y=\"505\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Compliance: 92% on-time</text>
+  <text x=\"890\" y=\"530\" font-family=\"Arial\" font-size=\"10\" fill=\"#10b981\">✓ Excellent performance</text>
+  <text x=\"890\" y=\"565\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Stakeholders notified: 12</text>
+  <text x=\"890\" y=\"580\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Status updates: 24</text>
+  <!-- Post-Incident -->
+  <rect x=\"1240\" y=\"410\" width=\"300\" height=\"180\" fill=\"rgba(59,130,246,0.1)\" rx=\"8\"/>
+  <text x=\"1270\" y=\"440\" font-family=\"Arial\" font-size=\"13\" font-weight=\"bold\" fill=\"#3b82f6\">Post-Incident Activity</text>
+  <text x=\"1270\" y=\"465\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Reports generated: 8</text>
+  <text x=\"1270\" y=\"485\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Follow-ups pending: 3</text>
+  <text x=\"1270\" y=\"505\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">Recommendations: 6</text>
+  <text x=\"1270\" y=\"530\" font-family=\"Arial\" font-size=\"10\" fill=\"#3b82f6\">In review</text>
+  <text x=\"1270\" y=\"565\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Timeline: 5-7 days</text>
+  <text x=\"1270\" y=\"580\" font-family=\"Arial\" font-size=\"10\" fill=\"rgba(255,255,255,0.7)\">Budget impact: TBD</text>
+  <!-- Current Incidents -->
+  <rect x=\"100\" y=\"630\" width=\"1380\" height=\"240\" fill=\"rgba(239,68,68,0.1)\" rx=\"8\"/>
+  <text x=\"130\" y=\"660\" font-family=\"Arial\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Active Incident Queue</text>
+  <line x1=\"130\" y1=\"670\" x2=\"1450\" y2=\"670\" stroke=\"#ef4444\" stroke-width=\"1\" opacity=\"0.3\"/>
+  <text x=\"130\" y=\"700\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">INC-2024-0156 | Malware detected | Status: In Containment | Time: 2h 18m | Priority: Critical | Assigned: Security Team A</text>
+  <text x=\"130\" y=\"725\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">INC-2024-0155 | Unauthorized access | Status: Analysis | Time: 4h 52m | Priority: High | Assigned: Security Team B</text>
+  <text x=\"130\" y=\"750\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">INC-2024-0154 | Data exfiltration attempt | Status: Contained | Time: 12h 34m | Priority: High | Assigned: Security Team C</text>
+  <text x=\"130\" y=\"775\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">INC-2024-0153 | Policy violation | Status: Recovery | Time: 18h 12m | Priority: Medium | Assigned: Compliance Team</text>
+  <text x=\"130\" y=\"800\" font-family=\"Arial\" font-size=\"11\" fill=\"white\">INC-2024-0152 | Vulnerability discovered | Status: Post-Mortem | Time: 3d 5h | Priority: Medium | Assigned: Engineering Team</text>
+  <rect x=\"0\" y=\"960\" width=\"1600\" height=\"40\" fill=\"rgba(0,0,0,0.3)\"/>
+  <text x=\"60\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"rgba(255,255,255,0.5)\">Last updated: Today at 14:32 UTC</text>
+  <text x=\"1450\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">5 Active Incidents</text>
+</svg>

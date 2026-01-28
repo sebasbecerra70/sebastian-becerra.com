@@ -1,0 +1,116 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="marketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="marketChartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.05" />
+    </linearGradient>
+    <filter id="glowMarket">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="720" fill="#1a1410"/>
+  <rect width="1280" height="720" fill="url(#marketGradient)"/>
+  
+  <!-- Header -->
+  <rect width="1280" height="80" fill="#3f2d1a"/>
+  <rect width="1280" height="2" fill="#f59e0b"/>
+  
+  <!-- Title -->
+  <text x="60" y="55" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#f59e0b">
+    MarketWeave
+  </text>
+  <text x="60" y="72" font-family="system-ui, sans-serif" font-size="13" fill="#f59e0b" opacity="0.6">
+    Unified Multi-Vendor Marketplace Platform
+  </text>
+  
+  <!-- Metrics Grid -->
+  <!-- Total Vendors Card -->
+  <g filter="url(#glowMarket)">
+    <rect x="60" y="120" width="270" height="140" fill="#3f2d1a" stroke="#f59e0b" stroke-width="1" rx="8"/>
+    <text x="80" y="145" font-family="system-ui, sans-serif" font-size="13" fill="#f59e0b" opacity="0.7">Total Vendors</text>
+    <text x="80" y="180" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#f59e0b">3.2K</text>
+    <text x="80" y="225" font-family="system-ui, sans-serif" font-size="12" fill="#888">↑ 18% vendor growth</text>
+  </g>
+  
+  <!-- GMV Card -->
+  <g filter="url(#glowMarket)">
+    <rect x="360" y="120" width="270" height="140" fill="#3f2d1a" stroke="#f59e0b" stroke-width="1" rx="8"/>
+    <text x="380" y="145" font-family="system-ui, sans-serif" font-size="13" fill="#f59e0b" opacity="0.7">Gross Merchandise Value</text>
+    <text x="380" y="180" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#f59e0b">$45.2M</text>
+    <text x="380" y="225" font-family="system-ui, sans-serif" font-size="12" fill="#888">Total annualized volume</text>
+  </g>
+  
+  <!-- Fulfillment Card -->
+  <g filter="url(#glowMarket)">
+    <rect x="660" y="120" width="270" height="140" fill="#3f2d1a" stroke="#f59e0b" stroke-width="1" rx="8"/>
+    <text x="680" y="145" font-family="system-ui, sans-serif" font-size="13" fill="#f59e0b" opacity="0.7">Fulfillment Rate</text>
+    <text x="680" y="180" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#f59e0b">98.5%</text>
+    <text x="680" y="225" font-family="system-ui, sans-serif" font-size="12" fill="#888">Order completion rate</text>
+  </g>
+  
+  <!-- Growth Card -->
+  <g filter="url(#glowMarket)">
+    <rect x="960" y="120" width="260" height="140" fill="#3f2d1a" stroke="#f59e0b" stroke-width="1" rx="8"/>
+    <text x="980" y="145" font-family="system-ui, sans-serif" font-size="13" fill="#f59e0b" opacity="0.7">Growth Rate</text>
+    <text x="980" y="180" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#f59e0b">+24%</text>
+    <text x="980" y="225" font-family="system-ui, sans-serif" font-size="12" fill="#888">YoY revenue growth</text>
+  </g>
+  
+  <!-- Monthly GMV Trend Chart -->
+  <g>
+    <text x="60" y="305" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e0e0e0">
+      Monthly GMV Trend
+    </text>
+    
+    <!-- Chart Background -->
+    <rect x="60" y="330" width="1160" height="350" fill="#3f2d1a" stroke="#f59e0b" stroke-width="1" rx="8" opacity="0.5"/>
+    
+    <!-- Grid Lines -->
+    <line x1="60" y1="480" x2="1220" y2="480" stroke="#f59e0b" stroke-width="0.5" opacity="0.2"/>
+    <line x1="60" y1="565" x2="1220" y2="565" stroke="#f59e0b" stroke-width="0.5" opacity="0.2"/>
+    <line x1="60" y1="650" x2="1220" y2="650" stroke="#f59e0b" stroke-width="0.5" opacity="0.2"/>
+    
+    <!-- Gradient Fill Area -->
+    <path d="M 80 610 L 120 550 L 160 500 L 200 470 L 240 440 L 280 410 L 320 430 L 360 370 L 400 340 L 440 360 L 480 320 L 520 300 L 560 360 L 600 340 L 640 320 L 680 360 L 720 310 L 760 290 L 800 340 L 840 310 L 880 270 L 920 320 L 960 290 L 1000 260 L 1040 300 L 1080 270 L 1120 310 L 1160 290 L 1200 330 L 1200 680 L 80 680 Z" 
+          fill="url(#marketChartGradient)" opacity="0.6"/>
+    
+    <!-- Line Chart -->
+    <polyline points="80,610 120,550 160,500 200,470 240,440 280,410 320,430 360,370 400,340 440,360 480,320 520,300 560,360 600,340 640,320 680,360 720,310 760,290 800,340 840,310 880,270 920,320 960,290 1000,260 1040,300 1080,270 1120,310 1160,290 1200,330" 
+                  stroke="#f59e0b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowMarket)"/>
+    
+    <!-- Monthly Bar Indicators -->
+    <rect x="100" y="640" width="16" height="40" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="180" y="620" width="16" height="60" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="260" y="600" width="16" height="80" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="340" y="580" width="16" height="100" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="420" y="560" width="16" height="120" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="500" y="530" width="16" height="150" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="580" y="500" width="16" height="180" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="660" y="470" width="16" height="210" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="740" y="440" width="16" height="240" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="820" y="420" width="16" height="260" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="900" y="390" width="16" height="290" fill="#f59e0b" opacity="0.4" rx="2"/>
+    <rect x="980" y="360" width="16" height="320" fill="#f59e0b" opacity="0.4" rx="2"/>
+    
+    <!-- Axis Labels -->
+    <text x="75" y="710" font-family="system-ui, sans-serif" font-size="11" fill="#666">Jan</text>
+    <text x="1180" y="710" font-family="system-ui, sans-serif" font-size="11" fill="#666">Dec</text>
+    <text x="50" y="365" font-family="system-ui, sans-serif" font-size="11" fill="#666">High</text>
+    <text x="50" y="680" font-family="system-ui, sans-serif" font-size="11" fill="#666">Low</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="60" y="705" font-family="system-ui, sans-serif" font-size="12" fill="#666">
+    Last updated: Real-time marketplace analytics
+  </text>
+</svg>

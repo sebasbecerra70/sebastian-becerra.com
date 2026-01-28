@@ -1,0 +1,127 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1629;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151a2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgGradient)"/>
+  <rect width="1600" height="120" fill="url(#headerGrad)"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">Orion</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.8)">AI Model Architecture Dashboard</text>
+  <rect x="60" y="150" width="280" height="140" rx="12" fill="url(#cardGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <text x="85" y="185" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" font-weight="bold">Model Accuracy</text>
+  <text x="85" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#00d4ff">96.8%</text>
+  <text x="85" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">↑ 2.3% improvement</text>
+  <rect x="380" y="150" width="280" height="140" rx="12" fill="url(#cardGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <text x="405" y="185" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" font-weight="bold">Parameters</text>
+  <text x="405" y="240" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#00d4ff">2.1B</text>
+  <text x="405" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">2.1 billion learnable</text>
+  <rect x="700" y="150" width="280" height="140" rx="12" fill="url(#cardGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <text x="725" y="185" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" font-weight="bold">Latency</text>
+  <text x="725" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#00d4ff">42ms</text>
+  <text x="725" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">↓ 15% faster inference</text>
+  <rect x="1020" y="150" width="280" height="140" rx="12" fill="url(#cardGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <text x="1045" y="185" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" font-weight="bold">Throughput</text>
+  <text x="1045" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#00d4ff">8.4K</text>
+  <text x="1045" y="260" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.6)">requests/second</text>
+  <rect x="1340" y="150" width="200" height="140" rx="12" fill="url(#cardGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <text x="1360" y="185" font-family="Arial, sans-serif" font-size="13" fill="#00d4ff" font-weight="bold">GPU Util</text>
+  <text x="1360" y="235" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#00d4ff\">82%</text>
+  <text x="1360" y="260" font-family=\"Arial\" font-size=\"11\" fill=\"rgba(255,255,255,0.6)\">Optimized</text>
+  <rect x=\"60\" y=\"330\" width=\"1480\" height=\"600\" rx=\"12\" fill=\"url(#cardGrad)\" stroke=\"#00d4ff\" stroke-width=\"1\" opacity=\"0.8\"/>
+  <text x=\"100\" y=\"375\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"bold\" fill=\"#00d4ff\">Neural Network Architecture</text>
+  <!-- Input Layer -->
+  <rect x=\"100\" y=\"420\" width=\"120\" height=\"80\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"160\" y=\"450\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Input Layer</text>
+  <text x=\"160\" y=\"470\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">1024 neurons</text>
+  <!-- Embedding Layer -->
+  <circle cx=\"280\" cy=\"460\" r=\"25\" fill=\"rgba(0,212,255,0.2)\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <text x=\"280\" y=\"465\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" font-weight=\"bold\" fill=\"#00d4ff\">Embed</text>
+  <!-- Connection -->
+  <path d=\"M 220 460 L 255 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Transformer Block 1 -->
+  <rect x=\"330\" y=\"410\" width=\"130\" height=\"100\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"395\" y=\"440\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Transformer</text>
+  <text x=\"395\" y=\"458\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">Block 1</text>
+  <text x=\"395\" y=\"475\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"rgba(255,255,255,0.6)\">32 heads</text>
+  <!-- Connection -->
+  <path d=\"M 305 460 L 330 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Transformer Blocks 2-4 (stacked) -->
+  <rect x=\"520\" y=\"410\" width=\"130\" height=\"100\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"585\" y=\"440\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Transformer</text>
+  <text x=\"585\" y=\"458\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">Block 2-4</text>
+  <text x=\"585\" y=\"475\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"rgba(255,255,255,0.6)\">96 heads</text>
+  <!-- Connection -->
+  <path d=\"M 460 460 L 520 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Attention Layer -->
+  <circle cx=\"710\" cy=\"460\" r=\"30\" fill=\"rgba(0,212,255,0.2)\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <text x=\"710\" y=\"463\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" font-weight=\"bold\" fill=\"#00d4ff\">Multi-Head</text>
+  <text x=\"710\" y=\"478\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"#00d4ff\">Attention</text>
+  <!-- Connection -->
+  <path d=\"M 650 460 L 680 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Dense Layers -->
+  <rect x=\"800\" y=\"410\" width=\"130\" height=\"100\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"865\" y=\"440\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Dense Layers</text>
+  <text x=\"865\" y=\"458\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">1024→512</text>
+  <text x=\"865\" y=\"475\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"rgba(255,255,255,0.6)\">w/Dropout</text>
+  <!-- Connection -->
+  <path d=\"M 740 460 L 800 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Normalization -->
+  <circle cx=\"990\" cy=\"460\" r=\"25\" fill=\"rgba(0,212,255,0.2)\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <text x=\"990\" y=\"465\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" font-weight=\"bold\" fill=\"#00d4ff\">LayerNorm</text>
+  <!-- Connection -->
+  <path d=\"M 930 460 L 965 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Output Classification -->
+  <rect x=\"1080\" y=\"410\" width=\"130\" height=\"100\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"1145\" y=\"440\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Classification</text>
+  <text x=\"1145\" y=\"458\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">Softmax</text>
+  <text x=\"1145\" y=\"475\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"rgba(255,255,255,0.6)\">1024 classes</text>
+  <!-- Connection -->
+  <path d=\"M 1015 460 L 1080 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Output Layer -->
+  <rect x=\"1280\" y=\"420\" width=\"120\" height=\"80\" fill=\"rgba(0,212,255,0.15)\" rx=\"4\" stroke=\"#00d4ff\" stroke-width=\"1\"/>
+  <text x=\"1340\" y=\"450\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"11\" font-weight=\"bold\" fill=\"#00d4ff\">Output</text>
+  <text x=\"1340\" y=\"470\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"9\" fill=\"rgba(255,255,255,0.7)\">Predictions</text>
+  <!-- Connection -->
+  <path d=\"M 1210 460 L 1280 460\" stroke=\"#00d4ff\" stroke-width=\"2\"/>
+  <!-- Training Metrics -->
+  <rect x=\"100\" y=\"560\" width=\"340\" height=\"140\" fill=\"rgba(0,212,255,0.1)\" rx=\"8\"/>
+  <text x=\"130\" y=\"590\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"#00d4ff\">Training Performance</text>
+  <text x=\"130\" y=\"615\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Loss: 0.0234 | Validation: 96.8%</text>
+  <text x=\"130\" y=\"635\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Epoch: 148/200 | Time: 8.4h</text>
+  <text x=\"130\" y=\"655\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Learning rate: 1.2e-5 (adaptive)</text>
+  <text x=\"130\" y=\"675\" font-family=\"Arial\" font-size=\"10\" fill=\"#00d4ff\">Status: Converging well</text>
+  <!-- Model Deployment -->
+  <rect x=\"500\" y=\"560\" width=\"340\" height=\"140\" fill=\"rgba(0,212,255,0.1)\" rx=\"8\"/>
+  <text x=\"530\" y=\"590\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"#00d4ff\">Inference Optimization</text>
+  <text x=\"530\" y=\"615\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Quantization: INT8 enabled</text>
+  <text x=\"530\" y=\"635\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Pruning: 35% weights removed</text>
+  <text x=\"530\" y=\"655\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Batch Size: 256 | Precision: FP16</text>
+  <text x=\"530\" y=\"675\" font-family=\"Arial\" font-size=\"10\" fill=\"#00d4ff\">Memory: 2.1GB | Speed: 8.4K req/s</text>
+  <!-- Hardware Utilization -->
+  <rect x=\"900\" y=\"560\" width=\"340\" height=\"140\" fill=\"rgba(0,212,255,0.1)\" rx=\"8\"/>
+  <text x=\"930\" y=\"590\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"#00d4ff\">Hardware Utilization</text>
+  <text x=\"930\" y=\"615\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">GPU Memory: 82% • Core: 78%</text>
+  <text x=\"930\" y=\"635\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">CPU: 45% • Network I/O: 62%</text>
+  <text x=\"930\" y=\"655\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Temp: 68°C • Power: 280W</text>
+  <text x=\"930\" y=\"675\" font-family=\"Arial\" font-size=\"10\" fill=\"#00d4ff\">Efficiency: Optimal</text>
+  <!-- Model Versioning -->
+  <rect x=\"1300\" y=\"560\" width=\"260\" height=\"140\" fill=\"rgba(0,212,255,0.1)\" rx=\"8\"/>
+  <text x=\"1330\" y=\"590\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"#00d4ff\">Model Info</text>
+  <text x=\"1330\" y=\"615\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Version: 1.4.2</text>
+  <text x=\"1330\" y=\"635\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Released: 2024-01-15</text>
+  <text x=\"1330\" y=\"655\" font-family=\"Arial\" font-size=\"10\" fill=\"white\">Framework: PyTorch 2.0</text>
+  <text x=\"1330\" y=\"675\" font-family=\"Arial\" font-size=\"10\" fill=\"#00d4ff\">Prod: Active</text>
+  <rect x=\"0\" y=\"960\" width=\"1600\" height=\"40\" fill=\"rgba(0,0,0,0.3)\"/>
+  <text x=\"60\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"rgba(255,255,255,0.5)\">Last updated: Today at 14:32 UTC</text>
+  <text x=\"1450\" y=\"985\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"#00d4ff\">All systems healthy</text>
+</svg>
