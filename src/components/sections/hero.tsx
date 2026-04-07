@@ -81,20 +81,6 @@ const HeroSection = () => {
                 </BlurIn>
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
-                <Link
-                  href={
-                    "/Sebastian-Becerra-CV.pdf"
-                  }
-                  target="_blank"
-                  className="flex-1"
-                >
-                  <BoxReveal delay={2} width="100%" >
-                    <Button className="flex items-center gap-2 w-full">
-                      <File size={24} />
-                      <p>Resume</p>
-                    </Button>
-                  </BoxReveal>
-                </Link>
                 <div className="md:self-start flex gap-3">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
