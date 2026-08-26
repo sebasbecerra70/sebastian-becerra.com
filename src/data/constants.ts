@@ -257,23 +257,6 @@ export type Experience = {
 
 export const EXPERIENCE: Experience[] = [
   {
-    id: 1,
-    startDate: "Mar 2026",
-    endDate: "Present",
-    title: "Video Creator & AI Specialist",
-    company: "G Luxe Jewelers",
-    description: [
-      "Manage day-to-day social media presence across Instagram, TikTok, Facebook, and related platforms, planning content calendars and keeping the brand voice consistent for a luxury jewelry audience.",
-      "Create and edit short-form Reels, TikToks, and Stories that showcase product drops, styling looks, behind-the-scenes moments, and promotional campaigns designed to drive engagement and conversions.",
-      "Produce polished photo and video posts for feed, Stories, and ads — including cuts, color, captions, transitions, music, and platform-native formatting optimized for each channel.",
-      "Leverage AI tools for marketing campaigns: script ideation, caption writing, hook testing, visual concept generation, thumbnail variants, and A/B copy to accelerate content production without losing brand quality.",
-      "Build AI-assisted creative workflows for campaign launches — from brief to publish — reducing turnaround time on promotional assets while keeping messaging on-brand across channels.",
-      "Track performance analytics (reach, watch time, saves, shares, CTR) and iterate on formats, posting cadence, and creative angles to grow audience engagement and support sales goals.",
-      "Coordinate with owners and sales teams to align social content with promotions, new collections, and seasonal campaigns so marketing stays tightly coupled to store priorities.",
-    ],
-    skills: [],
-  },
-  {
     id: 2,
     startDate: "May 2025",
     endDate: "Present",
