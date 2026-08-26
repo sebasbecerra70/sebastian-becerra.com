@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 import { RadialMenuPresentational } from './radial-menu-presentational';
 import { MenuItem, Position } from './types';
 import { SocketContext } from '@/contexts/socketio';
+import { unlockAchievement } from '@/lib/achievements';
 
 // Define our menu items
 const MENU_ITEMS: MenuItem[] = [
@@ -161,6 +162,7 @@ export default function RadialMenu() {
         const item = MENU_ITEMS[activeIndexRef.current];
         // Trigger action
         triggerConfetti(e.pageX, e.pageY, item);
+        unlockAchievement('radial');
 
         // Broadcast to others
         if (socket) {

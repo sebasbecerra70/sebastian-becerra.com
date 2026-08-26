@@ -1,3 +1,54 @@
+import type { LucideIcon } from "lucide-react";
+import {
+  Award,
+  Boxes,
+  Brain,
+  Briefcase,
+  CalendarClock,
+  CandlestickChart,
+  ClipboardCheck,
+  Cloud,
+  Code2,
+  CreditCard,
+  Database,
+  Gauge,
+  GraduationCap,
+  Languages,
+  Layers,
+  LineChart,
+  MapPin,
+  Server,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Terminal,
+  Timer,
+  TrendingUp,
+  Truck,
+  Users,
+  Wallet,
+} from "lucide-react";
+import type { IconType } from "react-icons";
+import { RiNextjsFill, RiNodejsFill, RiReactjsFill, RiRobot2Fill } from "react-icons/ri";
+import {
+  SiAmazonaws,
+  SiDocker,
+  SiGooglecloud,
+  SiJavascript,
+  SiKubernetes,
+  SiMongodb,
+  SiOpenai,
+  SiPostgresql,
+  SiPython,
+  SiRadixui,
+  SiRedis,
+  SiStripe,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+} from "react-icons/si";
+import { TbApi, TbBrandFramerMotion } from "react-icons/tb";
+
 // thoda zada ts ho gya idhar
 export enum SkillNames {
   JS = "js",
@@ -263,10 +314,10 @@ export const EXPERIENCE: Experience[] = [
     title: "Fleet Transportation Dispatcher & Operations",
     company: "C&S Wholesale Grocers",
     description: [
-      "System Reliability & Monitoring: Served as primary monitor for daily supply chain uptime across distributed fleet networks, maintaining a 98% on-time delivery rate for Tier-1 partners (Fresco y Mas, Presidente, Winn-Dixie). Applied proactive system monitoring, GPS/telematics tracking, and automated alerting to identify and resolve operational bottlenecks before customer impact.",
-      "Workflow Optimization: Analyzed routing data and optimized dispatch workflows for 90+ daily deliveries, increasing throughput by 18% through iterative process refinement, algorithmic resource allocation, and route optimization logic. Used performance dashboards and reporting tools to benchmark efficiency metrics and surface actionable insights.",
-      "Data Integrity & Compliance: Managed mission-critical operational data (BOLs, POs, ELD logs) within Transportation Management Systems (TMS) and integrated databases, maintaining 97%+ data accuracy across synchronized platforms. Ensured full regulatory compliance, audit readiness, and structured data governance.",
-      "Cross-functional Engineering Collaboration: Partnered with warehouse, receiving, and technical teams to diagnose system lag and workflow inefficiencies using root-cause analysis, reducing inter-facility delays by 35% and cutting average latency (dock time) by 40 minutes per load. Supported process automation, API-driven data handoffs, and cross-platform integrations.",
+      "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y Más, and Presidente — 90+ deliveries a day matched against available trucks, drivers, and dock capacity, held at 98% on-time against contract SLAs.",
+      "Redesigned how work enters the plan. Cut 40 minutes of dwell per load, reduced inter-facility delays 35%, and raised throughput 18% by reallocating routing and labor.",
+      "Run the recurring operations review that keeps warehouse, receiving, and transportation leads aligned on capacity and on the downstream cost when a date moves, with a root-cause writeup behind every repeat exception.",
+      "Hold operational records at 97%+ accuracy across integrated systems so planning, billing, and reporting all run off one dataset.",
     ],
     skills: [
       SkillNames.NODEJS,
@@ -278,18 +329,14 @@ export const EXPERIENCE: Experience[] = [
     id: 3,
     startDate: "Jul 2022",
     endDate: "Jul 2026",
-    title: "Full-Stack Software Engineer",
+    title: "Operations Technology Lead",
     company: "Ship AI",
     description: [
-      "Architected and launched an AI-native, commission-free freight marketplace connecting shippers and carriers through scalable cloud infrastructure and AI-powered workflow automation.",
-      "Designed and developed the core platform using Next.js, React, TypeScript, Node.js, and Python, delivering high-performance, real-time applications focused on scalability, reliability, and developer experience.",
-      "Built AI-powered operational workflows leveraging LLMs, Retrieval-Augmented Generation (RAG), agentic architectures, and Model Context Protocol (MCP) integrations to automate document processing, load management, customer support, and operational decision-making.",
-      "Engineered AI copilots capable of natural language interactions, structured outputs, tool calling, and contextual reasoning, enabling users to execute complex logistics workflows conversationally.",
-      "Developed secure API-first backend services and integrated Stripe Connect, third-party logistics providers, mapping services, and enterprise APIs to orchestrate payments, shipment execution, and real-time operational data.",
-      "Implemented event-driven architectures, asynchronous processing, WebSockets, and real-time state synchronization to power live shipment tracking, fleet visibility, notifications, and operational monitoring.",
-      "Built reusable design systems and component libraries using Tailwind CSS, Radix UI, and modern frontend patterns, accelerating product development while maintaining accessibility and consistency.",
-      "Applied modern AI engineering practices including prompt engineering, semantic search, vector embeddings, AI workflow orchestration, observability, CI/CD, Docker, GitHub Actions, and cloud-native deployment.",
-      "Led product strategy, architecture, and rapid iteration from MVP to production, onboarding 300+ carrier companies representing +3,000 trucks while shipping AI-driven features based on customer feedback and operational analytics.",
+      "Built and launched an AI-native, commission-free freight marketplace on Next.js, React, TypeScript, Node.js, and Python — onboarding 300+ carrier companies representing 3,000+ trucks.",
+      "Owned the money layer end to end: Stripe Connect payouts, billing and settlement flows, and the transaction data model behind carrier payments and shipper invoicing.",
+      "Shipped AI copilots and agent workflows — LLMs, RAG, MCP integrations, tool calling, structured outputs — that read documents, triaged exceptions, and let users run complex logistics work conversationally, always behind human review.",
+      "Designed the capacity model that replaced deal-by-deal guesswork with one integrated forecast, published on a fixed cadence against on-time rate, tender acceptance, dwell, cost per load, and exception rate.",
+      "Ran the real-time infrastructure underneath it — event-driven services, WebSockets, async processing — plus the design system, CI/CD, Docker, and cloud deployment.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -311,15 +358,10 @@ export const EXPERIENCE: Experience[] = [
     title: "Senior Logistics Coordinator",
     company: "MCI Express Inc",
     description: [
-      "Managed enterprise logistics technology ecosystems supporting Tier-1 clients including Carnival, Royal Caribbean, and Ritz-Carlton, operating mission-critical transportation workflows through integrated TMS, ELD, GPS/telematics, fleet management, and IoT-enabled tracking platforms.",
-      "Designed and maintained digital logistics workflows across distributed systems, improving shipment lifecycle management, carrier coordination, and real-time operational visibility using cloud-based architectures.",
-      "Integrated transportation platforms, carrier networks, and internal systems through API-driven workflows, REST/webhook integrations, EDI exchanges, JSON/XML data structures, and automated ETL pipelines, improving system interoperability.",
-      "Used SQL, relational databases, BI dashboards, and KPI monitoring to identify performance bottlenecks, optimize routing algorithms, and support data-driven decision-making.",
-      "Managed high-volume operational data flows across TMS, ELD, and GPS systems while maintaining data integrity, synchronization, observability, and workflow reliability across cloud and on-prem environments.",
-      "Built automation frameworks using no-code/low-code platforms (Make.com, Zapier) and API integrations to streamline shipment updates, compliance documentation, exception handling, and reporting workflows.",
-      "Applied systems engineering principles including workflow orchestration, event-driven architecture, real-time data processing, system monitoring, and scalable infrastructure design to strengthen logistics operations.",
-      "Partnered with engineers, technical teams, and operations leaders to translate business requirements into scalable technology solutions, automation pipelines, and internal tooling.",
-      "Developed hands-on expertise in AI-ready enterprise systems, including intelligent automation, predictive analytics, LLMs, AI copilots, semantic search, vector databases, embeddings, RAG, and AI agents.",
+      "Planned and locked capacity for multimillion-dollar concurrent programs (Carnival, Royal Caribbean, Ritz-Carlton) against fixed vessel and delivery windows, where commitments had to be made early and could not be re-cut.",
+      "Ran the trade-off calls whenever a date or equipment tranche moved: reassessed the plan, decided which program absorbed the slip, and pushed the change to accounts the same day.",
+      "Connected transportation platforms and carrier networks through REST and webhook APIs, EDI exchanges, and automated ETL pipelines, retiring an entirely manual reporting cycle.",
+      "Standardized reporting with SQL and BI dashboards, using cost and performance data to find bottlenecks and support pricing and routing decisions.",
     ],
     skills: [
       SkillNames.NODEJS,
@@ -332,18 +374,14 @@ export const EXPERIENCE: Experience[] = [
     id: 5,
     startDate: "Jan 2020",
     endDate: "Mar 2024",
-    title: "Software Engineer",
+    title: "Founder & Software Engineer",
     company: "Dispatch 4 Now LLC",
     description: [
-      "Architected and developed an AI-ready internal dispatch platform that modernized logistics operations through intelligent workflow automation, real-time fleet orchestration, and centralized operational intelligence.",
-      "Designed and shipped production-grade full-stack applications using TypeScript, React, Next.js, Node.js, Python, PostgreSQL, and Redis, following API-first architecture and cloud-native development practices.",
-      "Built scalable backend services to automate dispatching, shipment lifecycle management, route optimization, driver assignment, and event-driven operational workflows, reducing manual coordination across the organization.",
-      "Implemented real-time data synchronization using WebSockets and asynchronous processing, enabling live shipment tracking, operational monitoring, intelligent alerting, and low-latency system updates.",
-      "Integrated carrier APIs, GPS/telematics providers, mapping services, and third-party enterprise systems to create a unified operational data platform with high reliability and data consistency.",
-      "Developed internal analytics dashboards featuring live KPIs, operational insights, capacity planning, anomaly detection, and predictive reporting to support data-driven decision making.",
-      "Designed the platform with AI-native architecture, enabling future integration of LLM-powered copilots, agentic workflows, RAG, MCP, semantic search, structured outputs, and intelligent workflow automation.",
-      "Applied modern software engineering practices including distributed systems design, event-driven architecture, CI/CD, Docker, GitHub Actions, observability, OpenTelemetry, automated testing, feature flags, and continuous performance optimization.",
-      "Partnered with cross-functional teams to rapidly deliver production software, transforming complex operational requirements into scalable, resilient, and developer-friendly systems built for long-term growth and AI-driven innovation.",
+      "Founded and ran an operation that moved several million dollars in freight over four years, owning capacity procurement, rate and contract negotiation, and the margin on every load.",
+      "Built the internal system of record (TypeScript, React, Next.js, Node.js, Python, PostgreSQL, Redis) covering dispatch, shipment lifecycle, route optimization, and driver assignment — the software the business actually ran on.",
+      "Shipped live dashboards for capacity planning, unit economics, anomaly detection, and predictive reporting, and made daily pricing and allocation calls from them.",
+      "Integrated carrier APIs, GPS and telematics providers, and mapping services into one operational data platform with real-time tracking over WebSockets.",
+      "Wrote the SOPs and training library that let the operation absorb new lanes and volume without adding headcount.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -362,19 +400,12 @@ export const EXPERIENCE: Experience[] = [
     title: "Bilingual Customer Service Representative",
     company: "Amazon",
     description: [
-      "Operated within Amazon's large-scale, cloud-native logistics ecosystem, supporting high-throughput operational workflows and real-time shipment visibility across globally distributed carrier networks.",
-      "Investigated complex data synchronization issues across multiple internal platforms, validating event consistency and ensuring accurate state transitions throughout the package lifecycle.",
-      "Analyzed real-time operational signals to identify delivery anomalies, resolve workflow bottlenecks, and maintain high platform reliability under strict service-level objectives (SLOs).",
-      "Collaborated across cross-functional operational and technical teams to improve workflow efficiency, enhance data quality, and optimize end-to-end customer experience using data-driven decision making.",
-      "Worked extensively with internal dashboards, operational analytics, and monitoring systems to diagnose failures, correlate system events, and accelerate incident resolution.",
-      "Maintained accurate operational documentation and audit trails, ensuring data integrity, traceability, and consistent knowledge sharing across distributed teams.",
-      "Thrived in a high-scale, fast-paced environment built around operational excellence, continuous improvement, and iterative process optimization.",
-      "Strengthened expertise in systems thinking, distributed operations, observability, incident response, and large-scale platform workflows while supporting millions of package lifecycle events.",
+      "Supported Amazon's delivery network at scale against strict service-level targets, working the operational signals behind millions of package events.",
+      "Traced data synchronization failures across internal platforms back to root cause, validating event consistency through the package lifecycle.",
+      "Used internal dashboards and monitoring to diagnose delivery anomalies, correlate system events, and shorten incident resolution.",
+      "Recognized as a top performer, working in English and Spanish across distributed teams.",
     ],
-    skills: [
-      SkillNames.AWS,
-      SkillNames.LINUX,
-    ],
+    skills: [SkillNames.AWS, SkillNames.LINUX],
   },
 ];
 
@@ -396,22 +427,24 @@ export const themeDisclaimers = {
 };
 
 
+
 export type About = {
   paragraphs: string[];
-  facts: { label: string; value: string }[];
+  facts: { label: string; value: string; icon: LucideIcon }[];
 };
 
 export const ABOUT: About = {
   paragraphs: [
     "I'm a software engineer who spends his days inside the operations he builds for. Nine years across logistics networks, freight marketplaces, and the planning systems behind them — writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
     "That loop is the whole point. I design internal systems of record, data models, and AI-assisted automation, then I actually run on them. It tends to produce software that survives contact with a real operation, because the person who shipped it is also the person the pager wakes up.",
+    "A lot of that work is where the money moves: Stripe Connect payouts, billing and settlement flows, and the unit economics underneath them. Running my own freight company for four years meant negotiating the rates, owning the margin, and then building the dashboard I made those calls from — so I read a P&L the same way I read a schema.",
     "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand — always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
   ],
   facts: [
-    { label: "Based in", value: "Miami, FL" },
-    { label: "Focus", value: "Full-stack + AI systems" },
-    { label: "Experience", value: "9+ years" },
-    { label: "Open to", value: "Engineering & ops-tech roles" },
+    { label: "Based in", value: "Miami, FL", icon: MapPin },
+    { label: "Focus", value: "Full-stack + AI systems", icon: Target },
+    { label: "Experience", value: "9+ years", icon: Briefcase },
+    { label: "Off the clock", value: "Markets & investing", icon: CandlestickChart },
   ],
 };
 
@@ -419,21 +452,26 @@ export type Metric = {
   value: number;
   suffix: string;
   label: string;
+  icon: LucideIcon;
 };
 
 export const IMPACT_METRICS: Metric[] = [
-  { value: 98, suffix: "%", label: "On-time vs. contract SLAs" },
-  { value: 18, suffix: "%", label: "Throughput increase from workflow redesign" },
-  { value: 35, suffix: "%", label: "Reduction in inter-facility delays" },
-  { value: 3000, suffix: "+", label: "Trucks of capacity planned" },
-  { value: 97, suffix: "%+", label: "Data accuracy across integrated systems" },
-  { value: 9, suffix: "+", label: "Years running live operations" },
+  { value: 98, suffix: "%", label: "On-time vs. contract SLAs", icon: ShieldCheck },
+  { value: 18, suffix: "%", label: "Throughput increase from workflow redesign", icon: TrendingUp },
+  { value: 35, suffix: "%", label: "Reduction in inter-facility delays", icon: Timer },
+  { value: 3000, suffix: "+", label: "Trucks of capacity planned", icon: Truck },
+  { value: 300, suffix: "+", label: "Carrier companies onboarded", icon: Users },
+  { value: 90, suffix: "+", label: "Deliveries dispatched daily", icon: Gauge },
+  { value: 97, suffix: "%+", label: "Data accuracy across integrated systems", icon: Database },
+  { value: 9, suffix: "+", label: "Years running live operations", icon: CalendarClock },
 ];
 
 export type Capability = {
   title: string;
   blurb: string;
   items: string[];
+  icon: LucideIcon;
+  accent: string;
 };
 
 export const CAPABILITIES: Capability[] = [
@@ -449,6 +487,8 @@ export const CAPABILITIES: Capability[] = [
       "REST & webhook APIs",
       "System design",
     ],
+    icon: Code2,
+    accent: "sky",
   },
   {
     title: "AI & Automation",
@@ -462,6 +502,8 @@ export const CAPABILITIES: Capability[] = [
       "Document processing",
       "Human review gates",
     ],
+    icon: Sparkles,
+    accent: "violet",
   },
   {
     title: "Data & Systems of Record",
@@ -475,6 +517,38 @@ export const CAPABILITIES: Capability[] = [
       "TMS / WMS / ERP",
       "Telematics platforms",
     ],
+    icon: Database,
+    accent: "cyan",
+  },
+  {
+    title: "Payments & Financial Systems",
+    blurb:
+      "The money layer: getting funds to the right party, on time, with a reconciliation trail behind every cent.",
+    items: [
+      "Stripe Connect",
+      "Payouts & settlement",
+      "Billing & invoicing",
+      "Reconciliation",
+      "Transaction modeling",
+      "Financial reporting",
+    ],
+    icon: CreditCard,
+    accent: "emerald",
+  },
+  {
+    title: "Commercial & Unit Economics",
+    blurb:
+      "Knowing what a unit costs, what it should cost, and which lever actually moves the margin.",
+    items: [
+      "Rate & contract negotiation",
+      "Cost-per-unit analytics",
+      "Margin & P&L ownership",
+      "Budget planning",
+      "Financial scenario modeling",
+      "Pricing strategy",
+    ],
+    icon: TrendingUp,
+    accent: "amber",
   },
   {
     title: "Planning & Operations",
@@ -488,6 +562,93 @@ export const CAPABILITIES: Capability[] = [
       "Risk escalation",
       "Continuous improvement",
     ],
+    icon: ClipboardCheck,
+    accent: "rose",
+  },
+];
+
+export type TechCategory = {
+  title: string;
+  icon: LucideIcon;
+  accent: string;
+  items: { label: string; icon?: IconType | LucideIcon }[];
+};
+
+export const TECH_STACK: TechCategory[] = [
+  {
+    title: "Languages & Query",
+    icon: Terminal,
+    accent: "sky",
+    items: [
+      { label: "TypeScript", icon: SiTypescript },
+      { label: "JavaScript", icon: SiJavascript },
+      { label: "Python", icon: SiPython },
+      { label: "SQL", icon: SiPostgresql },
+    ],
+  },
+  {
+    title: "Frontend",
+    icon: Layers,
+    accent: "violet",
+    items: [
+      { label: "React", icon: RiReactjsFill },
+      { label: "Next.js", icon: RiNextjsFill },
+      { label: "Tailwind", icon: SiTailwindcss },
+      { label: "Framer Motion", icon: TbBrandFramerMotion },
+      { label: "Radix UI", icon: SiRadixui },
+    ],
+  },
+  {
+    title: "Backend & Data",
+    icon: Server,
+    accent: "cyan",
+    items: [
+      { label: "Node.js", icon: RiNodejsFill },
+      { label: "PostgreSQL", icon: SiPostgresql },
+      { label: "MongoDB", icon: SiMongodb },
+      { label: "Redis", icon: SiRedis },
+      { label: "REST & webhooks", icon: TbApi },
+      { label: "EDI" },
+    ],
+  },
+  {
+    title: "AI Engineering",
+    icon: Brain,
+    accent: "fuchsia",
+    items: [
+      { label: "LLM integration", icon: SiOpenai },
+      { label: "RAG pipelines" },
+      { label: "Agent orchestration", icon: RiRobot2Fill },
+      { label: "MCP" },
+      { label: "Embeddings" },
+      { label: "Vector search" },
+    ],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    icon: Cloud,
+    accent: "orange",
+    items: [
+      { label: "AWS", icon: SiAmazonaws },
+      { label: "Google Cloud", icon: SiGooglecloud },
+      { label: "Docker", icon: SiDocker },
+      { label: "Kubernetes", icon: SiKubernetes },
+      { label: "Vercel", icon: SiVercel },
+      { label: "CI/CD" },
+    ],
+  },
+  {
+    title: "Finance & Business Systems",
+    icon: Wallet,
+    accent: "emerald",
+    items: [
+      { label: "Stripe Connect", icon: SiStripe },
+      { label: "Billing & settlement" },
+      { label: "Unit economics", icon: LineChart },
+      { label: "BI & KPI dashboards" },
+      { label: "TMS / WMS / ERP", icon: Boxes },
+      { label: "Forecasting models" },
+    ],
   },
 ];
 
@@ -496,6 +657,7 @@ export type Credential = {
   org: string;
   period?: string;
   detail?: string;
+  icon: LucideIcon;
 };
 
 export const CREDENTIALS: Credential[] = [
@@ -505,25 +667,30 @@ export const CREDENTIALS: Credential[] = [
     period: "2021 - 2024",
     detail:
       "Relational database systems, data analysis, and applied AI/LLM engineering.",
+    icon: GraduationCap,
   },
   {
     title: "NVIDIA Inception",
     org: "Member",
     detail: "Startup program for AI and accelerated-computing companies.",
+    icon: Award,
   },
   {
     title: "AWS Activate",
     org: "Member",
     detail: "Cloud infrastructure credits and technical enablement program.",
+    icon: Cloud,
   },
   {
     title: "Cloud & Infrastructure",
     org: "Self-directed",
     detail: "AWS, GCP, Docker, and Kubernetes for LLM, RAG, and agent workloads.",
+    icon: Server,
   },
   {
     title: "Languages",
     org: "Fluent",
     detail: "English, Spanish, and Portuguese.",
+    icon: Languages,
   },
 ];

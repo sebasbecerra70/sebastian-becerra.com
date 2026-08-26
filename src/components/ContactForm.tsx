@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import confetti from "canvas-confetti";
 
 const ContactForm = () => {
   const [fullName, setFullName] = React.useState("");
@@ -35,6 +36,12 @@ const ContactForm = () => {
       });
       const data = await res.json();
       if (data.error) throw new Error(data.error);
+      confetti({
+        particleCount: 90,
+        spread: 75,
+        startVelocity: 40,
+        origin: { x: 0.5, y: 0.7 },
+      });
       toast({
         title: "Thank you!",
         description: "I'll get back to you as soon as possible.",

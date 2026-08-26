@@ -94,7 +94,28 @@ body {
   .canvas-overlay-mode h5,
   .canvas-overlay-mode h6,
   .canvas-overlay-mode span,
-  .canvas-overlay-mode svg {
+  .canvas-overlay-mode svg,
+  .canvas-overlay-mode .interactive-card {
     pointer-events: auto;
+  }
+
+  /* Pointer-tracked spotlight used by .interactive-card */
+  .interactive-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    pointer-events: none;
+    background: radial-gradient(
+      320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      hsl(var(--brand-spot, 210 100% 60%) / 0.16),
+      transparent 65%
+    );
+  }
+
+  .interactive-card:hover::before {
+    opacity: 1;
   }
 }

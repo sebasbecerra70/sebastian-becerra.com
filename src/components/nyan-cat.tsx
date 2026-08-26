@@ -7,6 +7,7 @@ import {
   animate,
   useAnimationControls,
 } from "framer-motion";
+import { unlockAchievement } from "@/lib/achievements";
 
 const getRandomHeight = () => {
   return `${Math.random() * 100}vh`;
@@ -27,7 +28,10 @@ const NyanCat = () => {
   };
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "n") spawnDiv();
+      if (e.key === "n") {
+        spawnDiv();
+        unlockAchievement("nyan");
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
