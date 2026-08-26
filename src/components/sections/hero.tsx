@@ -79,6 +79,16 @@ const HeroSection = () => {
                     Software Engineer
                   </p>
                 </BlurIn>
+                <BlurIn delay={1.4}>
+                  <p
+                    className={cn(
+                      "md:self-start md:mt-1 font-thin text-xs text-slate-500 dark:text-zinc-500",
+                      "cursor-default font-display sm:text-sm md:text-sm bg-clip-text "
+                    )}
+                  >
+                    building the systems I run on
+                  </p>
+                </BlurIn>
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
                 <div className="md:self-start flex gap-3">

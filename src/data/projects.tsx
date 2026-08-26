@@ -99,6 +99,35 @@ export type Project = {
 
 const projects: Project[] = [
   {
+    id: "proofbase-ai",
+    category: "AI & Verification",
+    title: "Proofbase.AI",
+    summary: "AI-assisted credential verification, packaged as one shareable link",
+    src: `${BASE_PATH}/proofbase-ai/cover.svg`,
+    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
+    skills: {
+      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.react, PROJECT_SKILLS.ts, PROJECT_SKILLS.tailwind],
+      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.postgres, PROJECT_SKILLS.python],
+    },
+    content: (
+      <div className="flex flex-col gap-4">
+        <TypographyH3>Proofbase.AI</TypographyH3>
+        <TypographyP>
+          A verification platform for the parts of a reputation that are hard to prove online. Businesses, artists, and independent professionals submit their credentials - licenses, certifications, work history, ownership, press - and Proofbase runs them through an AI-assisted review pipeline that extracts the claims from source documents, cross-checks them against public registries, and flags whatever needs a human to look at it.
+        </TypographyP>
+        <TypographyP>
+          What comes out the other side is a single shareable link: a public profile showing exactly which claims were verified, how, and when - so the person being vetted stops re-sending the same PDFs to every client, and the person doing the vetting stops taking screenshots on faith.
+        </TypographyP>
+        <SlideShow
+          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
+            (img) => `${BASE_PATH}/proofbase-ai/${img}`
+          )}
+        />
+      </div>
+    ),
+    live: "https://itsproofbase.com/",
+  },
+  {
     id: "orion-forecast",
     category: "AI & ML",
     title: "Orion Demand Forecasting",

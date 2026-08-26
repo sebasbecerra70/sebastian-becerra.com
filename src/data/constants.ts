@@ -395,3 +395,135 @@ export const themeDisclaimers = {
   ],
 };
 
+
+export type About = {
+  paragraphs: string[];
+  facts: { label: string; value: string }[];
+};
+
+export const ABOUT: About = {
+  paragraphs: [
+    "I'm a software engineer who spends his days inside the operations he builds for. Nine years across logistics networks, freight marketplaces, and the planning systems behind them — writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
+    "That loop is the whole point. I design internal systems of record, data models, and AI-assisted automation, then I actually run on them. It tends to produce software that survives contact with a real operation, because the person who shipped it is also the person the pager wakes up.",
+    "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand — always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
+  ],
+  facts: [
+    { label: "Based in", value: "Miami, FL" },
+    { label: "Focus", value: "Full-stack + AI systems" },
+    { label: "Experience", value: "9+ years" },
+    { label: "Open to", value: "Engineering & ops-tech roles" },
+  ],
+};
+
+export type Metric = {
+  value: number;
+  suffix: string;
+  label: string;
+};
+
+export const IMPACT_METRICS: Metric[] = [
+  { value: 98, suffix: "%", label: "On-time vs. contract SLAs" },
+  { value: 18, suffix: "%", label: "Throughput increase from workflow redesign" },
+  { value: 35, suffix: "%", label: "Reduction in inter-facility delays" },
+  { value: 3000, suffix: "+", label: "Trucks of capacity planned" },
+  { value: 97, suffix: "%+", label: "Data accuracy across integrated systems" },
+  { value: 9, suffix: "+", label: "Years running live operations" },
+];
+
+export type Capability = {
+  title: string;
+  blurb: string;
+  items: string[];
+};
+
+export const CAPABILITIES: Capability[] = [
+  {
+    title: "Software Engineering",
+    blurb:
+      "End-to-end product work, from schema to shipped interface — the systems teams run their day out of.",
+    items: [
+      "TypeScript",
+      "React & Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "REST & webhook APIs",
+      "System design",
+    ],
+  },
+  {
+    title: "AI & Automation",
+    blurb:
+      "Applied AI that does real work: reads the documents, triages the exceptions, and keeps a human in the loop.",
+    items: [
+      "LLM integration",
+      "RAG pipelines",
+      "Agent orchestration",
+      "MCP integrations",
+      "Document processing",
+      "Human review gates",
+    ],
+  },
+  {
+    title: "Data & Systems of Record",
+    blurb:
+      "One dataset everyone plans from, plus the pipelines and integrations that keep it honest.",
+    items: [
+      "SQL & data modeling",
+      "KPI / BI dashboards",
+      "ETL pipelines",
+      "EDI",
+      "TMS / WMS / ERP",
+      "Telematics platforms",
+    ],
+  },
+  {
+    title: "Planning & Operations",
+    blurb:
+      "The operator half: forecasting capacity, running the trade-off calls, and designing the process that holds.",
+    items: [
+      "Capacity forecasting",
+      "Scenario modeling",
+      "Process & SOP design",
+      "Cross-functional execution",
+      "Risk escalation",
+      "Continuous improvement",
+    ],
+  },
+];
+
+export type Credential = {
+  title: string;
+  org: string;
+  period?: string;
+  detail?: string;
+};
+
+export const CREDENTIALS: Credential[] = [
+  {
+    title: "B.S. Computer Science",
+    org: "University of the People",
+    period: "2021 - 2024",
+    detail:
+      "Relational database systems, data analysis, and applied AI/LLM engineering.",
+  },
+  {
+    title: "NVIDIA Inception",
+    org: "Member",
+    detail: "Startup program for AI and accelerated-computing companies.",
+  },
+  {
+    title: "AWS Activate",
+    org: "Member",
+    detail: "Cloud infrastructure credits and technical enablement program.",
+  },
+  {
+    title: "Cloud & Infrastructure",
+    org: "Self-directed",
+    detail: "AWS, GCP, Docker, and Kubernetes for LLM, RAG, and agent workloads.",
+  },
+  {
+    title: "Languages",
+    org: "Fluent",
+    detail: "English, Spanish, and Portuguese.",
+  },
+];

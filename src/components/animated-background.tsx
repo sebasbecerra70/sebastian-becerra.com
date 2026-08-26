@@ -9,7 +9,7 @@ import { sleep } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Section, getKeyboardState } from "./animated-background-config";
 import { useSounds } from "./realtime/hooks/use-sounds";
 
@@ -34,6 +34,7 @@ const AnimatedBackground = () => {
 
   const [keyboardRevealed, setKeyboardRevealed] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   // --- Event Handlers ---
 
@@ -142,8 +143,12 @@ const AnimatedBackground = () => {
     gsap.set(kbd.position, heroState.position);
 
     // Section transitions
-    createSectionTimeline("#skills", "skills", "hero");
-    createSectionTimeline("#projects", "projects", "skills", "top 70%");
+    createSectionTimeline("#about", "about", "hero");
+    createSectionTimeline("#skills", "skills", "about");
+    createSectionTimeline("#capabilities", "capabilities", "skills");
+    createSectionTimeline("#experience", "experience", "capabilities");
+    createSectionTimeline("#credentials", "credentials", "experience");
+    createSectionTimeline("#projects", "projects", "credentials", "top 70%");
     createSectionTimeline("#contact", "contact", "projects", "top 30%");
   };
 
@@ -418,12 +423,16 @@ const AnimatedBackground = () => {
 
   // Reveal keyboard on load/route change
   useEffect(() => {
-    const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
-    router.push("/" + hash, { scroll: false });
+    // ScrollTrigger callbacks can fire after a route change; without this guard
+    // they push "/#section" and yank the user back to the home page.
+    if (pathname === "/") {
+      const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
+      router.push("/" + hash, { scroll: false });
+    }
 
     if (!splineApp || isLoading || keyboardRevealed) return;
     updateKeyboardTransform();
-  }, [splineApp, isLoading, activeSection]);
+  }, [splineApp, isLoading, activeSection, pathname]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

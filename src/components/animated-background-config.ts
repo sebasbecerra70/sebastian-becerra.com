@@ -1,4 +1,12 @@
-export type Section = "hero" | "about" | "skills" | "experience" | "projects" | "contact";
+export type Section =
+  | "hero"
+  | "about"
+  | "skills"
+  | "capabilities"
+  | "experience"
+  | "credentials"
+  | "projects"
+  | "contact";
 
 export const STATES = {
   hero: {
@@ -13,30 +21,33 @@ export const STATES = {
       rotation: { x: 0, y: 0, z: 0 },
     },
   },
+  // Text-heavy section: the keyboard steps aside to the lower right so the
+  // copy reads cleanly, instead of sitting dead-center behind the card.
   about: {
     desktop: {
-      scale: { x: 0.4, y: 0.4, z: 0.4 },
-      position: { x: 0, y: -40, z: 0 },
+      scale: { x: 0.13, y: 0.13, z: 0.13 },
+      position: { x: 1250, y: -700, z: 0 },
       rotation: {
-        x: 0,
-        y: Math.PI / 12,
+        x: Math.PI / 12,
+        y: Math.PI / 8,
         z: 0,
       },
     },
     mobile: {
-      scale: { x: 0.4, y: 0.4, z: 0.4 },
-      position: { x: 0, y: -40, z: 0 },
+      scale: { x: 0.14, y: 0.14, z: 0.14 },
+      position: { x: 0, y: -1150, z: 0 },
       rotation: {
-        x: 0,
-        y: Math.PI / 6,
+        x: Math.PI / 10,
+        y: Math.PI / 8,
         z: 0,
       },
     },
   },
+  // Mirrored parking spot for the other text-heavy section.
   experience: {
     desktop: {
-      scale: { x: 0.25, y: 0.25, z: 0.25 },
-      position: { x: 0, y: -40, z: 0 },
+      scale: { x: 0.13, y: 0.13, z: 0.13 },
+      position: { x: -1250, y: -700, z: 0 },
       rotation: {
         x: Math.PI / 12, // Slight tilt forward
         y: -Math.PI / 4, // Rotate opposite to skills
@@ -44,10 +55,10 @@ export const STATES = {
       },
     },
     mobile: {
-      scale: { x: 0.3, y: 0.3, z: 0.3 },
-      position: { x: 0, y: -40, z: 0 },
+      scale: { x: 0.14, y: 0.14, z: 0.14 },
+      position: { x: 0, y: -1150, z: 0 },
       rotation: {
-        x: Math.PI / 6,
+        x: Math.PI / 10,
         y: -Math.PI / 6,
         z: 0,
       },
@@ -69,6 +80,48 @@ export const STATES = {
       rotation: {
         x: 0,
         y: Math.PI / 6,
+        z: 0,
+      },
+    },
+  },
+  // Parked right, mirroring `about`.
+  capabilities: {
+    desktop: {
+      scale: { x: 0.13, y: 0.13, z: 0.13 },
+      position: { x: 1250, y: -700, z: 0 },
+      rotation: {
+        x: Math.PI / 12,
+        y: Math.PI / 8,
+        z: 0,
+      },
+    },
+    mobile: {
+      scale: { x: 0.14, y: 0.14, z: 0.14 },
+      position: { x: 0, y: -1150, z: 0 },
+      rotation: {
+        x: Math.PI / 10,
+        y: Math.PI / 8,
+        z: 0,
+      },
+    },
+  },
+  // Parked left, mirroring `experience`.
+  credentials: {
+    desktop: {
+      scale: { x: 0.13, y: 0.13, z: 0.13 },
+      position: { x: -1250, y: -700, z: 0 },
+      rotation: {
+        x: Math.PI / 12,
+        y: -Math.PI / 4,
+        z: 0,
+      },
+    },
+    mobile: {
+      scale: { x: 0.14, y: 0.14, z: 0.14 },
+      position: { x: 0, y: -1150, z: 0 },
+      rotation: {
+        x: Math.PI / 10,
+        y: -Math.PI / 6,
         z: 0,
       },
     },

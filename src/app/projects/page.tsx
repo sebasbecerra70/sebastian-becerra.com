@@ -54,6 +54,16 @@ function Page() {
                 <p className="mt-2 text-xs text-zinc-500">
                   {project.summary}
                 </p>
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block text-xs text-zinc-400 underline underline-offset-4 hover:text-zinc-200 transition-colors"
+                  >
+                    Visit site →
+                  </a>
+                )}
               </div>
             </li>
           ))}
