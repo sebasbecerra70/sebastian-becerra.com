@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight, Lock } from "lucide-react";
 import projects, { type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { highlight } from "@/lib/rich-text";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
 import Reveal from "../ui/reveal";
@@ -70,7 +71,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
           >
             <dt className="eyebrow pt-1">{facet.label}</dt>
             <dd className="text-sm md:text-base leading-relaxed text-muted-foreground">
-              {facet.body}
+              {highlight(facet.body)}
             </dd>
           </div>
         ))}
@@ -97,7 +98,7 @@ const ProjectsSection = () => (
         id="selected work"
         index="02"
         title="Selected work"
-        desc="Three systems that ran in production, with the numbers they actually produced."
+        desc="Two systems that ran in production, with the numbers they actually produced."
         className="mb-12 md:mb-16"
       />
 

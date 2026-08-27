@@ -1,4 +1,5 @@
 import { ABOUT } from "@/data/constants";
+import { highlight } from "@/lib/rich-text";
 import SectionWrapper from "../ui/section-wrapper";
 import Reveal from "../ui/reveal";
 
@@ -31,7 +32,7 @@ const IntroSection = () => (
                     : "text-base md:text-lg leading-relaxed text-muted-foreground"
                 }
               >
-                {paragraph}
+                {highlight(paragraph)}
               </p>
             </Reveal>
           ))}

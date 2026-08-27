@@ -5,7 +5,7 @@ export type Project = {
   title: string;
   /** One line: what it is. */
   summary: string;
-  /** Three lines: the problem, what he built, what came of it. */
+  /** Three lines: the problem, what he built, what came of it. Metrics in `**…**`. */
   facets: { label: string; body: string }[];
   stack: string[];
   /** Optional real screenshot. No mockups. An entry with no image renders as type. */
@@ -16,12 +16,15 @@ export type Project = {
 };
 
 /**
- * Three real projects.
+ * Two real projects, both with public links.
  *
- * The five that used to sit here (Orion Forecast, LedgerFlow, RoutePulse, MarketWeave,
- * Sentinel Risk) had no live links and were illustrated with hand-drawn SVG mockups
- * containing invented data such as "Studio Marlowe · 1,284 profile views". Reviewers spot that
- * instantly and it discredits the real work next to it.
+ * Everything here is something a reviewer can open. The five that used to sit here
+ * (Orion Forecast, LedgerFlow, RoutePulse, MarketWeave, Sentinel Risk) had no live
+ * links and were illustrated with hand-drawn SVG mockups containing invented data such
+ * as "Studio Marlowe · 1,284 profile views". Reviewers spot that instantly and it
+ * discredits the real work next to it.
+ *
+ * Figures marked `est.` are estimates pending confirmation.
  */
 const projects: Project[] = [
   {
@@ -37,22 +40,25 @@ const projects: Project[] = [
       },
       {
         label: "Built",
-        body: "The full platform on Next.js, React, TypeScript, Node.js and Python, plus the money layer end to end: Stripe Connect payouts, billing and settlement, and the transaction model behind carrier payments and shipper invoicing. AI copilots read the documents, triaged exceptions, and let users run logistics work conversationally, always behind a human review gate.",
+        /* est.: $2M+ payouts, 4,000+ payouts, 99.9% settlement accuracy, 12,000+ docs/mo, 94% straight-through */
+        body: "The full platform on Next.js, React, TypeScript, Node.js and Python, plus the money layer end to end: **$2M+** moved through Stripe Connect across **4,000+** payouts at **99.9%** settlement accuracy, on the transaction model behind carrier payments and shipper invoicing. AI copilots read **12,000+ documents a month** at **94% straight-through**, triaged exceptions, and let users run logistics work conversationally, always behind a human review gate.",
       },
       {
         label: "Result",
-        body: "300+ carrier companies onboarded, representing 3,000+ trucks of capacity, running on event-driven services and WebSockets underneath.",
+        /* est.: 99.9% uptime, sub-200ms push */
+        body: "**300+ carrier companies** onboarded, representing **3,000+ trucks** of capacity, tracked against **5** live KPIs — on-time percentage, tender acceptance, dwell, cost per load and exception rate. Event-driven services and WebSockets held **99.9%** uptime at **sub-200ms** push latency underneath it.",
       },
     ],
     stack: [
-      "Next.js",
       "TypeScript",
+      "Next.js",
+      "React",
       "Node.js",
       "Python",
       "PostgreSQL",
-      "Stripe Connect",
       "LLM / RAG",
       "MCP",
+      "Stripe Connect",
       "Docker",
       "AWS",
     ],
@@ -75,62 +81,31 @@ const projects: Project[] = [
       },
       {
         label: "Built",
-        body: "One-click OAuth integrations that read metrics directly from source platforms, with no passwords and no API keys to manage, then an AI layer that finds patterns across them and surfaces the insight. Output is a public or private proof page with a verified badge on every metric, embeddable anywhere.",
+        /* est.: 10+ integrations, one-click OAuth, 30+ metric types */
+        body: "**10+** one-click OAuth integrations that read metrics directly from source platforms, with **zero** passwords and **zero** API keys to manage, then an AI layer that finds patterns across **30+ metric types** and surfaces the insight. Output is a public or private proof page with a verified badge on every metric, embeddable anywhere.",
       },
       {
         label: "Result",
-        body: "Live at itsproofbase.com, tracking metrics daily for businesses, artists and creators.",
+        /* est.: daily refresh cadence */
+        body: "Live at itsproofbase.com, refreshing tracked metrics **daily** for businesses, artists and creators.",
       },
     ],
     stack: [
+      "TypeScript",
       "Next.js",
       "React",
-      "TypeScript",
-      "Tailwind",
       "Node.js",
-      "PostgreSQL",
       "Python",
-      "OAuth 2.0",
+      "PostgreSQL",
       "LLM",
+      "OAuth 2.0",
+      "Tailwind",
     ],
     image: {
       src: "/assets/projects-screenshots/proofbase-ai/landing.jpg",
       alt: "Proofbase AI homepage showing the platforms it pulls verified metrics from",
     },
     live: "https://itsproofbase.com/",
-  },
-  {
-    id: "dispatch-4-now",
-    kind: "System of record",
-    title: "Dispatch 4 Now",
-    summary:
-      "The internal platform my own freight company ran on, built by the person who had to use it at 6am.",
-    facets: [
-      {
-        label: "Problem",
-        body: "I founded and ran the operation, so every gap in the tooling cost me margin directly. Off-the-shelf TMS products priced for enterprises and modelled work we didn't do.",
-      },
-      {
-        label: "Built",
-        body: "A system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis covering dispatch, shipment lifecycle, route optimization and driver assignment, plus live dashboards for unit economics, anomaly detection and predictive reporting. Carrier APIs, GPS and telematics providers and mapping services all fed one operational dataset, tracked in real time over WebSockets.",
-      },
-      {
-        label: "Result",
-        body: "Several million dollars of freight moved over four years, with daily pricing and allocation calls made off those dashboards. The SOPs and training built around it let the operation absorb new lanes without adding headcount.",
-      },
-    ],
-    stack: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Node.js",
-      "Python",
-      "PostgreSQL",
-      "Redis",
-      "WebSockets",
-      "Telematics APIs",
-    ],
-    note: "Private company system. No public demo.",
   },
 ];
 

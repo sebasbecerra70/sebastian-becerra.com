@@ -84,6 +84,7 @@ const MetricCell = ({ metric, index }: { metric: Metric; index: number }) => (
     className="flex flex-col gap-2 border-t border-border pt-5"
   >
     <span className="font-display text-3xl md:text-[2.75rem] leading-none text-foreground">
+      {metric.prefix}
       <CountUp value={metric.value} suffix={metric.suffix} />
     </span>
     <p className="text-xs md:text-sm leading-snug text-muted-foreground max-w-[20ch]">
@@ -96,7 +97,7 @@ const ImpactSection = () => (
   <SectionWrapper id="impact" className="py-16 md:py-24 z-10">
     <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
       <Reveal className="eyebrow mb-8">Measured in production</Reveal>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
         {IMPACT_METRICS.map((metric, index) => (
           <MetricCell key={metric.label} metric={metric} index={index} />
         ))}

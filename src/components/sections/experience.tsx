@@ -1,6 +1,7 @@
 "use client";
 
 import { EXPERIENCE, SkillNames, SKILLS } from "@/data/constants";
+import { highlight } from "@/lib/rich-text";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
 import Reveal from "../ui/reveal";
@@ -44,7 +45,7 @@ const ExperienceRow = ({
               className="absolute left-0 top-[0.7em] h-px w-2.5"
               style={{ background: "var(--brand)", opacity: 0.6 }}
             />
-            {point}
+            {highlight(point)}
           </li>
         ))}
       </ul>

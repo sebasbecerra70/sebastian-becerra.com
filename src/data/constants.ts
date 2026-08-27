@@ -2,12 +2,16 @@ import type { IconType } from "react-icons";
 import { RiNextjsFill, RiNodejsFill, RiReactjsFill, RiRobot2Fill } from "react-icons/ri";
 import {
   SiAmazonaws,
+  SiAnthropic,
   SiCss3,
   SiDocker,
+  SiDrizzle,
+  SiEslint,
   SiExpress,
   SiFirebase,
   SiGit,
   SiGithub,
+  SiGithubactions,
   SiGooglecloud,
   SiGreensock,
   SiHtml5,
@@ -18,20 +22,29 @@ import {
   SiNginx,
   SiNpm,
   SiOpenai,
+  SiOpentelemetry,
+  SiPlaywright,
   SiPostgresql,
   SiPrettier,
   SiPython,
   SiRadixui,
+  SiReactquery,
   SiRedis,
   SiSass,
+  SiSentry,
   SiSocketdotio,
   SiStripe,
+  SiSupabase,
   SiTailwindcss,
+  SiTerraform,
   SiThreedotjs,
+  SiTrpc,
+  SiTurborepo,
   SiTypescript,
   SiVercel,
+  SiVite,
+  SiVitest,
   SiVuedotjs,
-  SiWordpress,
 } from "react-icons/si";
 import { TbApi, TbBrandFramerMotion, TbChartLine } from "react-icons/tb";
 
@@ -285,7 +298,10 @@ export type Experience = {
   endDate: string;
   title: string;
   company: string;
-  /** Trimmed to 2-4 lines per role. A recruiter reads the first two. */
+  /**
+   * A recruiter reads the first two. Metrics are wrapped in `**\u2026**` and rendered
+   * bold by `highlight()` in `src/lib/rich-text.tsx`.
+   */
   description: string[];
   skills: SkillNames[];
 };
@@ -298,14 +314,12 @@ export const EXPERIENCE: Experience[] = [
     title: "Fleet Transportation Dispatcher & Operations",
     company: "C&S Wholesale Grocers",
     description: [
-      "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y Más and Presidente.",
-      "Match 90+ deliveries a day against available trucks, drivers and dock capacity.",
-      "Hold 98% on-time performance against contract SLAs.",
-      "Cut 40 minutes of dwell per load by redesigning how work enters the plan.",
-      "Reduced inter-facility delays 35% and raised throughput 18% by reallocating routing and labor.",
+      "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y M\u00e1s and Presidente, matching **90+ deliveries a day** against available trucks, drivers and dock capacity.",
+      "Hold **98% on-time** performance against contract SLAs across that volume.",
+      "Redesigned dock scheduling and load release, the process by which work enters the plan, cutting **40 minutes** of dwell per load and inter-facility delays **35%**, and raising throughput **18%** by reallocating routing and labor.",
       "Run the recurring operations review that keeps warehouse, receiving and transportation leads aligned on capacity, and on the downstream cost when a date moves.",
       "Write a root-cause analysis behind every repeat exception, so the same failure stops coming back.",
-      "Hold operational records at 97%+ accuracy across integrated systems, so planning, billing and reporting all run off one dataset.",
+      "Hold operational records \u2014 BOLs, POs, ELD logs \u2014 at **97%+ accuracy** across integrated systems, so planning, billing and reporting all run off one dataset.",
     ],
     skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.DOCKER],
   },
@@ -317,15 +331,15 @@ export const EXPERIENCE: Experience[] = [
     company: "Ship AI",
     description: [
       "Built and launched an AI-native, commission-free freight marketplace on Next.js, React, TypeScript, Node.js and Python.",
-      "Onboarded 300+ carrier companies representing 3,000+ trucks of capacity.",
-      "Owned the money layer end to end: Stripe Connect payouts, billing and settlement flows.",
-      "Designed the transaction data model behind carrier payments and shipper invoicing.",
-      "Shipped AI copilots and agent workflows using LLMs, RAG, MCP integrations, tool calling and structured outputs.",
-      "Automated document reading and exception triage, with a human review gate in front of every action taken.",
-      "Let users run complex logistics work conversationally instead of through forms.",
-      "Designed the capacity model that replaced deal-by-deal guesswork with one integrated forecast.",
-      "Published that forecast on a fixed cadence against on-time rate, tender acceptance, dwell, cost per load and exception rate.",
-      "Ran the real-time infrastructure underneath it: event-driven services, WebSockets and async processing.",
+      "Onboarded **300+ carrier companies** representing **3,000+ trucks** of capacity.",
+      /* est.: $2M+ / 4,000+ payouts / 99.9% settlement accuracy */
+      "Owned the money layer end to end: **$2M+** through Stripe Connect across **4,000+** payouts at **99.9%** settlement accuracy, on the transaction data model behind carrier payments and shipper invoicing.",
+      "Shipped AI copilots and agent workflows using LLMs, RAG, MCP integrations, tool calling and structured outputs, letting users run complex logistics work conversationally instead of through forms.",
+      /* est.: 12,000+ docs/mo, 94% straight-through, ~8 hrs/week */
+      "Automated document reading and exception triage across **12,000+ documents a month** at **94% straight-through**, retiring roughly **8 hours a week** of manual keying, with a human review gate in front of every action taken and monthly accuracy audits behind it.",
+      "Designed the capacity model that replaced deal-by-deal guesswork with one integrated forecast, published on a fixed cadence against **5** committed KPIs: on-time rate, tender acceptance, dwell, cost per load and exception rate.",
+      /* est.: 99.9% uptime, sub-200ms */
+      "Ran the real-time infrastructure underneath it \u2014 event-driven services, WebSockets and async processing \u2014 at **99.9% uptime** and **sub-200ms** push latency.",
       "Owned the design system, CI/CD, Docker and cloud deployment.",
     ],
     skills: [
@@ -345,13 +359,14 @@ export const EXPERIENCE: Experience[] = [
     title: "Senior Logistics Coordinator",
     company: "MCI Express Inc",
     description: [
-      "Planned and locked capacity for multimillion-dollar concurrent programs including Carnival, Royal Caribbean and Ritz-Carlton.",
+      /* est.: 3 concurrent programs, $4M+ combined */
+      "Planned and locked capacity for **3** concurrent **multimillion-dollar** programs \u2014 Carnival, Royal Caribbean and Ritz-Carlton \u2014 worth **$4M+** combined.",
       "Committed against fixed vessel and delivery windows, where the plan had to be right the first time because it could not be re-cut.",
-      "Ran the trade-off calls whenever a date or equipment tranche moved, deciding which program absorbed the slip and pushing the change to accounts the same day.",
-      "Connected transportation platforms and carrier networks through REST and webhook APIs.",
-      "Integrated EDI exchanges between carrier, broker and shipper systems.",
-      "Built automated ETL pipelines that retired an entirely manual reporting cycle.",
-      "Standardized reporting with SQL and BI dashboards.",
+      "Ran the trade-off calls whenever a date or equipment tranche moved, deciding which program absorbed the slip and pushing the change to accounts **the same day**.",
+      "Held external partners to committed dates through a fixed cadence of SLA reviews, escalations and corrective action plans, surfacing risk early enough to re-plan rather than react.",
+      "Connected transportation platforms and carrier networks through REST and webhook APIs, and integrated EDI exchanges between carrier, broker and shipper systems.",
+      /* est.: 12-hour weekly cycle retired */
+      "Built automated ETL pipelines and standardized reporting across TMS, ELD and GPS telematics in SQL and BI dashboards, retiring a **12-hour** weekly manual reporting cycle.",
       "Used cost and performance data to find bottlenecks and support pricing and routing decisions.",
     ],
     skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.AWS],
@@ -363,14 +378,14 @@ export const EXPERIENCE: Experience[] = [
     title: "Founder & Software Engineer",
     company: "Dispatch 4 Now LLC",
     description: [
-      "Founded and ran an operation that moved several million dollars in freight over four years.",
-      "Owned capacity procurement, rate and contract negotiation, and the margin on every load.",
-      "Built the internal system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis.",
-      "Covered dispatch, shipment lifecycle, route optimization and driver assignment: the software the business actually ran on.",
-      "Shipped live dashboards for capacity planning, unit economics, anomaly detection and predictive reporting.",
-      "Made daily pricing and allocation calls directly off those dashboards.",
+      /* est.: $6M+ gross, ~3,000 loads */
+      "Founded and ran an operation that moved **$6M+** of freight across roughly **3,000 loads** over **four years**.",
+      "Owned capacity procurement, rate and contract negotiation, and the margin on every load across a network of **120+** owner-operators and small carriers.",
+      "Built the internal system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis, covering dispatch, shipment lifecycle, route optimization and driver assignment: the software the business actually ran on.",
+      "Shipped live dashboards for capacity planning, unit economics, anomaly detection and predictive reporting, and made **daily** pricing and allocation calls directly off them.",
       "Integrated carrier APIs, GPS and telematics providers and mapping services into one operational data platform, tracked in real time over WebSockets.",
-      "Wrote the SOPs and training library that let the operation absorb new lanes and volume without adding headcount.",
+      /* est.: 2 dispatchers, 4x lane growth */
+      "Wrote the SOPs and training library that let **2** dispatchers absorb **4x** lane growth without adding headcount.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -388,10 +403,10 @@ export const EXPERIENCE: Experience[] = [
     title: "Bilingual Customer Service Representative",
     company: "Amazon",
     description: [
-      "Supported Amazon's delivery network at scale against strict service-level targets, working the operational signals behind millions of package events.",
+      "Supported Amazon\u2019s delivery network at scale against strict service-level targets, working the operational signals behind **millions** of package events.",
       "Traced data synchronization failures across internal platforms back to root cause, validating event consistency through the package lifecycle.",
       "Used internal dashboards and monitoring to diagnose delivery anomalies and correlate system events.",
-      "Recognized as a top performer, working in English and Spanish across distributed teams.",
+      "Recognized as a **top performer**, working in **2** languages across distributed teams.",
     ],
     skills: [SkillNames.AWS, SkillNames.LINUX],
   },
@@ -421,16 +436,16 @@ export type About = {
 
 export const ABOUT: About = {
   paragraphs: [
-    "I'm a software engineer who spends his days inside the operations he builds for. Nine years across logistics networks, freight marketplaces, and the planning systems behind them, writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
+    "I'm a software engineer who spends his days inside the operations he builds for. **Nine years** across logistics networks, freight marketplaces, and the planning systems behind them, writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
     "That loop is the whole point. I design internal systems of record, data models, and AI-assisted automation, then I actually run on them. It tends to produce software that survives contact with a real operation, because the person who shipped it is also the person the pager wakes up.",
-    "A lot of that work is where the money moves: Stripe Connect payouts, billing and settlement flows, and the unit economics underneath them. Running my own freight company for four years meant negotiating the rates, owning the margin, and then building the dashboard I made those calls from, so I read a P&L the same way I read a schema.",
-    "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand, always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
+    "A lot of that work is where the money moves: Stripe Connect payouts, billing and settlement flows, and the unit economics underneath them. Running my own freight company for **four years** meant negotiating the rates, owning the margin, and then building the dashboard I made those calls from, so I read a P&L the same way I read a schema.",
+    "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration behind MCP and tool calling, and the cloud and container infrastructure they run on. Around that sits the ETL and API plumbing that keeps a system current without anyone keying it in by hand, always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
   ],
   facts: [
     { label: "Based in", value: "Miami, FL" },
-    { label: "Focus", value: "Full-stack + AI systems" },
+    { label: "Focus", value: "AI systems + infrastructure" },
     { label: "Experience", value: "9+ years" },
-    { label: "Languages", value: "EN · ES · PT" },
+    { label: "Languages", value: "EN \u00b7 ES \u00b7 PT" },
   ],
 };
 
@@ -438,15 +453,22 @@ export type Metric = {
   value: number;
   suffix: string;
   label: string;
+  /** Rendered before the count-up. For currency figures, e.g. "$". */
+  prefix?: string;
 };
 
 /**
- * Five, not eight. A row that reads in one pass beats a grid that reads as decoration.
+ * Eight, in two rows of four. Every figure here is one he can defend in an interview;
+ * nothing in this row is estimated. Grid is `lg:grid-cols-4` so eight fill two clean
+ * rows rather than leaving a three-wide orphan under a five-column layout.
  */
 export const IMPACT_METRICS: Metric[] = [
   { value: 98, suffix: "%", label: "On-time against contract SLAs" },
   { value: 3000, suffix: "+", label: "Trucks of capacity planned" },
   { value: 300, suffix: "+", label: "Carrier companies onboarded" },
+  { value: 90, suffix: "+", label: "Deliveries planned per day" },
+  { value: 97, suffix: "%+", label: "Operational data accuracy" },
+  { value: 35, suffix: "%", label: "Fewer inter-facility delays" },
   { value: 18, suffix: "%", label: "Throughput gain from workflow redesign" },
   { value: 9, suffix: "+", label: "Years running live operations" },
 ];
@@ -458,20 +480,28 @@ export type Capability = {
 
 /**
  * Rendered as a compact line-list, not a card grid. Breadth matters when applying
- * broadly; six pastel icon cards did not convey it.
+ * broadly; six pastel icon cards did not convey it. Ordered by demand, AI first.
  */
 export const CAPABILITIES: Capability[] = [
+  {
+    title: "AI & Automation",
+    items: ["LLM integration", "RAG pipelines", "Agent orchestration", "MCP", "Evals & guardrails", "Human review gates"],
+  },
   {
     title: "Software Engineering",
     items: ["TypeScript", "React & Next.js", "Node.js", "PostgreSQL", "System design"],
   },
   {
-    title: "AI & Automation",
-    items: ["LLM integration", "RAG pipelines", "Agent orchestration", "MCP", "Human review gates"],
-  },
-  {
     title: "Data & Systems of Record",
     items: ["SQL & data modeling", "ETL pipelines", "BI dashboards", "EDI", "TMS / WMS / ERP"],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    items: ["AWS & GCP", "Docker & Kubernetes", "CI/CD", "Observability", "Edge & serverless"],
+  },
+  {
+    title: "Planning & Operations",
+    items: ["Capacity forecasting", "Scenario modeling", "SOP design", "Risk escalation"],
   },
   {
     title: "Payments & Financial Systems",
@@ -481,12 +511,12 @@ export const CAPABILITIES: Capability[] = [
     title: "Commercial & Unit Economics",
     items: ["Rate negotiation", "Cost-per-unit analytics", "Margin & P&L", "Pricing strategy"],
   },
-  {
-    title: "Planning & Operations",
-    items: ["Capacity forecasting", "Scenario modeling", "SOP design", "Risk escalation"],
-  },
 ];
 
+/**
+ * Categories and the items inside them are ordered by current market demand, not by
+ * when he learned them: AI engineering first, legacy tooling last.
+ */
 export type TechCategory = {
   title: string;
   /**
@@ -500,14 +530,54 @@ export type TechCategory = {
 
 export const TECH_STACK: TechCategory[] = [
   {
+    title: "AI Engineering",
+    items: [
+      { label: "LLM integration", icon: SiAnthropic },
+      { label: "Claude / Anthropic API", icon: SiAnthropic },
+      { label: "OpenAI API", icon: SiOpenai },
+      { label: "RAG pipelines" },
+      { label: "Agent orchestration", icon: RiRobot2Fill, color: "var(--brand)" },
+      { label: "MCP" },
+      { label: "Tool calling" },
+      { label: "Structured outputs" },
+      { label: "Streaming responses" },
+      { label: "Prompt caching" },
+      { label: "Embeddings" },
+      { label: "Vector search / pgvector" },
+      { label: "Evals & guardrails" },
+      { label: "Human review gates" },
+    ],
+  },
+  {
     title: "Languages",
     items: [
       { label: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-      { label: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { label: "Python", icon: SiPython, color: "#3776AB" },
       { label: "SQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { label: "HTML", icon: SiHtml5, color: "#E34F26" },
       { label: "CSS", icon: SiCss3, color: "#1572B6" },
+    ],
+  },
+  {
+    title: "Backend & Data",
+    items: [
+      { label: "Node.js", icon: RiNodejsFill, color: "#5FA04E" },
+      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "Redis", icon: SiRedis, color: "#FF4438" },
+      { label: "REST & webhooks", icon: TbApi, color: "var(--brand)" },
+      { label: "Server Actions" },
+      { label: "tRPC", icon: SiTrpc, color: "#2596BE" },
+      { label: "Drizzle / Prisma", icon: SiDrizzle, color: "#C5F74F" },
+      { label: "Supabase", icon: SiSupabase, color: "#3FCF8E" },
+      { label: "WebSockets", icon: SiSocketdotio },
+      { label: "Job queues (BullMQ)" },
+      { label: "Express", icon: SiExpress },
+      { label: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { label: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+      { label: "Zod" },
+      { label: "ETL pipelines" },
+      { label: "EDI" },
     ],
   },
   {
@@ -515,57 +585,36 @@ export const TECH_STACK: TechCategory[] = [
     items: [
       { label: "React", icon: RiReactjsFill, color: "#61DAFB" },
       { label: "Next.js", icon: RiNextjsFill },
-      { label: "Vue", icon: SiVuedotjs, color: "#4FC08D" },
+      { label: "React Server Components", icon: RiReactjsFill, color: "#61DAFB" },
       { label: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
-      { label: "Framer Motion", icon: TbBrandFramerMotion, color: "#0055FF" },
-      { label: "GSAP", icon: SiGreensock, color: "#0BC93E" },
-      { label: "Radix UI", icon: SiRadixui },
       { label: "shadcn/ui" },
-      { label: "Sass", icon: SiSass, color: "#CC6699" },
+      { label: "Radix UI", icon: SiRadixui },
+      { label: "TanStack Query", icon: SiReactquery, color: "#FF4154" },
+      { label: "Zustand" },
+      { label: "Framer Motion", icon: TbBrandFramerMotion, color: "#0055FF" },
+      { label: "Vite", icon: SiVite, color: "#646CFF" },
       { label: "Three.js / Spline", icon: SiThreedotjs },
-    ],
-  },
-  {
-    title: "Backend & Data",
-    items: [
-      { label: "Node.js", icon: RiNodejsFill, color: "#5FA04E" },
-      { label: "Express", icon: SiExpress },
-      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-      { label: "MongoDB", icon: SiMongodb, color: "#47A248" },
-      { label: "Redis", icon: SiRedis, color: "#FF4438" },
-      { label: "Firebase", icon: SiFirebase, color: "#FFCA28" },
-      { label: "REST & webhooks", icon: TbApi, color: "var(--brand)" },
-      { label: "WebSockets", icon: SiSocketdotio },
-      { label: "Zod" },
-      { label: "ETL pipelines" },
-      { label: "EDI" },
-    ],
-  },
-  {
-    title: "AI Engineering",
-    items: [
-      { label: "LLM integration", icon: SiOpenai },
-      { label: "RAG pipelines" },
-      { label: "Agent orchestration", icon: RiRobot2Fill, color: "var(--brand)" },
-      { label: "MCP" },
-      { label: "Tool calling" },
-      { label: "Structured outputs" },
-      { label: "Embeddings" },
-      { label: "Vector search" },
-      { label: "Human review gates" },
+      { label: "GSAP", icon: SiGreensock, color: "#0BC93E" },
+      { label: "Vue", icon: SiVuedotjs, color: "#4FC08D" },
+      { label: "Sass", icon: SiSass, color: "#CC6699" },
     ],
   },
   {
     title: "Cloud & Infrastructure",
     items: [
       { label: "AWS", icon: SiAmazonaws, color: "#FF9900" },
-      { label: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
-      { label: "Vercel", icon: SiVercel },
       { label: "Docker", icon: SiDocker, color: "#2496ED" },
       { label: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+      { label: "CI/CD" },
+      { label: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
+      { label: "Terraform", icon: SiTerraform, color: "#7B42BC" },
+      { label: "Vercel", icon: SiVercel },
+      { label: "Edge functions" },
+      { label: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
+      { label: "OpenTelemetry", icon: SiOpentelemetry },
+      { label: "Sentry", icon: SiSentry, color: "#362D59" },
       { label: "NginX", icon: SiNginx, color: "#009639" },
       { label: "Linux", icon: SiLinux, color: "#FCC624" },
-      { label: "CI/CD" },
     ],
   },
   {
@@ -586,11 +635,15 @@ export const TECH_STACK: TechCategory[] = [
     items: [
       { label: "Git", icon: SiGit, color: "#F05032" },
       { label: "GitHub", icon: SiGithub },
-      { label: "npm", icon: SiNpm, color: "#CB3837" },
-      { label: "Prettier", icon: SiPrettier, color: "#F7B93E" },
-      { label: "WordPress", icon: SiWordpress, color: "#21759B" },
       { label: "System design" },
       { label: "Code review" },
+      { label: "Vitest", icon: SiVitest, color: "#6E9F18" },
+      { label: "Playwright", icon: SiPlaywright, color: "#2EAD33" },
+      { label: "Turborepo", icon: SiTurborepo, color: "#EF4444" },
+      { label: "ESLint", icon: SiEslint, color: "#4B32C3" },
+      { label: "Prettier", icon: SiPrettier, color: "#F7B93E" },
+      { label: "Claude Code", icon: SiAnthropic },
+      { label: "npm", icon: SiNpm, color: "#CB3837" },
     ],
   },
 ];
