@@ -7,7 +7,7 @@ import { ReactLenis } from "@/lib/lenis";
  * Module-level handle on the Lenis instance.
  *
  * `useLenis()` returned null in the header and hero even with the provider
- * hoisted to the layout, and Lenis rewrites the scroll position on every frame —
+ * hoisted to the layout, and Lenis rewrites the scroll position on every frame,
  * so any nav link that scrolled by other means (native smooth scroll,
  * `scrollIntoView`, a rAF tween of our own) was simply overridden and the page
  * never moved. Anything that needs to scroll the page programmatically has to go

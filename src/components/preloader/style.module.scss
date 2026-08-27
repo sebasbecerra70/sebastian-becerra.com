@@ -6,7 +6,7 @@
  * The previous version depended on a Framer exit animating `top` to `-100dvh`.
  * Framer can't interpolate `dvh`; the tween froze at `top: -3.8dvh`,
  * AnimatePresence never got `onExitComplete`, and the overlay sat on top of the
- * entire site indefinitely — the black "95 %" screen.
+ * entire site indefinitely: the black "95 %" screen.
  */
 .introduction {
   height: 100dvh;

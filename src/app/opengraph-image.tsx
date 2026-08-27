@@ -2,11 +2,11 @@ import { ImageResponse } from "next/og";
 import { config } from "@/data/config";
 
 export const runtime = "edge";
-export const alt = `${config.author} — Software Engineer`;
+export const alt = `${config.author}, Software Engineer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const ACCENT = "#ff9a5c";
+const ACCENT = "#5ee7de";
 
 /**
  * Rendered at request time from `config`, so the share card can never drift out of

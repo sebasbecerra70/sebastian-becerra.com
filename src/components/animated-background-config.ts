@@ -6,7 +6,7 @@ export type Section =
   | "experience"
   /** The dedicated empty stage inside the stack section. */
   | "stack"
-  /** Scrolled past the stage, into the actual lists — keyboard gets out of the way. */
+  /** Scrolled past the stage, into the actual lists, so the keyboard gets out of the way. */
   | "stacklists"
   | "contact";
 

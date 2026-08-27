@@ -8,7 +8,7 @@ import Reveal from "../ui/reveal";
 /**
  * Stack, capabilities and credentials in one band.
  *
- * These used to be three full-height sections — a six-card capability grid, a six-card
+ * These used to be three full-height sections: a six-card capability grid, a six-card
  * stack grid and a five-row credential list, each with its own pastel icon tile. Same
  * information, roughly a third of the scroll, and nothing that looks generated.
  */
@@ -19,7 +19,7 @@ const SkillsSection = () => (
         id="stack"
         index="04"
         title="Stack & capabilities"
-        desc="Press any key on the keyboard — every keycap is a real one."
+        desc="Press any key on the keyboard. Every keycap is a real one."
         className="mb-12 md:mb-16"
       />
 
@@ -108,7 +108,7 @@ const SkillsSection = () => (
                   </div>
                   <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                     <span className="text-foreground/70">{credential.org}</span>
-                    {credential.detail ? ` — ${credential.detail}` : ""}
+                    {credential.detail ? `. ${credential.detail}` : ""}
                   </p>
                 </Reveal>
               ))}

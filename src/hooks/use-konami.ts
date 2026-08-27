@@ -41,7 +41,7 @@ export const useKonami = (onUnlock: () => void) => {
           callback.current();
         }
       } else {
-        // A wrong key restarts — but it might be the start of a fresh attempt.
+        // A wrong key restarts, but it might be the start of a fresh attempt.
         progress.current = e.key === SEQUENCE[0] ? 1 : 0;
       }
     };

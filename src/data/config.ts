@@ -1,5 +1,5 @@
 const config = {
-  title: "Sebastian Becerra — Software Engineer",
+  title: "Sebastian Becerra, Software Engineer",
   description: {
     long:
       "Sebastian Becerra is a software engineer in Miami who builds the systems he runs on: full-stack products, applied AI and automation, and the payments and data infrastructure behind live logistics networks.",
@@ -29,16 +29,10 @@ const config = {
   author: "Sebastian Becerra",
   email: "sebasbecerra70@gmail.com",
   site: "https://sebastian-becerra.com",
-  resume: "/Sebastian-Becerra-CV.pdf",
-
-  // for github stars button
-  githubUsername: "sebasbecerra70",
-  githubRepo: "",
 
   social: {
     twitter: "https://x.com/Sebasbecerrax",
     linkedin: "https://www.linkedin.com/in/sebastian-becerra-8b499b231/",
-    github: "https://github.com/sebasbecerra70",
     instagram: "",
     facebook: "",
   },

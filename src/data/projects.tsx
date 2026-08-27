@@ -8,7 +8,7 @@ export type Project = {
   /** Three lines: the problem, what he built, what came of it. */
   facets: { label: string; body: string }[];
   stack: string[];
-  /** Optional real screenshot. No mockups — an entry with no image renders as type. */
+  /** Optional real screenshot. No mockups. An entry with no image renders as type. */
   image?: { src: string; alt: string };
   live?: string;
   /** Shown instead of a live link when the work is internal or under NDA. */
@@ -20,7 +20,7 @@ export type Project = {
  *
  * The five that used to sit here (Orion Forecast, LedgerFlow, RoutePulse, MarketWeave,
  * Sentinel Risk) had no live links and were illustrated with hand-drawn SVG mockups
- * containing invented data — "Studio Marlowe · 1,284 profile views". Reviewers spot that
+ * containing invented data such as "Studio Marlowe · 1,284 profile views". Reviewers spot that
  * instantly and it discredits the real work next to it.
  */
 const projects: Project[] = [
@@ -37,7 +37,7 @@ const projects: Project[] = [
       },
       {
         label: "Built",
-        body: "The full platform on Next.js, React, TypeScript, Node.js and Python — plus the money layer end to end: Stripe Connect payouts, billing and settlement, and the transaction model behind carrier payments and shipper invoicing. AI copilots read the documents, triaged exceptions, and let users run logistics work conversationally, always behind a human review gate.",
+        body: "The full platform on Next.js, React, TypeScript, Node.js and Python, plus the money layer end to end: Stripe Connect payouts, billing and settlement, and the transaction model behind carrier payments and shipper invoicing. AI copilots read the documents, triaged exceptions, and let users run logistics work conversationally, always behind a human review gate.",
       },
       {
         label: "Result",
@@ -56,7 +56,11 @@ const projects: Project[] = [
       "Docker",
       "AWS",
     ],
-    note: "Internal platform — no public demo.",
+    image: {
+      src: "/assets/projects-screenshots/ship-ai/tracking.jpg",
+      alt: "Ship AI live tracking view showing delivery status, route progress and cargo protection",
+    },
+    live: "https://shipfreight.ai/",
   },
   {
     id: "proofbase-ai",
@@ -71,7 +75,7 @@ const projects: Project[] = [
       },
       {
         label: "Built",
-        body: "One-click OAuth integrations that read metrics directly from source platforms — no passwords, no API keys to manage — then an AI layer that finds patterns across them and surfaces the insight. Output is a public or private proof page with a verified badge on every metric, embeddable anywhere.",
+        body: "One-click OAuth integrations that read metrics directly from source platforms, with no passwords and no API keys to manage, then an AI layer that finds patterns across them and surfaces the insight. Output is a public or private proof page with a verified badge on every metric, embeddable anywhere.",
       },
       {
         label: "Result",
@@ -100,7 +104,7 @@ const projects: Project[] = [
     kind: "System of record",
     title: "Dispatch 4 Now",
     summary:
-      "The internal platform my own freight company ran on — built by the person who had to use it at 6am.",
+      "The internal platform my own freight company ran on, built by the person who had to use it at 6am.",
     facets: [
       {
         label: "Problem",
@@ -108,7 +112,7 @@ const projects: Project[] = [
       },
       {
         label: "Built",
-        body: "A system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis covering dispatch, shipment lifecycle, route optimization and driver assignment — plus live dashboards for unit economics, anomaly detection and predictive reporting. Carrier APIs, GPS and telematics providers and mapping services all fed one operational dataset, tracked in real time over WebSockets.",
+        body: "A system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis covering dispatch, shipment lifecycle, route optimization and driver assignment, plus live dashboards for unit economics, anomaly detection and predictive reporting. Carrier APIs, GPS and telematics providers and mapping services all fed one operational dataset, tracked in real time over WebSockets.",
       },
       {
         label: "Result",
@@ -126,7 +130,7 @@ const projects: Project[] = [
       "WebSockets",
       "Telematics APIs",
     ],
-    note: "Private company system — no public demo.",
+    note: "Private company system. No public demo.",
   },
 ];
 

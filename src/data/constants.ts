@@ -2,20 +2,36 @@ import type { IconType } from "react-icons";
 import { RiNextjsFill, RiNodejsFill, RiReactjsFill, RiRobot2Fill } from "react-icons/ri";
 import {
   SiAmazonaws,
+  SiCss3,
   SiDocker,
+  SiExpress,
+  SiFirebase,
+  SiGit,
+  SiGithub,
   SiGooglecloud,
+  SiGreensock,
+  SiHtml5,
   SiJavascript,
   SiKubernetes,
+  SiLinux,
   SiMongodb,
+  SiNginx,
+  SiNpm,
   SiOpenai,
   SiPostgresql,
+  SiPrettier,
   SiPython,
   SiRadixui,
   SiRedis,
+  SiSass,
+  SiSocketdotio,
   SiStripe,
   SiTailwindcss,
+  SiThreedotjs,
   SiTypescript,
   SiVercel,
+  SiVuedotjs,
+  SiWordpress,
 } from "react-icons/si";
 import { TbApi, TbBrandFramerMotion, TbChartLine } from "react-icons/tb";
 
@@ -57,7 +73,7 @@ export type Skill = {
 
 /**
  * `shortDescription` renders on the 3D keycap plate when a key is pressed or hovered.
- * It's one of the first things a visitor reads, so it's written in Sebastian's voice —
+ * It's one of the first things a visitor reads, so it's written in Sebastian's voice.
  * the upstream template shipped these as internet slang.
  */
 export const SKILLS: Record<SkillNames, Skill> = {
@@ -282,9 +298,14 @@ export const EXPERIENCE: Experience[] = [
     title: "Fleet Transportation Dispatcher & Operations",
     company: "C&S Wholesale Grocers",
     description: [
-      "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y Más, and Presidente — 90+ deliveries a day matched against available trucks, drivers, and dock capacity, held at 98% on-time against contract SLAs.",
-      "Redesigned how work enters the plan: cut 40 minutes of dwell per load, reduced inter-facility delays 35%, and raised throughput 18% by reallocating routing and labor.",
-      "Hold operational records at 97%+ accuracy across integrated systems, so planning, billing, and reporting all run off one dataset.",
+      "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y Más and Presidente.",
+      "Match 90+ deliveries a day against available trucks, drivers and dock capacity.",
+      "Hold 98% on-time performance against contract SLAs.",
+      "Cut 40 minutes of dwell per load by redesigning how work enters the plan.",
+      "Reduced inter-facility delays 35% and raised throughput 18% by reallocating routing and labor.",
+      "Run the recurring operations review that keeps warehouse, receiving and transportation leads aligned on capacity, and on the downstream cost when a date moves.",
+      "Write a root-cause analysis behind every repeat exception, so the same failure stops coming back.",
+      "Hold operational records at 97%+ accuracy across integrated systems, so planning, billing and reporting all run off one dataset.",
     ],
     skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.DOCKER],
   },
@@ -295,10 +316,17 @@ export const EXPERIENCE: Experience[] = [
     title: "Operations Technology Lead",
     company: "Ship AI",
     description: [
-      "Built and launched an AI-native, commission-free freight marketplace on Next.js, React, TypeScript, Node.js, and Python — onboarding 300+ carrier companies representing 3,000+ trucks.",
-      "Owned the money layer end to end: Stripe Connect payouts, billing and settlement flows, and the transaction data model behind carrier payments and shipper invoicing.",
-      "Shipped AI copilots and agent workflows — LLMs, RAG, MCP integrations, tool calling, structured outputs — that read documents and triaged exceptions, always behind human review.",
-      "Ran the real-time infrastructure underneath it: event-driven services, WebSockets, async processing, plus the design system, CI/CD, Docker, and cloud deployment.",
+      "Built and launched an AI-native, commission-free freight marketplace on Next.js, React, TypeScript, Node.js and Python.",
+      "Onboarded 300+ carrier companies representing 3,000+ trucks of capacity.",
+      "Owned the money layer end to end: Stripe Connect payouts, billing and settlement flows.",
+      "Designed the transaction data model behind carrier payments and shipper invoicing.",
+      "Shipped AI copilots and agent workflows using LLMs, RAG, MCP integrations, tool calling and structured outputs.",
+      "Automated document reading and exception triage, with a human review gate in front of every action taken.",
+      "Let users run complex logistics work conversationally instead of through forms.",
+      "Designed the capacity model that replaced deal-by-deal guesswork with one integrated forecast.",
+      "Published that forecast on a fixed cadence against on-time rate, tender acceptance, dwell, cost per load and exception rate.",
+      "Ran the real-time infrastructure underneath it: event-driven services, WebSockets and async processing.",
+      "Owned the design system, CI/CD, Docker and cloud deployment.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -317,9 +345,14 @@ export const EXPERIENCE: Experience[] = [
     title: "Senior Logistics Coordinator",
     company: "MCI Express Inc",
     description: [
-      "Planned and locked capacity for multimillion-dollar concurrent programs (Carnival, Royal Caribbean, Ritz-Carlton) against fixed vessel and delivery windows, where commitments were made early and could not be re-cut.",
-      "Connected transportation platforms and carrier networks through REST and webhook APIs, EDI exchanges, and automated ETL pipelines, retiring an entirely manual reporting cycle.",
-      "Standardized reporting with SQL and BI dashboards, using cost and performance data to support pricing and routing decisions.",
+      "Planned and locked capacity for multimillion-dollar concurrent programs including Carnival, Royal Caribbean and Ritz-Carlton.",
+      "Committed against fixed vessel and delivery windows, where the plan had to be right the first time because it could not be re-cut.",
+      "Ran the trade-off calls whenever a date or equipment tranche moved, deciding which program absorbed the slip and pushing the change to accounts the same day.",
+      "Connected transportation platforms and carrier networks through REST and webhook APIs.",
+      "Integrated EDI exchanges between carrier, broker and shipper systems.",
+      "Built automated ETL pipelines that retired an entirely manual reporting cycle.",
+      "Standardized reporting with SQL and BI dashboards.",
+      "Used cost and performance data to find bottlenecks and support pricing and routing decisions.",
     ],
     skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.AWS],
   },
@@ -330,9 +363,14 @@ export const EXPERIENCE: Experience[] = [
     title: "Founder & Software Engineer",
     company: "Dispatch 4 Now LLC",
     description: [
-      "Founded and ran an operation that moved several million dollars in freight over four years, owning capacity procurement, rate and contract negotiation, and the margin on every load.",
-      "Built the internal system of record (TypeScript, React, Next.js, Node.js, Python, PostgreSQL, Redis) covering dispatch, shipment lifecycle, route optimization, and driver assignment — the software the business actually ran on.",
-      "Shipped live dashboards for unit economics, anomaly detection, and predictive reporting, and made daily pricing and allocation calls from them.",
+      "Founded and ran an operation that moved several million dollars in freight over four years.",
+      "Owned capacity procurement, rate and contract negotiation, and the margin on every load.",
+      "Built the internal system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis.",
+      "Covered dispatch, shipment lifecycle, route optimization and driver assignment: the software the business actually ran on.",
+      "Shipped live dashboards for capacity planning, unit economics, anomaly detection and predictive reporting.",
+      "Made daily pricing and allocation calls directly off those dashboards.",
+      "Integrated carrier APIs, GPS and telematics providers and mapping services into one operational data platform, tracked in real time over WebSockets.",
+      "Wrote the SOPs and training library that let the operation absorb new lanes and volume without adding headcount.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -351,7 +389,9 @@ export const EXPERIENCE: Experience[] = [
     company: "Amazon",
     description: [
       "Supported Amazon's delivery network at scale against strict service-level targets, working the operational signals behind millions of package events.",
-      "Traced data synchronization failures across internal platforms back to root cause, and used internal dashboards and monitoring to diagnose delivery anomalies and shorten incident resolution.",
+      "Traced data synchronization failures across internal platforms back to root cause, validating event consistency through the package lifecycle.",
+      "Used internal dashboards and monitoring to diagnose delivery anomalies and correlate system events.",
+      "Recognized as a top performer, working in English and Spanish across distributed teams.",
     ],
     skills: [SkillNames.AWS, SkillNames.LINUX],
   },
@@ -360,7 +400,7 @@ export const EXPERIENCE: Experience[] = [
 export const themeDisclaimers = {
   light: [
     "Light mode. Bold choice.",
-    "Switching to light mode — hope you're somewhere sunny.",
+    "Switching to light mode. Hope you're somewhere sunny.",
     "Light mode on. The dark side will be here when you get back.",
     "Fine. Light mode. Don't say I didn't warn you.",
     "Light mode engaged. Somewhere, a designer is nodding.",
@@ -381,10 +421,10 @@ export type About = {
 
 export const ABOUT: About = {
   paragraphs: [
-    "I'm a software engineer who spends his days inside the operations he builds for. Nine years across logistics networks, freight marketplaces, and the planning systems behind them — writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
+    "I'm a software engineer who spends his days inside the operations he builds for. Nine years across logistics networks, freight marketplaces, and the planning systems behind them, writing the TypeScript in the morning and living with the consequences on the dispatch floor in the afternoon.",
     "That loop is the whole point. I design internal systems of record, data models, and AI-assisted automation, then I actually run on them. It tends to produce software that survives contact with a real operation, because the person who shipped it is also the person the pager wakes up.",
-    "A lot of that work is where the money moves: Stripe Connect payouts, billing and settlement flows, and the unit economics underneath them. Running my own freight company for four years meant negotiating the rates, owning the margin, and then building the dashboard I made those calls from — so I read a P&L the same way I read a schema.",
-    "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand — always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
+    "A lot of that work is where the money moves: Stripe Connect payouts, billing and settlement flows, and the unit economics underneath them. Running my own freight company for four years meant negotiating the rates, owning the margin, and then building the dashboard I made those calls from, so I read a P&L the same way I read a schema.",
+    "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand, always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
   ],
   facts: [
     { label: "Based in", value: "Miami, FL" },
@@ -460,6 +500,8 @@ export const TECH_STACK: TechCategory[] = [
       { label: "JavaScript", icon: SiJavascript },
       { label: "Python", icon: SiPython },
       { label: "SQL", icon: SiPostgresql },
+      { label: "HTML", icon: SiHtml5 },
+      { label: "CSS", icon: SiCss3 },
     ],
   },
   {
@@ -467,19 +509,29 @@ export const TECH_STACK: TechCategory[] = [
     items: [
       { label: "React", icon: RiReactjsFill },
       { label: "Next.js", icon: RiNextjsFill },
+      { label: "Vue", icon: SiVuedotjs },
       { label: "Tailwind", icon: SiTailwindcss },
       { label: "Framer Motion", icon: TbBrandFramerMotion },
+      { label: "GSAP", icon: SiGreensock },
       { label: "Radix UI", icon: SiRadixui },
+      { label: "shadcn/ui" },
+      { label: "Sass", icon: SiSass },
+      { label: "Three.js / Spline", icon: SiThreedotjs },
     ],
   },
   {
     title: "Backend & Data",
     items: [
       { label: "Node.js", icon: RiNodejsFill },
+      { label: "Express", icon: SiExpress },
       { label: "PostgreSQL", icon: SiPostgresql },
       { label: "MongoDB", icon: SiMongodb },
       { label: "Redis", icon: SiRedis },
+      { label: "Firebase", icon: SiFirebase },
       { label: "REST & webhooks", icon: TbApi },
+      { label: "WebSockets", icon: SiSocketdotio },
+      { label: "Zod" },
+      { label: "ETL pipelines" },
       { label: "EDI" },
     ],
   },
@@ -490,8 +542,11 @@ export const TECH_STACK: TechCategory[] = [
       { label: "RAG pipelines" },
       { label: "Agent orchestration", icon: RiRobot2Fill },
       { label: "MCP" },
+      { label: "Tool calling" },
+      { label: "Structured outputs" },
       { label: "Embeddings" },
       { label: "Vector search" },
+      { label: "Human review gates" },
     ],
   },
   {
@@ -499,9 +554,11 @@ export const TECH_STACK: TechCategory[] = [
     items: [
       { label: "AWS", icon: SiAmazonaws },
       { label: "Google Cloud", icon: SiGooglecloud },
+      { label: "Vercel", icon: SiVercel },
       { label: "Docker", icon: SiDocker },
       { label: "Kubernetes", icon: SiKubernetes },
-      { label: "Vercel", icon: SiVercel },
+      { label: "NginX", icon: SiNginx },
+      { label: "Linux", icon: SiLinux },
       { label: "CI/CD" },
     ],
   },
@@ -509,10 +566,25 @@ export const TECH_STACK: TechCategory[] = [
     title: "Finance & Business Systems",
     items: [
       { label: "Stripe Connect", icon: SiStripe },
-      { label: "Billing & settlement" },
+      { label: "Payouts & settlement" },
+      { label: "Billing & invoicing" },
+      { label: "Reconciliation" },
       { label: "Unit economics", icon: TbChartLine },
       { label: "BI & KPI dashboards" },
       { label: "Forecasting models" },
+      { label: "TMS / WMS / ERP" },
+    ],
+  },
+  {
+    title: "Tooling & Practice",
+    items: [
+      { label: "Git", icon: SiGit },
+      { label: "GitHub", icon: SiGithub },
+      { label: "npm", icon: SiNpm },
+      { label: "Prettier", icon: SiPrettier },
+      { label: "WordPress", icon: SiWordpress },
+      { label: "System design" },
+      { label: "Code review" },
     ],
   },
 ];
@@ -528,7 +600,7 @@ export const CREDENTIALS: Credential[] = [
   {
     title: "B.S. Computer Science",
     org: "University of the People",
-    period: "2021 — 2024",
+    period: "2021 to 2024",
     detail: "Relational database systems, data analysis, and applied AI/LLM engineering.",
   },
   {

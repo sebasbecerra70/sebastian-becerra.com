@@ -69,7 +69,7 @@ export default function RootLayout({
         inter.variable,
         archivoBlack.variable,
         jetbrainsMono.variable,
-        // Body copy is Inter. `font-display` is opt-in, per element — applying it
+        // Body copy is Inter. `font-display` is opt-in, per element. Applying it
         // here set every paragraph on the site in Archivo Black.
         "font-sans",
       ].join(" ")}
@@ -87,7 +87,7 @@ export default function RootLayout({
       <body>
         <Providers>
           {/* Lenis lives at the layout level, not inside the page, so the header
-              and footer can resolve the instance via `useLenis()` — in-page nav
+              and footer can resolve the instance via `useLenis()`. In-page nav
               links have to scroll through Lenis or they don't move at all. */}
           <SmoothScroll>
             <Header />

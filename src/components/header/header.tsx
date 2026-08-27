@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
 /**
- * Nav is visible on desktop rather than hidden behind a hamburger — a reviewer
+ * Nav is visible on desktop rather than hidden behind a hamburger. A reviewer
  * skimming for "work" or "experience" shouldn't have to open a menu to find them.
  */
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
   /**
    * Section links scroll the page directly instead of routing.
    *
-   * `<Link href="/#work">` re-navigated the route without moving the viewport —
+   * `<Link href="/#work">` re-navigated the route without moving the viewport.
    * clicking a nav item did nothing except replay the hero's entrance
    * animations. Lenis owns the scroll position, so it has to do the scrolling.
    */
@@ -71,14 +71,6 @@ const Header = () => {
 
         <div className="flex items-center gap-2 md:gap-4">
           <FunnyThemeToggle className="w-5 h-5" />
-          <Link
-            href={config.resume}
-            target="_blank"
-            rel="noopener"
-            className="hidden sm:inline-flex items-center border border-border px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--brand)]"
-          >
-            Résumé
-          </Link>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -115,17 +107,6 @@ const Header = () => {
                   </li>
                 );
               })}
-              <li>
-                <Link
-                  href={config.resume}
-                  target="_blank"
-                  rel="noopener"
-                  onClick={() => setOpen(false)}
-                  className="block py-3 text-base text-brand"
-                >
-                  Résumé
-                </Link>
-              </li>
             </ul>
           </motion.nav>
         )}

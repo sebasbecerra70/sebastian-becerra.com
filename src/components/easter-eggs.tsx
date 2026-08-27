@@ -38,21 +38,21 @@ const EasterEggs = () => {
     if (typeof console === "undefined") return;
 
     // Printed unconditionally. This used to be gated on a devtools-detector
-    // heuristic that also fired an "Achievement unlocked" toast — and it
+    // heuristic that also fired an "Achievement unlocked" toast, and it
     // false-positived with devtools closed, popping a toast at visitors for no
     // reason. Only someone with the console open ever sees this anyway.
     console.log(
       `%c${BANNER}`,
-      "color:#f97316; font-family:monospace; font-size:12px; line-height:1.1;"
+      "color:#0ABAB5; font-family:monospace; font-size:12px; line-height:1.1;"
     );
     console.log(
-      "%cSoftware engineer — Miami, FL\n" +
+      "%cSoftware engineer, Miami FL\n" +
         "I build the systems I run on: full-stack products, applied AI, and the data and payments plumbing underneath.\n\n" +
         `${config.email}  ·  sebastian-becerra.com  ·  linkedin.com/in/sebastian-becerra-8b499b231`,
       "color:#a1a1aa; font-family:monospace; font-size:13px; line-height:1.6;"
     );
     console.log(
-      "%cSince you're already in here — type %csebastian%c and hit enter. 🪄\n" +
+      "%cSince you're already in here, type %csebastian%c and hit enter. 🪄\n" +
         "There are 4 easter eggs on this site. Two of them are in this console.",
       "color:#fbbf24; font-family:monospace; font-size:13px; font-weight:bold;",
       "color:#34d399; font-family:monospace; font-size:13px; font-weight:bold;",
@@ -68,7 +68,7 @@ const EasterEggs = () => {
           console.log(
             "%c✨ Summoned. ✨\n\n" +
               "Nine years running real operations, and I still get the same kick out of a clean deploy.\n" +
-              "If you're hiring for something that needs both halves of that — let's talk.\n\n" +
+              "If you're hiring for something that needs both halves of that, let's talk.\n\n" +
               "One more: press 'n' somewhere on the page. 🐱",
             "color:#f472b6; font-family:monospace; font-size:14px; font-weight:bold; line-height:1.6;"
           );

@@ -47,12 +47,12 @@ const ContactForm = () => {
       setEmail("");
       setMessage("");
     } catch (err) {
-      // Never claim success we can't verify — the old version silently
+      // Never claim success we can't verify. The old version silently
       // "succeeded" whenever the mail provider wasn't configured.
       setFailed(true);
       toast({
         title: "Message didn't send",
-        description: "Email me directly instead — the link is below the form.",
+        description: "Email me directly instead. The link is below the form.",
         className: cn(
           "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
         ),
@@ -98,7 +98,7 @@ const ContactForm = () => {
       <div className="grid w-full gap-1.5 mb-5">
         <Label htmlFor="content">Message</Label>
         <Textarea
-          placeholder="The role, the team, what you're building — whatever's useful."
+          placeholder="The role, the team, what you're building. Whatever's useful."
           id="content"
           required
           value={message}

@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
  *
  * The rule: **content must end up visible even if the animation never runs.**
  * The previous approach set `opacity: 0` inline via Framer's `whileInView` and
- * relied on a rAF-driven spring to bring it back. When the main thread stalled —
- * a heavy 3D scene is enough — elements froze mid-flight at `opacity: 0`
+ * relied on a rAF-driven spring to bring it back. When the main thread stalled
+ * (a heavy 3D scene is enough) elements froze mid-flight at `opacity: 0`
  * permanently, and whole sections of the site were never seen.
  *
  * Three guarantees here:
@@ -45,7 +45,7 @@ const Reveal = ({
       return;
     }
 
-    // Already on screen? Leave it alone — no reason to hide something the
+    // Already on screen? Leave it alone. No reason to hide something the
     // visitor can see, and no window in which a stalled thread could blank it.
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight) return;

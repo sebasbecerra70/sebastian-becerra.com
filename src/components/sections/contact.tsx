@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, FileText } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { ArrowUpRight } from "lucide-react";
+import { SiLinkedin, SiX } from "react-icons/si";
 import ContactForm from "../ContactForm";
 import { config } from "@/data/config";
 import { SectionHeader } from "./section-header";
@@ -12,7 +12,6 @@ import Reveal from "../ui/reveal";
 
 const LINKS = [
   { label: "LinkedIn", href: config.social.linkedin, Icon: SiLinkedin },
-  { label: "GitHub", href: config.social.github, Icon: SiGithub },
   { label: "X", href: config.social.twitter, Icon: SiX },
 ].filter((l) => Boolean(l.href));
 
@@ -56,18 +55,6 @@ const ContactSection = () => (
                 </Link>
               ))}
             </div>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <Link
-              href={config.resume}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-2 border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--brand)] w-fit"
-            >
-              <FileText className="h-4 w-4" />
-              Download résumé
-            </Link>
           </Reveal>
         </div>
 

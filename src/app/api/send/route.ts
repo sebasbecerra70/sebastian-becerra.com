@@ -24,12 +24,12 @@ export async function POST(req: Request) {
     // No key means no email was sent. Say so.
     //
     // This route used to fall back to a placeholder key and return
-    // `{ success: true }` without sending anything — so a recruiter would see a
+    // `{ success: true }` without sending anything, so a recruiter would see a
     // confirmation, close the tab, and never hear back. Failing loudly lets the
     // client offer a mailto: fallback instead.
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error("RESEND_API_KEY is not configured — contact form cannot send.");
+      console.error("RESEND_API_KEY is not configured. Contact form cannot send.");
       return Response.json(
         { error: "Mail service is not configured." },
         { status: 503 }

@@ -19,7 +19,7 @@ const read = (): AchievementId[] => {
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
   } catch {
-    // private mode, blocked site data, whatever — the eggs still work.
+    // private mode, blocked site data, whatever. The eggs still work.
     return [];
   }
 };
@@ -47,7 +47,7 @@ export const unlockAchievement = (id: AchievementId) => {
 
   const { emoji, title, hint } = ACHIEVEMENTS[id];
   toast({
-    title: `${emoji}  Achievement unlocked — ${title}`,
+    title: `${emoji}  Achievement unlocked: ${title}`,
     description: `${hint}  (${next.length}/${TOTAL} found)`,
   });
 
@@ -56,7 +56,7 @@ export const unlockAchievement = (id: AchievementId) => {
       toast({
         title: "🏆  You found everything",
         description:
-          "That is genuinely more curiosity than most people bring to a portfolio. Say hi — sebasbecerra70@gmail.com",
+          "That is genuinely more curiosity than most people bring to a portfolio. Say hi at sebasbecerra70@gmail.com",
       });
     }, 2600);
   }

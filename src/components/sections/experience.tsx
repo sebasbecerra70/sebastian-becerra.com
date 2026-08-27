@@ -19,7 +19,7 @@ const ExperienceRow = ({
   >
     <div className="md:col-span-3">
       <p className="font-mono text-xs tabular text-muted-foreground">
-        {experience.startDate} — {experience.endDate}
+        {experience.startDate} to {experience.endDate}
       </p>
     </div>
 

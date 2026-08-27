@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Not found — Sebastian Becerra",
+  title: "Not found | Sebastian Becerra",
 };
 
 const NotFoundPage = () => (
@@ -13,8 +13,8 @@ const NotFoundPage = () => (
         404
       </h1>
       <p className="mt-6 text-lg text-muted-foreground">
-        This page doesn&apos;t exist. Either it moved, or the link was wrong —
-        both happen.
+        This page doesn&apos;t exist. Either it moved or the link was wrong.
+        Both happen.
       </p>
       <Link
         href="/"

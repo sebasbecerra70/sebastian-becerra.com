@@ -57,14 +57,14 @@ function Preloader({ children, disabled = false }: PreloaderProps) {
     // implementation exited via AnimatePresence animating `top` to `-100dvh`;
     // Framer can't interpolate `dvh`, so the tween froze partway
     // (`top: -3.8dvh`), `onExitComplete` never fired, and the loader stayed
-    // mounted over the whole page — the black "95 %" screen.
+    // mounted over the whole page: the black "95 %" screen.
     setTimeout(() => setMounted(false), EXIT_MS);
   }, []);
 
   useEffect(() => {
     if (disabled) return;
 
-    // Progress is wall-clock, not rAF — a busy main thread can't stall it.
+    // Progress is wall-clock, not rAF, so a busy main thread can't stall it.
     const start = performance.now();
     const interval = window.setInterval(() => {
       const pct = Math.min(

@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 
 /**
- * Renders identically on the server and the client — no state, no animation
+ * Renders identically on the server and the client: no state, no animation
  * library. The slide-out and the progress fill are CSS animations, so this
  * clears itself even if JavaScript never executes. `leaving` only shortens it.
  */

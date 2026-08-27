@@ -198,7 +198,7 @@ const SplineScene = ({ isMobile }: { isMobile: boolean }) => {
     createSectionTimeline("#work", "work", "impact");
     createSectionTimeline("#experience", "experience", "work");
     // The keyboard is staged against a dedicated empty band, not the whole stack
-    // section — otherwise it lands centred on top of the capability lists.
+    // section, otherwise it lands centred on top of the capability lists.
     createSectionTimeline("#keyboard-stage", "stack", "experience", "top 65%");
     createSectionTimeline("#stack-lists", "stacklists", "stack", "top 75%");
     createSectionTimeline("#contact", "contact", "stacklists", "top 30%");
@@ -254,7 +254,7 @@ const SplineScene = ({ isMobile }: { isMobile: boolean }) => {
    *
    * Deliberately has no `await`s on the path that makes things visible. The
    * previous version hid the keyboard, awaited a sleep, then awaited a sleep per
-   * keycap inside a `forEach` — so any stall partway through left the board
+   * keycap inside a `forEach`, so any stall partway through left the board
    * permanently bare. Now every visibility flag is set synchronously and the
    * stagger is expressed as a GSAP delay, which is cosmetic if it drops frames.
    */
