@@ -57,8 +57,8 @@ const projects: Project[] = [
       "AWS",
     ],
     image: {
-      src: "/assets/projects-screenshots/ship-ai/tracking.jpg",
-      alt: "Ship AI live tracking view showing delivery status, route progress and cargo protection",
+      src: "/assets/projects-screenshots/ship-ai/hero.jpg",
+      alt: "Ship AI dashboard showing active loads, pending bids, shipment analytics and live tracking",
     },
     live: "https://shipfreight.ai/",
   },
@@ -95,7 +95,7 @@ const projects: Project[] = [
     ],
     image: {
       src: "/assets/projects-screenshots/proofbase-ai/landing.jpg",
-      alt: "Proofbase AI landing page showing connected platform integrations",
+      alt: "Proofbase AI homepage showing the platforms it pulls verified metrics from",
     },
     live: "https://itsproofbase.com/",
   },

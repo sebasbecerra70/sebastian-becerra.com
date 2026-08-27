@@ -109,6 +109,16 @@
     @apply font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground;
   }
 
+  /**
+   * Vendor brand hexes are tuned for dark UI. On the near-white light theme the
+   * yellows and cyans (JavaScript #F7DF1E, Linux #FCC624, Firebase #FFCA28,
+   * React #61DAFB, Tailwind #06B6D4, GSAP #0AE448) wash out completely. One
+   * filter here beats hand-tuning a second hex for all 28 of them.
+   */
+  :root:not(.dark) .stack-icon {
+    filter: brightness(0.82) saturate(1.15);
+  }
+
   .rule {
     @apply h-px w-full bg-border;
   }

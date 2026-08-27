@@ -1,6 +1,7 @@
 "use client";
 
 import { CAPABILITIES, CREDENTIALS, TECH_STACK } from "@/data/constants";
+import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
 import { SectionHeader } from "./section-header";
 import Reveal from "../ui/reveal";
@@ -54,7 +55,15 @@ const SkillsSection = () => (
                         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       >
                         {ItemIcon ? (
-                          <ItemIcon className="w-3.5 h-3.5 shrink-0 opacity-70" />
+                          <ItemIcon
+                            className={cn(
+                              "stack-icon w-3.5 h-3.5 shrink-0",
+                              // Monochrome logos carry no colour of their own, so
+                              // they inherit and flip with the theme.
+                              !item.color && "text-foreground/85"
+                            )}
+                            style={item.color ? { color: item.color } : undefined}
+                          />
                         ) : null}
                         {item.label}
                       </span>

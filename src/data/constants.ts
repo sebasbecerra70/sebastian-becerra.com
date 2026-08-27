@@ -489,46 +489,52 @@ export const CAPABILITIES: Capability[] = [
 
 export type TechCategory = {
   title: string;
-  items: { label: string; icon?: IconType }[];
+  /**
+   * `color` is the vendor's official brand hex. Omit it for logos that are
+   * themselves monochrome (Next.js, Vercel, GitHub, Express, Three.js, Radix,
+   * Socket.io, OpenAI): those inherit `currentColor` so they flip with the theme
+   * instead of vanishing into one of the two backgrounds.
+   */
+  items: { label: string; icon?: IconType; color?: string }[];
 };
 
 export const TECH_STACK: TechCategory[] = [
   {
     title: "Languages",
     items: [
-      { label: "TypeScript", icon: SiTypescript },
-      { label: "JavaScript", icon: SiJavascript },
-      { label: "Python", icon: SiPython },
-      { label: "SQL", icon: SiPostgresql },
-      { label: "HTML", icon: SiHtml5 },
-      { label: "CSS", icon: SiCss3 },
+      { label: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { label: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { label: "Python", icon: SiPython, color: "#3776AB" },
+      { label: "SQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "HTML", icon: SiHtml5, color: "#E34F26" },
+      { label: "CSS", icon: SiCss3, color: "#1572B6" },
     ],
   },
   {
     title: "Frontend",
     items: [
-      { label: "React", icon: RiReactjsFill },
+      { label: "React", icon: RiReactjsFill, color: "#61DAFB" },
       { label: "Next.js", icon: RiNextjsFill },
-      { label: "Vue", icon: SiVuedotjs },
-      { label: "Tailwind", icon: SiTailwindcss },
-      { label: "Framer Motion", icon: TbBrandFramerMotion },
-      { label: "GSAP", icon: SiGreensock },
+      { label: "Vue", icon: SiVuedotjs, color: "#4FC08D" },
+      { label: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
+      { label: "Framer Motion", icon: TbBrandFramerMotion, color: "#0055FF" },
+      { label: "GSAP", icon: SiGreensock, color: "#0BC93E" },
       { label: "Radix UI", icon: SiRadixui },
       { label: "shadcn/ui" },
-      { label: "Sass", icon: SiSass },
+      { label: "Sass", icon: SiSass, color: "#CC6699" },
       { label: "Three.js / Spline", icon: SiThreedotjs },
     ],
   },
   {
     title: "Backend & Data",
     items: [
-      { label: "Node.js", icon: RiNodejsFill },
+      { label: "Node.js", icon: RiNodejsFill, color: "#5FA04E" },
       { label: "Express", icon: SiExpress },
-      { label: "PostgreSQL", icon: SiPostgresql },
-      { label: "MongoDB", icon: SiMongodb },
-      { label: "Redis", icon: SiRedis },
-      { label: "Firebase", icon: SiFirebase },
-      { label: "REST & webhooks", icon: TbApi },
+      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { label: "Redis", icon: SiRedis, color: "#FF4438" },
+      { label: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+      { label: "REST & webhooks", icon: TbApi, color: "var(--brand)" },
       { label: "WebSockets", icon: SiSocketdotio },
       { label: "Zod" },
       { label: "ETL pipelines" },
@@ -540,7 +546,7 @@ export const TECH_STACK: TechCategory[] = [
     items: [
       { label: "LLM integration", icon: SiOpenai },
       { label: "RAG pipelines" },
-      { label: "Agent orchestration", icon: RiRobot2Fill },
+      { label: "Agent orchestration", icon: RiRobot2Fill, color: "var(--brand)" },
       { label: "MCP" },
       { label: "Tool calling" },
       { label: "Structured outputs" },
@@ -552,24 +558,24 @@ export const TECH_STACK: TechCategory[] = [
   {
     title: "Cloud & Infrastructure",
     items: [
-      { label: "AWS", icon: SiAmazonaws },
-      { label: "Google Cloud", icon: SiGooglecloud },
+      { label: "AWS", icon: SiAmazonaws, color: "#FF9900" },
+      { label: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
       { label: "Vercel", icon: SiVercel },
-      { label: "Docker", icon: SiDocker },
-      { label: "Kubernetes", icon: SiKubernetes },
-      { label: "NginX", icon: SiNginx },
-      { label: "Linux", icon: SiLinux },
+      { label: "Docker", icon: SiDocker, color: "#2496ED" },
+      { label: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+      { label: "NginX", icon: SiNginx, color: "#009639" },
+      { label: "Linux", icon: SiLinux, color: "#FCC624" },
       { label: "CI/CD" },
     ],
   },
   {
     title: "Finance & Business Systems",
     items: [
-      { label: "Stripe Connect", icon: SiStripe },
+      { label: "Stripe Connect", icon: SiStripe, color: "#635BFF" },
       { label: "Payouts & settlement" },
       { label: "Billing & invoicing" },
       { label: "Reconciliation" },
-      { label: "Unit economics", icon: TbChartLine },
+      { label: "Unit economics", icon: TbChartLine, color: "var(--brand)" },
       { label: "BI & KPI dashboards" },
       { label: "Forecasting models" },
       { label: "TMS / WMS / ERP" },
@@ -578,11 +584,11 @@ export const TECH_STACK: TechCategory[] = [
   {
     title: "Tooling & Practice",
     items: [
-      { label: "Git", icon: SiGit },
+      { label: "Git", icon: SiGit, color: "#F05032" },
       { label: "GitHub", icon: SiGithub },
-      { label: "npm", icon: SiNpm },
-      { label: "Prettier", icon: SiPrettier },
-      { label: "WordPress", icon: SiWordpress },
+      { label: "npm", icon: SiNpm, color: "#CB3837" },
+      { label: "Prettier", icon: SiPrettier, color: "#F7B93E" },
+      { label: "WordPress", icon: SiWordpress, color: "#21759B" },
       { label: "System design" },
       { label: "Code review" },
     ],

@@ -22,7 +22,7 @@ const ContactSection = () => (
         id="contact"
         index="05"
         title="Let's talk"
-        desc="Open to software engineering roles. The fastest way to reach me is email."
+        desc="Open to roles in software engineering, sales, operations and supply chain. The fastest way to reach me is email."
         className="mb-12 md:mb-16"
       />
 
