@@ -1,22 +1,38 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Particles from "@/components/Particles";
-import RemoteCursors from "@/components/realtime/remote-cursors";
 import EasterEggs from "@/components/easter-eggs";
-import ElasticCursor from "@/components/ui/ElasticCursor";
-import RadialMenu from "@/components/radial-menu/index";
+import { useMediaQuery } from "@/hooks/use-media-query";
+
+// Pointer-driven decorations are desktop-only and are never part of first paint.
+// `RemoteCursors` was dropped entirely: it opens a socket.io connection that has no
+// server (`socketio.tsx` bails without NEXT_PUBLIC_WS_URL, which is set nowhere), so
+// it was pure main-thread cost for a feature that could never work.
+const ElasticCursor = dynamic(() => import("@/components/ui/ElasticCursor"), {
+  ssr: false,
+});
+const RadialMenu = dynamic(() => import("@/components/radial-menu/index"), {
+  ssr: false,
+});
 
 export default function AppOverlays() {
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isCoarse = useMediaQuery("(pointer: coarse)");
+
   return (
     <>
       <Particles
-        className="fixed inset-0 -z-10 animate-fade-in"
-        quantity={100}
+        className="fixed inset-0 -z-10"
+        quantity={isMobile ? 28 : 64}
       />
-      <RemoteCursors />
       <EasterEggs />
-      <ElasticCursor />
-      <RadialMenu />
+      {!isCoarse && (
+        <>
+          <ElasticCursor />
+          <RadialMenu />
+        </>
+      )}
     </>
   );
 }

@@ -1,262 +1,133 @@
-import AceTernityLogo from "@/components/logos/aceternity";
-import SlideShow from "@/components/slide-show";
-import { TypographyH3, TypographyP } from "@/components/ui/typography";
-import { ReactNode } from "react";
-import { RiNextjsFill, RiNodejsFill, RiReactjsFill } from "react-icons/ri";
-import {
-  SiDocker,
-  SiPostgresql,
-  SiPython,
-  SiShadcnui,
-  SiTailwindcss,
-  SiTypescript,
-} from "react-icons/si";
-import { TbBrandFramerMotion } from "react-icons/tb";
-
-const BASE_PATH = "/assets/projects-screenshots";
-
-export type Skill = {
-  title: string;
-  bg: string;
-  fg: string;
-  icon: ReactNode;
-};
-
-const PROJECT_SKILLS = {
-  next: {
-    title: "Next.js",
-    bg: "black",
-    fg: "white",
-    icon: <RiNextjsFill />,
-  },
-  react: {
-    title: "React",
-    bg: "black",
-    fg: "white",
-    icon: <RiReactjsFill />,
-  },
-  ts: {
-    title: "TypeScript",
-    bg: "black",
-    fg: "white",
-    icon: <SiTypescript />,
-  },
-  tailwind: {
-    title: "Tailwind CSS",
-    bg: "black",
-    fg: "white",
-    icon: <SiTailwindcss />,
-  },
-  framerMotion: {
-    title: "Framer Motion",
-    bg: "black",
-    fg: "white",
-    icon: <TbBrandFramerMotion />,
-  },
-  shadcn: {
-    title: "shadcn/ui",
-    bg: "black",
-    fg: "white",
-    icon: <SiShadcnui />,
-  },
-  python: {
-    title: "Python",
-    bg: "black",
-    fg: "white",
-    icon: <SiPython />,
-  },
-  node: {
-    title: "Node.js",
-    bg: "black",
-    fg: "white",
-    icon: <RiNodejsFill />,
-  },
-  postgres: {
-    title: "PostgreSQL",
-    bg: "black",
-    fg: "white",
-    icon: <SiPostgresql />,
-  },
-  docker: {
-    title: "Docker",
-    bg: "black",
-    fg: "white",
-    icon: <SiDocker />,
-  },
-};
-
 export type Project = {
   id: string;
-  category: string;
+  /** Short mono label above the title. */
+  kind: string;
   title: string;
+  /** One line: what it is. */
   summary: string;
-  src: string;
-  screenshots: string[];
-  skills: { frontend: Skill[]; backend: Skill[] };
-  content: React.ReactNode | any;
-  live: string;
+  /** Three lines: the problem, what he built, what came of it. */
+  facets: { label: string; body: string }[];
+  stack: string[];
+  /** Optional real screenshot. No mockups — an entry with no image renders as type. */
+  image?: { src: string; alt: string };
+  live?: string;
+  /** Shown instead of a live link when the work is internal or under NDA. */
+  note?: string;
 };
 
+/**
+ * Three real projects.
+ *
+ * The five that used to sit here (Orion Forecast, LedgerFlow, RoutePulse, MarketWeave,
+ * Sentinel Risk) had no live links and were illustrated with hand-drawn SVG mockups
+ * containing invented data — "Studio Marlowe · 1,284 profile views". Reviewers spot that
+ * instantly and it discredits the real work next to it.
+ */
 const projects: Project[] = [
   {
+    id: "ship-ai",
+    kind: "Marketplace · AI",
+    title: "Ship AI",
+    summary:
+      "A commission-free freight marketplace where carriers and shippers transact directly, with AI doing the paperwork.",
+    facets: [
+      {
+        label: "Problem",
+        body: "Freight brokerage takes a cut of every load for work that is mostly document handling and exception chasing. Carriers wanted the load; shippers wanted the capacity; the middle was overhead.",
+      },
+      {
+        label: "Built",
+        body: "The full platform on Next.js, React, TypeScript, Node.js and Python — plus the money layer end to end: Stripe Connect payouts, billing and settlement, and the transaction model behind carrier payments and shipper invoicing. AI copilots read the documents, triaged exceptions, and let users run logistics work conversationally, always behind a human review gate.",
+      },
+      {
+        label: "Result",
+        body: "300+ carrier companies onboarded, representing 3,000+ trucks of capacity, running on event-driven services and WebSockets underneath.",
+      },
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "Stripe Connect",
+      "LLM / RAG",
+      "MCP",
+      "Docker",
+      "AWS",
+    ],
+    note: "Internal platform — no public demo.",
+  },
+  {
     id: "proofbase-ai",
-    category: "AI & Verification",
-    title: "Proofbase.AI",
-    summary: "AI-assisted credential verification, packaged as one shareable link",
-    src: `${BASE_PATH}/proofbase-ai/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.react, PROJECT_SKILLS.ts, PROJECT_SKILLS.tailwind],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.postgres, PROJECT_SKILLS.python],
+    kind: "AI · Verification",
+    title: "Proofbase AI",
+    summary:
+      "Verified business metrics pulled straight from the APIs a company already uses, published as a proof page anyone can check.",
+    facets: [
+      {
+        label: "Problem",
+        body: "Founders, creators and independent operators make claims about their numbers that nobody can verify. Screenshots get taken on faith, and the people doing the vetting have no better option.",
+      },
+      {
+        label: "Built",
+        body: "One-click OAuth integrations that read metrics directly from source platforms — no passwords, no API keys to manage — then an AI layer that finds patterns across them and surfaces the insight. Output is a public or private proof page with a verified badge on every metric, embeddable anywhere.",
+      },
+      {
+        label: "Result",
+        body: "Live at itsproofbase.com, tracking metrics daily for businesses, artists and creators.",
+      },
+    ],
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "Node.js",
+      "PostgreSQL",
+      "Python",
+      "OAuth 2.0",
+      "LLM",
+    ],
+    image: {
+      src: "/assets/projects-screenshots/proofbase-ai/landing.jpg",
+      alt: "Proofbase AI landing page showing connected platform integrations",
     },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>Proofbase.AI</TypographyH3>
-        <TypographyP>
-          A verification platform for the parts of a reputation that are hard to prove online. Businesses, artists, and independent professionals submit their credentials - licenses, certifications, work history, ownership, press - and Proofbase runs them through an AI-assisted review pipeline that extracts the claims from source documents, cross-checks them against public registries, and flags whatever needs a human to look at it.
-        </TypographyP>
-        <TypographyP>
-          What comes out the other side is a single shareable link: a public profile showing exactly which claims were verified, how, and when - so the person being vetted stops re-sending the same PDFs to every client, and the person doing the vetting stops taking screenshots on faith.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/proofbase-ai/${img}`
-          )}
-        />
-      </div>
-    ),
     live: "https://itsproofbase.com/",
   },
   {
-    id: "orion-forecast",
-    category: "AI & ML",
-    title: "Orion Demand Forecasting",
-    summary: "ML-powered demand forecasting platform for supply chain optimization",
-    src: `${BASE_PATH}/orion-forecast/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.react, PROJECT_SKILLS.tailwind],
-      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.postgres, PROJECT_SKILLS.node],
-    },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>Orion Demand Forecasting</TypographyH3>
-        <TypographyP>
-          An AI-powered platform leveraging machine learning algorithms to predict product demand with 94% accuracy. Built for enterprise supply chain teams to optimize inventory levels and reduce overstock costs.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/orion-forecast/${img}`
-          )}
-        />
-      </div>
-    ),
-    live: "",
-  },
-  {
-    id: "ledgerflow",
-    category: "Finance",
-    title: "LedgerFlow",
-    summary: "Real-time financial tracking and analytics dashboard",
-    src: `${BASE_PATH}/ledgerflow/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.react, PROJECT_SKILLS.tailwind, PROJECT_SKILLS.ts],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.postgres],
-    },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>LedgerFlow</TypographyH3>
-        <TypographyP>
-          A comprehensive financial tracking platform with real-time analytics, automated categorization, and intelligent spending insights. Designed for SMBs and freelancers to manage finances effortlessly.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/ledgerflow/${img}`
-          )}
-        />
-      </div>
-    ),
-    live: "",
-  },
-  {
-    id: "routepulse",
-    category: "Supply Chain",
-    title: "RoutePulse",
-    summary: "Intelligent route optimization for logistics networks",
-    src: `${BASE_PATH}/routepulse/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.tailwind, PROJECT_SKILLS.framerMotion],
-      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.node, PROJECT_SKILLS.postgres],
-    },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>RoutePulse</TypographyH3>
-        <TypographyP>
-          An intelligent route optimization engine that uses advanced algorithms to minimize delivery time and fuel costs. Real-time tracking and dynamic rerouting for logistics companies of any size.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/routepulse/${img}`
-          )}
-        />
-      </div>
-    ),
-    live: "",
-  },
-  {
-    id: "marketweave",
-    category: "Marketplaces",
-    title: "MarketWeave",
-    summary: "Multi-vendor marketplace platform with advanced search and recommendations",
-    src: `${BASE_PATH}/marketweave/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.react, PROJECT_SKILLS.tailwind, PROJECT_SKILLS.ts],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.postgres],
-    },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>MarketWeave</TypographyH3>
-        <TypographyP>
-          A full-featured multi-vendor marketplace platform with AI-powered recommendations, vendor analytics, and secure payment processing. Built to scale for thousands of concurrent sellers and buyers.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/marketweave/${img}`
-          )}
-        />
-      </div>
-    ),
-    live: "",
-  },
-  {
-    id: "sentinel-risk",
-    category: "Risk Management",
-    title: "Sentinel Risk Analytics",
-    summary: "Predictive risk assessment and compliance monitoring",
-    src: `${BASE_PATH}/sentinel-risk/cover.svg`,
-    screenshots: ["cover.svg", "overview.svg", "insights.svg", "workflow.svg"],
-    skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.tailwind, PROJECT_SKILLS.framerMotion],
-      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.postgres, PROJECT_SKILLS.docker],
-    },
-    content: (
-      <div className="flex flex-col gap-4">
-        <TypographyH3>Sentinel Risk Analytics</TypographyH3>
-        <TypographyP>
-          An advanced risk assessment platform using machine learning to identify and predict potential compliance violations and operational risks. Trusted by financial institutions for regulatory adherence.
-        </TypographyP>
-        <SlideShow
-          images={["cover.svg", "overview.svg", "insights.svg", "workflow.svg"].map(
-            (img) => `${BASE_PATH}/sentinel-risk/${img}`
-          )}
-        />
-      </div>
-    ),
-    live: "",
+    id: "dispatch-4-now",
+    kind: "System of record",
+    title: "Dispatch 4 Now",
+    summary:
+      "The internal platform my own freight company ran on — built by the person who had to use it at 6am.",
+    facets: [
+      {
+        label: "Problem",
+        body: "I founded and ran the operation, so every gap in the tooling cost me margin directly. Off-the-shelf TMS products priced for enterprises and modelled work we didn't do.",
+      },
+      {
+        label: "Built",
+        body: "A system of record in TypeScript, React, Next.js, Node.js, Python, PostgreSQL and Redis covering dispatch, shipment lifecycle, route optimization and driver assignment — plus live dashboards for unit economics, anomaly detection and predictive reporting. Carrier APIs, GPS and telematics providers and mapping services all fed one operational dataset, tracked in real time over WebSockets.",
+      },
+      {
+        label: "Result",
+        body: "Several million dollars of freight moved over four years, with daily pricing and allocation calls made off those dashboards. The SOPs and training built around it let the operation absorb new lanes without adding headcount.",
+      },
+    ],
+    stack: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "Redis",
+      "WebSockets",
+      "Telematics APIs",
+    ],
+    note: "Private company system — no public demo.",
   },
 ];
 
-export { projects as default, PROJECT_SKILLS };
+export default projects;

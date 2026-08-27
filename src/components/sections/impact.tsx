@@ -2,120 +2,107 @@
 
 import { useEffect, useRef, useState } from "react";
 import { IMPACT_METRICS, type Metric } from "@/data/constants";
-import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
-import IconTile from "../ui/icon-tile";
-import { useSounds } from "../realtime/hooks/use-sounds";
-import { animate, motion, useInView } from "framer-motion";
+import Reveal from "../ui/reveal";
 
-const ACCENTS = [
-  "emerald",
-  "sky",
-  "violet",
-  "amber",
-  "cyan",
-  "rose",
-  "fuchsia",
-  "orange",
-];
-
+/**
+ * Count-up that always lands on the real number.
+ *
+ * The previous version drove this with Framer's `animate()`; when the main thread
+ * stalled the tween froze and a metric sat on screen reading "11+" instead of "300+",
+ * which is worse than no animation at all. This version derives the displayed value
+ * from elapsed wall-clock time and hard-sets the final number when the window closes.
+ */
 const CountUp = ({ value, suffix }: { value: number; suffix: string }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    if (!inView) return;
-    const controls = animate(0, value, {
-      duration: 1.4,
-      ease: "easeOut",
-      onUpdate: (latest) => setDisplay(Math.round(latest)),
-    });
-    return () => controls.stop();
-  }, [inView, value]);
+    const el = ref.current;
+    if (!el) return;
+    if (
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    setDisplay(0);
+    let raf = 0;
+    let settled = false;
+    const DURATION = 1200;
+
+    const run = () => {
+      const start = performance.now();
+      const tick = () => {
+        const t = Math.min(1, (performance.now() - start) / DURATION);
+        // easeOutCubic
+        setDisplay(Math.round(value * (1 - Math.pow(1 - t, 3))));
+        if (t < 1) raf = requestAnimationFrame(tick);
+        else settled = true;
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          run();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+
+    // Whatever happens to the frame loop, the correct number is on screen.
+    const settle = window.setTimeout(() => {
+      if (!settled) {
+        cancelAnimationFrame(raf);
+        setDisplay(value);
+      }
+    }, DURATION + 900);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+      window.clearTimeout(settle);
+    };
+  }, [value]);
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span ref={ref} className="tabular">
       {display.toLocaleString()}
-      <span className="text-primary/70">{suffix}</span>
+      <span className="text-brand">{suffix}</span>
     </span>
   );
 };
 
-const MetricCard = ({
-  metric,
-  index,
-  onPeek,
-}: {
-  metric: Metric;
-  index: number;
-  onPeek: () => void;
-}) => {
-  const Icon = metric.icon;
-  const accent = ACCENTS[index % ACCENTS.length];
+const MetricCell = ({ metric, index }: { metric: Metric; index: number }) => (
+  <Reveal
+    delay={index * 0.06}
+    className="flex flex-col gap-2 border-t border-border pt-5"
+  >
+    <span className="font-display text-3xl md:text-[2.75rem] leading-none text-foreground">
+      <CountUp value={metric.value} suffix={metric.suffix} />
+    </span>
+    <p className="text-xs md:text-sm leading-snug text-muted-foreground max-w-[20ch]">
+      {metric.label}
+    </p>
+  </Reveal>
+);
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -6 }}
-      onHoverStart={onPeek}
-      transition={{ duration: 0.4, delay: (index % 4) * 0.08, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-50px" }}
-      className={cn(
-        "interactive-card group flex flex-col items-center text-center gap-2 px-4 py-6 rounded-xl",
-        "bg-card/95 backdrop-blur-md border border-border",
-        "hover:border-primary/25 hover:shadow-lg transition-[border-color,box-shadow] duration-300"
-      )}
-    >
-      <IconTile
-        accent={accent}
-        size="sm"
-        className="group-hover:scale-110 group-hover:-rotate-6"
-      >
-        <Icon />
-      </IconTile>
-      <span className="font-display text-3xl md:text-4xl font-bold text-foreground leading-none">
-        <CountUp value={metric.value} suffix={metric.suffix} />
-      </span>
-      <p className="text-xs md:text-sm text-muted-foreground leading-snug max-w-[18ch]">
-        {metric.label}
-      </p>
-    </motion.div>
-  );
-};
-
-const ImpactSection = () => {
-  const { playSendSound } = useSounds();
-  const lastPeek = useRef(0);
-
-  // Throttle so sweeping across the row doesn't machine-gun the speakers.
-  const peek = () => {
-    const now = Date.now();
-    if (now - lastPeek.current < 220) return;
-    lastPeek.current = now;
-    playSendSound();
-  };
-
-  return (
-    <SectionWrapper id="impact" className="py-16 md:py-24 z-10">
-      <div className="w-full max-w-6xl px-4 md:px-8 mx-auto">
-        <p className="text-center text-xs md:text-sm uppercase tracking-[0.25em] text-muted-foreground mb-8 md:mb-12">
-          Measured in production
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {IMPACT_METRICS.map((metric, index) => (
-            <MetricCard
-              key={metric.label}
-              metric={metric}
-              index={index}
-              onPeek={peek}
-            />
-          ))}
-        </div>
+const ImpactSection = () => (
+  <SectionWrapper id="impact" className="py-16 md:py-24 z-10">
+    <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <Reveal className="eyebrow mb-8">Measured in production</Reveal>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10">
+        {IMPACT_METRICS.map((metric, index) => (
+          <MetricCell key={metric.label} metric={metric} index={index} />
+        ))}
       </div>
-    </SectionWrapper>
-  );
-};
+    </div>
+  </SectionWrapper>
+);
 
 export default ImpactSection;

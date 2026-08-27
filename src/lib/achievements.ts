@@ -4,7 +4,6 @@ export const ACHIEVEMENTS = {
   nyan: { emoji: "🐱", title: "Cat Person", hint: "You pressed N." },
   konami: { emoji: "🎮", title: "Old School", hint: "You know the code." },
   radial: { emoji: "🎨", title: "Reactor", hint: "You found the reaction wheel." },
-  devtools: { emoji: "🕵️", title: "Under the Hood", hint: "You opened devtools." },
   summon: { emoji: "🪄", title: "Summoner", hint: "You called my name in the console." },
 } as const;
 

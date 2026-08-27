@@ -1,110 +1,97 @@
+"use client";
+
 import { EXPERIENCE, SkillNames, SKILLS } from "@/data/constants";
 import { SectionHeader } from "./section-header";
-import { Badge } from "../ui/badge";
-import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Reveal from "../ui/reveal";
 
-const ExperienceSection = () => {
-  return (
-    <SectionWrapper
-      id="experience"
-      className="flex flex-col items-center justify-center min-h-[120vh] py-20 z-10"
-    >
-      <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
-        <SectionHeader
-          id="experience"
-          title="Experience"
-          desc="My professional journey."
-          className="mb-12 md:mb-20 mt-0"
-        />
-
-        <div className="flex flex-col gap-8 md:gap-12 relative">
-          {/* Connector Line - simplified to a subtle border */}
-          <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-border hidden md:block -translate-x-1/2" />
-
-          {EXPERIENCE.map((exp, index) => (
-            <div key={exp.id} className="relative">
-              <ExperienceCard experience={exp} index={index} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </SectionWrapper>
-  );
-};
-
-const ExperienceCard = ({
+const ExperienceRow = ({
   experience,
   index,
 }: {
-  experience: (typeof EXPERIENCE)[0];
+  experience: (typeof EXPERIENCE)[number];
   index: number;
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.4,
-        delay: index * 0.1,
-        ease: "easeOut",
-      }}
-      viewport={{ once: true, margin: "-50px" }}
-    >
-      <Card
-        className={cn(
-          "bg-card text-card-foreground border-border",
-          "hover:border-primary/20 transition-colors duration-300",
-          "shadow-sm hover:shadow-md"
-        )}
-      >
-        <CardHeader className="pb-3">
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-            <div className="space-y-1">
-              <CardTitle className="text-xl font-bold tracking-tight">
-                {experience.title}
-              </CardTitle>
-              <div className="text-base font-medium text-muted-foreground">
-                {experience.company}
-              </div>
-            </div>
-            <Badge variant="secondary" className="w-fit font-mono text-xs font-normal">
-              {experience.startDate} - {experience.endDate}
-            </Badge>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <ul className="list-disc list-outside ml-4 space-y-2 text-base text-muted-foreground leading-relaxed">
-            {experience.description.map((point, i) => (
-              <li key={i}>{point}</li>
-            ))}
-          </ul>
+}) => (
+  <Reveal
+    as="article"
+    delay={Math.min(index, 3) * 0.06}
+    className="group grid md:grid-cols-12 gap-4 md:gap-10 border-t border-border py-8 md:py-10 transition-colors duration-300 hover:border-[var(--brand)]"
+  >
+    <div className="md:col-span-3">
+      <p className="font-mono text-xs tabular text-muted-foreground">
+        {experience.startDate} — {experience.endDate}
+      </p>
+    </div>
 
-          <div className="flex flex-wrap gap-2">
-            {experience.skills.map((skillName) => {
-              const skill = SKILLS[skillName as SkillNames];
-              return (
-                <Badge
-                  key={skillName}
-                  variant="outline"
-                  className="gap-2 text-xs font-normal bg-secondary/30 hover:bg-secondary/50 transition-colors border-transparent"
-                >
-                  <img
-                    src={skill.icon}
-                    alt={skill.label}
-                    className="w-3.5 h-3.5 object-contain opacity-80"
-                  />
-                  {skill.label}
-                </Badge>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-};
+    <div className="md:col-span-9 flex flex-col gap-4">
+      <div>
+        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">
+          {experience.title}
+        </h3>
+        <p className="mt-1 text-brand text-sm md:text-base font-medium">
+          {experience.company}
+        </p>
+      </div>
+
+      <ul className="space-y-3">
+        {experience.description.map((point, i) => (
+          <li
+            key={i}
+            className="relative pl-5 text-sm md:text-base leading-relaxed text-muted-foreground"
+          >
+            <span
+              aria-hidden
+              className="absolute left-0 top-[0.7em] h-px w-2.5"
+              style={{ background: "var(--brand)", opacity: 0.6 }}
+            />
+            {point}
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1">
+        {experience.skills.map((skillName) => {
+          const skill = SKILLS[skillName as SkillNames];
+          return (
+            <span
+              key={skillName}
+              className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={skill.icon}
+                alt=""
+                aria-hidden
+                className="w-3 h-3 object-contain opacity-70"
+              />
+              {skill.label}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  </Reveal>
+);
+
+const ExperienceSection = () => (
+  <SectionWrapper id="experience" className="py-24 md:py-32 z-10">
+    <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <SectionHeader
+        id="experience"
+        index="03"
+        title="Experience"
+        desc="Nine years between the code and the operation it runs."
+        className="mb-12 md:mb-16"
+      />
+
+      <div>
+        {EXPERIENCE.map((exp, index) => (
+          <ExperienceRow key={exp.id} experience={exp} index={index} />
+        ))}
+        <div className="border-t border-border" />
+      </div>
+    </div>
+  </SectionWrapper>
+);
 
 export default ExperienceSection;

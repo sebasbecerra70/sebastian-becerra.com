@@ -1,30 +1,122 @@
+/**
+ * The intro overlay is server-rendered, so it must be able to clear itself with
+ * no JavaScript at all. Everything below is CSS: the bar fills on its own and
+ * the panel slides away on its own. React only removes the node afterwards.
+ *
+ * The previous version depended on a Framer exit animating `top` to `-100dvh`.
+ * Framer can't interpolate `dvh`; the tween froze at `top: -3.8dvh`,
+ * AnimatePresence never got `onExitComplete`, and the overlay sat on top of the
+ * entire site indefinitely — the black "95 %" screen.
+ */
 .introduction {
   height: 100dvh;
   width: 100dvw;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
-  padding-inline: 60px;
-  padding-bottom: 30px;
+  justify-content: center;
+  padding-inline: clamp(24px, 6vw, 80px);
+  padding-bottom: clamp(32px, 8vh, 72px);
   position: fixed;
-  z-index: 99;
-  // TODO: Add a better color instead of just the background to make it pop more
+  inset: 0;
+  z-index: 1200;
   background-color: hsl(var(--background));
-  svg {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: calc(100% + 300px);
-    path {
-      fill: hsl(var(--background));
-    }
+  animation: loader-out 1750ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes loader-out {
+  0%,
+  62% {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
-  p {
-    display: flex;
-    color: hsl(var(--foreground));
-    font-size: 72px;
-    align-items: center;
-    position: absolute;
-    z-index: 1;
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Set by React once loading is genuinely done, to cut the intro short. */
+.leaving {
+  animation: loader-out-now 620ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes loader-out-now {
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.name {
+  color: hsl(var(--foreground));
+}
+
+.role {
+  color: hsl(var(--muted-foreground));
+}
+
+.track {
+  height: 2px;
+  width: 100%;
+  background-color: hsl(var(--border));
+  overflow: hidden;
+}
+
+/* Width is animated in CSS rather than driven from React state, so the bar
+   reads correctly even before hydration. */
+.fill {
+  height: 100%;
+  width: 0;
+  background-color: var(--brand);
+  animation: loader-fill 1080ms cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+@keyframes loader-fill {
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introduction {
+    animation: loader-fade 900ms linear forwards;
+  }
+
+  .leaving {
+    animation: loader-fade 200ms linear forwards;
+  }
+
+  .fill {
+    animation: none;
+    width: 100%;
+  }
+
+  @keyframes loader-fade {
+    to {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 }

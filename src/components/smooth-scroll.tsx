@@ -1,7 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { ReactLenis, useLenis } from "@/lib/lenis";
+import React, { useEffect, useRef } from "react";
+import { ReactLenis } from "@/lib/lenis";
+
+/**
+ * Module-level handle on the Lenis instance.
+ *
+ * `useLenis()` returned null in the header and hero even with the provider
+ * hoisted to the layout, and Lenis rewrites the scroll position on every frame —
+ * so any nav link that scrolled by other means (native smooth scroll,
+ * `scrollIntoView`, a rAF tween of our own) was simply overridden and the page
+ * never moved. Anything that needs to scroll the page programmatically has to go
+ * through this instance.
+ */
+let lenisInstance: any = null;
+export const getLenis = () => lenisInstance;
 
 interface LenisProps {
   children: React.ReactNode;
@@ -9,26 +22,25 @@ interface LenisProps {
 }
 
 function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
-  const lenis = useLenis(({ scroll }) => {
-    // called every scroll
-  });
+  const ref = useRef<any>(null);
 
   useEffect(() => {
-    document.addEventListener("DOMContentLoaded", () => {
-      lenis?.stop();
-      lenis?.start();
-    });
-  }, []);
+    lenisInstance = ref.current?.lenis ?? null;
+    return () => {
+      lenisInstance = null;
+    };
+  });
 
   return (
     <ReactLenis
       root
+      ref={ref}
       options={{
-        duration: 2,
-        prevent: (node) => {
+        // 2s felt like lag on a long page.
+        duration: 1.05,
+        prevent: (node: Element) => {
           if (isInsideModal) return true;
-          const modalOpen = node.classList.contains("modall");
-          return modalOpen;
+          return node.classList.contains("modall");
         },
       }}
     >

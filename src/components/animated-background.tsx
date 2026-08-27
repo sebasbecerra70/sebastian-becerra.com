@@ -9,16 +9,61 @@ import { sleep } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
-import { usePathname, useRouter } from "next/navigation";
-import { Section, getKeyboardState } from "./animated-background-config";
+import {
+  Section,
+  getKeyboardState,
+  KEYBOARD_SECTIONS,
+} from "./animated-background-config";
 import { useSounds } from "./realtime/hooks/use-sounds";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Decides whether the 3D scene should exist at all, then mounts it lazily.
+ *
+ * The scene used to load in parallel with first paint on every device. Between the
+ * Spline runtime, three.js and the particle canvas the main thread stalled hard enough
+ * that the preloader's animation frame never completed and the site never appeared.
+ * Now: desktop only, fine pointers only, motion-safe only, and never before the
+ * intro has finished.
+ */
 const AnimatedBackground = () => {
-  const { isLoading, bypassLoading } = usePreloader();
-  const { theme } = useTheme();
   const isMobile = useMediaQuery("(max-width: 767px)");
+  const isCoarse = useMediaQuery("(pointer: coarse)");
+  const [allowed, setAllowed] = useState(false);
+  const { isLoading } = usePreloader();
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (isMobile || isCoarse) return;
+    if (isLoading) return;
+
+    // Hold off until the hero's entrance animations have finished, then wait for
+    // an idle moment. Loading the scene while the hero was still animating in was
+    // enough to starve those animations completely.
+    let idle = 0;
+    const hasIdle = typeof window.requestIdleCallback === "function";
+    const kickoff = window.setTimeout(() => {
+      idle = hasIdle
+        ? window.requestIdleCallback(() => setAllowed(true), { timeout: 2000 })
+        : window.setTimeout(() => setAllowed(true), 200);
+    }, 1400);
+
+    return () => {
+      window.clearTimeout(kickoff);
+      if (!idle) return;
+      if (hasIdle) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
+    };
+  }, [isMobile, isCoarse, isLoading]);
+
+  if (!allowed) return null;
+  return <SplineScene isMobile={isMobile} />;
+};
+
+const SplineScene = ({ isMobile }: { isMobile: boolean }) => {
+  const { bypassLoading } = usePreloader();
+  const { theme } = useTheme();
   const splineContainer = useRef<HTMLDivElement>(null);
   const [splineApp, setSplineApp] = useState<Application>();
   const selectedSkillRef = useRef<Skill | null>(null);
@@ -28,13 +73,8 @@ const AnimatedBackground = () => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("hero");
 
-  // Animation controllers refs
-  const bongoAnimationRef = useRef<{ start: () => void; stop: () => void }>();
   const keycapAnimationsRef = useRef<{ start: () => void; stop: () => void }>();
-
   const [keyboardRevealed, setKeyboardRevealed] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
 
   // --- Event Handlers ---
 
@@ -49,15 +89,16 @@ const AnimatedBackground = () => {
         splineApp.setVariable("heading", "");
         splineApp.setVariable("desc", "");
       }
-    } else {
-      if (!selectedSkillRef.current || selectedSkillRef.current.name !== e.target.name) {
-        const skill = SKILLS[e.target.name as SkillNames];
-        if (skill) {
-          if (selectedSkillRef.current) playReleaseSound();
-          playPressSound();
-          setSelectedSkill(skill);
-          selectedSkillRef.current = skill;
-        }
+    } else if (
+      !selectedSkillRef.current ||
+      selectedSkillRef.current.name !== e.target.name
+    ) {
+      const skill = SKILLS[e.target.name as SkillNames];
+      if (skill) {
+        if (selectedSkillRef.current) playReleaseSound();
+        playPressSound();
+        setSelectedSkill(skill);
+        selectedSkillRef.current = skill;
       }
     }
   };
@@ -97,6 +138,25 @@ const AnimatedBackground = () => {
 
   // --- Animation Setup Helpers ---
 
+  const moveKeyboardTo = (section: Section) => {
+    if (!splineApp) return;
+    const kbd = splineApp.findObjectByName("keyboard");
+    if (!kbd) return;
+    const state = getKeyboardState({ section, isMobile });
+    const parking = !KEYBOARD_SECTIONS.includes(section);
+
+    // Scale resolves faster than position when parking, so the keyboard shrinks
+    // out of sight instead of sweeping diagonally across the body copy.
+    gsap.to(kbd.scale, {
+      ...state.scale,
+      duration: parking ? 0.4 : 0.9,
+      ease: parking ? "power2.in" : "power2.out",
+      overwrite: true,
+    });
+    gsap.to(kbd.position, { ...state.position, duration: 0.9, overwrite: true });
+    gsap.to(kbd.rotation, { ...state.rotation, duration: 0.9, overwrite: true });
+  };
+
   const createSectionTimeline = (
     triggerId: string,
     targetSection: Section,
@@ -104,9 +164,7 @@ const AnimatedBackground = () => {
     start: string = "top 50%",
     end: string = "bottom bottom"
   ) => {
-    if (!splineApp) return;
-    const kbd = splineApp.findObjectByName("keyboard");
-    if (!kbd) return;
+    if (!splineApp || !document.querySelector(triggerId)) return;
 
     gsap.timeline({
       scrollTrigger: {
@@ -116,17 +174,11 @@ const AnimatedBackground = () => {
         scrub: true,
         onEnter: () => {
           setActiveSection(targetSection);
-          const state = getKeyboardState({ section: targetSection, isMobile });
-          gsap.to(kbd.scale, { ...state.scale, duration: 1 });
-          gsap.to(kbd.position, { ...state.position, duration: 1 });
-          gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
+          moveKeyboardTo(targetSection);
         },
         onLeaveBack: () => {
           setActiveSection(prevSection);
-          const state = getKeyboardState({ section: prevSection, isMobile, });
-          gsap.to(kbd.scale, { ...state.scale, duration: 1 });
-          gsap.to(kbd.position, { ...state.position, duration: 1 });
-          gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
+          moveKeyboardTo(prevSection);
         },
       },
     });
@@ -137,56 +189,23 @@ const AnimatedBackground = () => {
     const kbd = splineApp.findObjectByName("keyboard");
     if (!kbd) return;
 
-    // Initial state
     const heroState = getKeyboardState({ section: "hero", isMobile });
     gsap.set(kbd.scale, heroState.scale);
     gsap.set(kbd.position, heroState.position);
 
-    // Section transitions
-    createSectionTimeline("#about", "about", "hero");
-    createSectionTimeline("#skills", "skills", "about");
-    createSectionTimeline("#capabilities", "capabilities", "skills");
-    createSectionTimeline("#experience", "experience", "capabilities");
-    createSectionTimeline("#credentials", "credentials", "experience");
-    createSectionTimeline("#projects", "projects", "credentials", "top 70%");
-    createSectionTimeline("#contact", "contact", "projects", "top 30%");
-  };
-
-  const getBongoAnimation = () => {
-    const framesParent = splineApp?.findObjectByName("bongo-cat");
-    const frame1 = splineApp?.findObjectByName("frame-1");
-    const frame2 = splineApp?.findObjectByName("frame-2");
-
-    if (!frame1 || !frame2 || !framesParent) {
-      return { start: () => { }, stop: () => { } };
-    }
-
-    let interval: NodeJS.Timeout;
-    const start = () => {
-      let i = 0;
-      framesParent.visible = true;
-      interval = setInterval(() => {
-        if (i % 2) {
-          frame1.visible = false;
-          frame2.visible = true;
-        } else {
-          frame1.visible = true;
-          frame2.visible = false;
-        }
-        i++;
-      }, 100);
-    };
-    const stop = () => {
-      clearInterval(interval);
-      framesParent.visible = false;
-      frame1.visible = false;
-      frame2.visible = false;
-    };
-    return { start, stop };
+    createSectionTimeline("#intro", "intro", "hero");
+    createSectionTimeline("#impact", "impact", "intro");
+    createSectionTimeline("#work", "work", "impact");
+    createSectionTimeline("#experience", "experience", "work");
+    // The keyboard is staged against a dedicated empty band, not the whole stack
+    // section — otherwise it lands centred on top of the capability lists.
+    createSectionTimeline("#keyboard-stage", "stack", "experience", "top 65%");
+    createSectionTimeline("#stack-lists", "stacklists", "stack", "top 75%");
+    createSectionTimeline("#contact", "contact", "stacklists", "top 30%");
   };
 
   const getKeycapsAnimation = () => {
-    if (!splineApp) return { start: () => { }, stop: () => { } };
+    if (!splineApp) return { start: () => {}, stop: () => {} };
 
     let tweens: gsap.core.Tween[] = [];
     const removePrevTweens = () => tweens.forEach((t) => t.kill());
@@ -230,72 +249,64 @@ const AnimatedBackground = () => {
     return { start, stop };
   };
 
-  const updateKeyboardTransform = async () => {
+  /**
+   * Reveal the board once, on load.
+   *
+   * Deliberately has no `await`s on the path that makes things visible. The
+   * previous version hid the keyboard, awaited a sleep, then awaited a sleep per
+   * keycap inside a `forEach` — so any stall partway through left the board
+   * permanently bare. Now every visibility flag is set synchronously and the
+   * stagger is expressed as a GSAP delay, which is cosmetic if it drops frames.
+   */
+  const revealKeyboard = () => {
     if (!splineApp) return;
     const kbd = splineApp.findObjectByName("keyboard");
     if (!kbd) return;
 
-    kbd.visible = false;
-    await sleep(400);
-    kbd.visible = true;
     setKeyboardRevealed(true);
+    kbd.visible = true;
+
+    const allObjects = splineApp.getAllObjects();
+    const keycaps = allObjects.filter((obj) => obj.name === "keycap");
+    const desktopKeyCaps = allObjects.filter(
+      (obj) => obj.name === "keycap-desktop"
+    );
+
+    [...desktopKeyCaps, ...keycaps].forEach((keycap) => {
+      keycap.visible = true;
+    });
 
     const currentState = getKeyboardState({ section: activeSection, isMobile });
     gsap.fromTo(
       kbd.scale,
       { x: 0.01, y: 0.01, z: 0.01 },
-      {
-        ...currentState.scale,
-        duration: 1.5,
-        ease: "elastic.out(1, 0.6)",
-      }
+      { ...currentState.scale, duration: 1.2, ease: "elastic.out(1, 0.6)" }
     );
 
-    const allObjects = splineApp.getAllObjects();
-    const keycaps = allObjects.filter((obj) => obj.name === "keycap");
-
-    await sleep(900);
-
-    if (isMobile) {
-      const mobileKeyCaps = allObjects.filter((obj) => obj.name === "keycap-mobile");
-      mobileKeyCaps.forEach((keycap) => { keycap.visible = true; });
-    } else {
-      const desktopKeyCaps = allObjects.filter((obj) => obj.name === "keycap-desktop");
-      desktopKeyCaps.forEach(async (keycap, idx) => {
-        await sleep(idx * 70);
-        keycap.visible = true;
-      });
-    }
-
-    keycaps.forEach(async (keycap, idx) => {
-      keycap.visible = false;
-      await sleep(idx * 70);
-      keycap.visible = true;
+    keycaps.forEach((keycap, idx) => {
       gsap.fromTo(
         keycap.position,
         { y: 200 },
-        { y: 50, duration: 0.5, delay: 0.1, ease: "bounce.out" }
+        { y: 50, duration: 0.5, delay: 0.25 + idx * 0.045, ease: "bounce.out" }
       );
     });
   };
 
   // --- Effects ---
 
-  // Initialize GSAP and Spline interactions
   useEffect(() => {
     if (!splineApp) return;
     handleSplineInteractions();
     setupScrollAnimations();
-    bongoAnimationRef.current = getBongoAnimation();
     keycapAnimationsRef.current = getKeycapsAnimation();
     return () => {
-      bongoAnimationRef.current?.stop()
-      keycapAnimationsRef.current?.stop()
-    }
-
+      keycapAnimationsRef.current?.stop();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [splineApp, isMobile]);
 
-  // Handle keyboard text visibility based on theme and section
+  // Keycap label plate: only legible while the stack section is on screen.
   useEffect(() => {
     if (!splineApp) return;
     const textDesktopDark = splineApp.findObjectByName("text-desktop-dark");
@@ -303,47 +314,32 @@ const AnimatedBackground = () => {
     const textMobileDark = splineApp.findObjectByName("text-mobile-dark");
     const textMobileLight = splineApp.findObjectByName("text-mobile");
 
-    if (!textDesktopDark || !textDesktopLight || !textMobileDark || !textMobileLight) return;
+    if (!textDesktopDark || !textDesktopLight || !textMobileDark || !textMobileLight)
+      return;
 
-    const setVisibility = (
-      dDark: boolean,
-      dLight: boolean,
-      mDark: boolean,
-      mLight: boolean
-    ) => {
+    const setVisibility = (dDark: boolean, dLight: boolean) => {
       textDesktopDark.visible = dDark;
       textDesktopLight.visible = dLight;
-      textMobileDark.visible = mDark;
-      textMobileLight.visible = mLight;
+      textMobileDark.visible = false;
+      textMobileLight.visible = false;
     };
 
-    if (activeSection !== "skills") {
-      setVisibility(false, false, false, false);
-    } else if (theme === "dark") {
-      isMobile
-        ? setVisibility(false, false, false, true)
-        : setVisibility(false, true, false, false);
-    } else {
-      isMobile
-        ? setVisibility(false, false, true, false)
-        : setVisibility(true, false, false, false);
-    }
+    if (activeSection !== "stack") setVisibility(false, false);
+    else if (theme === "dark") setVisibility(false, true);
+    else setVisibility(true, false);
   }, [theme, splineApp, isMobile, activeSection]);
 
   useEffect(() => {
     if (!selectedSkill || !splineApp) return;
-    // console.log(selectedSkill)
     splineApp.setVariable("heading", selectedSkill.label);
     splineApp.setVariable("desc", selectedSkill.shortDescription);
-  }, [selectedSkill]);
+  }, [selectedSkill, splineApp]);
 
-  // Handle rotation and teardown animations based on active section
+  // Idle rotation in the hero; keycaps scatter over the contact section.
   useEffect(() => {
     if (!splineApp) return;
 
     let rotateKeyboard: gsap.core.Tween | undefined;
-    let teardownKeyboard: gsap.core.Tween | undefined;
-
     const kbd = splineApp.findObjectByName("keyboard");
 
     if (kbd) {
@@ -355,87 +351,41 @@ const AnimatedBackground = () => {
         yoyoEase: true,
         ease: "back.inOut",
         delay: 2.5,
-        paused: true, // Start paused
+        paused: true,
       });
-
-      teardownKeyboard = gsap.fromTo(
-        kbd.rotation,
-        { y: 0, x: -Math.PI, z: 0 },
-        {
-          y: -Math.PI / 2,
-          duration: 5,
-          repeat: -1,
-          yoyo: true,
-          yoyoEase: true,
-          delay: 2.5,
-          immediateRender: false,
-          paused: true,
-        }
-      );
     }
 
     const manageAnimations = async () => {
-      // Reset text if not in skills
-      if (activeSection !== "skills") {
+      if (activeSection !== "stack") {
         splineApp.setVariable("heading", "");
         splineApp.setVariable("desc", "");
       }
 
-      // Handle Rotate/Teardown Tweens
-      if (activeSection === "hero") {
-        rotateKeyboard?.restart();
-        teardownKeyboard?.pause();
-      } else if (activeSection === "contact") {
-        rotateKeyboard?.pause();
-      } else {
-        rotateKeyboard?.pause();
-        teardownKeyboard?.pause();
-      }
+      if (activeSection === "hero") rotateKeyboard?.restart();
+      else rotateKeyboard?.pause();
 
-      // Handle Bongo Cat
-      if (activeSection === "projects") {
-        await sleep(300);
-        bongoAnimationRef.current?.start();
-      } else {
-        await sleep(200);
-        bongoAnimationRef.current?.stop();
-      }
-
-      // Handle Contact Section Animations
-      if (activeSection === "contact") {
-        await sleep(600);
-        teardownKeyboard?.restart();
-        keycapAnimationsRef.current?.start();
-      } else {
-        await sleep(600);
-        teardownKeyboard?.pause();
-        keycapAnimationsRef.current?.stop();
-      }
+      await sleep(400);
+      if (activeSection === "contact") keycapAnimationsRef.current?.start();
+      else keycapAnimationsRef.current?.stop();
     };
 
     manageAnimations();
 
     return () => {
       rotateKeyboard?.kill();
-      teardownKeyboard?.kill();
     };
   }, [activeSection, splineApp]);
 
-  // Reveal keyboard on load/route change
+  // Reveal once, on first load. This used to also call `router.push("/#section")`
+  // on every section change, rewriting history continuously while scrolling.
   useEffect(() => {
-    // ScrollTrigger callbacks can fire after a route change; without this guard
-    // they push "/#section" and yank the user back to the home page.
-    if (pathname === "/") {
-      const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
-      router.push("/" + hash, { scroll: false });
-    }
-
-    if (!splineApp || isLoading || keyboardRevealed) return;
-    updateKeyboardTransform();
-  }, [splineApp, isLoading, activeSection, pathname]);
+    if (!splineApp || keyboardRevealed) return;
+    revealKeyboard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [splineApp, keyboardRevealed]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={null}>
       <Spline
         className="w-full h-full fixed"
         ref={splineContainer}

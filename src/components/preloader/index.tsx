@@ -6,11 +6,10 @@ import {
   ReactNode,
   useContext,
   useRef,
+  useCallback,
 } from "react";
-import { AnimatePresence } from "framer-motion";
 
 import Loader from "./loader";
-import gsap from "gsap";
 
 type PreloaderContextType = {
   isLoading: boolean;
@@ -36,40 +35,68 @@ export const usePreloader = () => {
   }
   return context;
 };
-const LOADING_TIME = 2.5;
-function Preloader({ children, disabled = false }: PreloaderProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingPercent, setLoadingPercent] = useState(0);
-  const loadingTween = useRef<gsap.core.Tween>();
 
-  const bypassLoading = () => {
-    loadingTween.current?.progress(0.99).kill();
+/** Intro budget. The loader is never allowed to outlive HARD_TIMEOUT_MS. */
+const LOADING_TIME_MS = 1000;
+const HARD_TIMEOUT_MS = 1800;
+/** How long the slide-out is given before the node is removed outright. */
+const EXIT_MS = 700;
+
+function Preloader({ children, disabled = false }: PreloaderProps) {
+  const [isLoading, setIsLoading] = useState(!disabled);
+  const [mounted, setMounted] = useState(!disabled);
+  const [loadingPercent, setLoadingPercent] = useState(0);
+  const doneRef = useRef(false);
+
+  const finish = useCallback(() => {
+    if (doneRef.current) return;
+    doneRef.current = true;
     setLoadingPercent(100);
     setIsLoading(false);
-    // console.log("killed", loadingTween.current);
-  };
-  const loadingPercentRef = useRef<{ value: number }>({ value: 0 });
-  useEffect(() => {
-    loadingTween.current = gsap.to(loadingPercentRef.current, {
-      value: 100,
-      duration: LOADING_TIME,
-      ease: "slow(0.7,0.7,false)",
-      onUpdate: () => {
-        setLoadingPercent(loadingPercentRef.current.value);
-      },
-      onComplete: () => {
-        setIsLoading(false);
-        // observe: this change has not been observed for errors.
-        // window.scrollTo(0, 0);
-      },
-    });
+    // Unmount on a timer rather than on an animation callback. The previous
+    // implementation exited via AnimatePresence animating `top` to `-100dvh`;
+    // Framer can't interpolate `dvh`, so the tween froze partway
+    // (`top: -3.8dvh`), `onExitComplete` never fired, and the loader stayed
+    // mounted over the whole page — the black "95 %" screen.
+    setTimeout(() => setMounted(false), EXIT_MS);
   }, []);
+
+  useEffect(() => {
+    if (disabled) return;
+
+    // Progress is wall-clock, not rAF — a busy main thread can't stall it.
+    const start = performance.now();
+    const interval = window.setInterval(() => {
+      const pct = Math.min(
+        100,
+        ((performance.now() - start) / LOADING_TIME_MS) * 100
+      );
+      setLoadingPercent(pct);
+      if (pct >= 100) {
+        window.clearInterval(interval);
+        finish();
+      }
+    }, 50);
+
+    const hardStop = window.setTimeout(finish, HARD_TIMEOUT_MS);
+
+    const onReady = () => {
+      if (document.readyState === "complete") finish();
+    };
+    document.addEventListener("readystatechange", onReady);
+
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(hardStop);
+      document.removeEventListener("readystatechange", onReady);
+    };
+  }, [disabled, finish]);
 
   return (
     <preloaderContext.Provider
-      value={{ isLoading, bypassLoading, loadingPercent }}
+      value={{ isLoading, bypassLoading: finish, loadingPercent }}
     >
-      <AnimatePresence mode="wait">{isLoading && <Loader />}</AnimatePresence>
+      {mounted && <Loader leaving={!isLoading} />}
       {children}
     </preloaderContext.Provider>
   );

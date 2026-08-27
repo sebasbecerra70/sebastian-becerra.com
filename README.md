@@ -1,74 +1,45 @@
-# 🚀 My Portfolio Website
+# sebastian-becerra.com
 
-Welcome to the repository for my personal portfolio website! This is where I showcase my skills, projects, and a bit of my personality through jaw-dropping 3D animations, slick interactions, and fluid motion. If you're into creative web design, you're in the right place.
+Personal site for **Sebastian Becerra** — software engineer in Miami, FL.
 
-![Portfolio Preview](https://github.com/Naresh-Khatri/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
+Live at **https://sebastian-becerra.com**
 
-## 🔥 Features
+## Stack
 
-- **3D Animations**: Custom-made interactive keyboard using Spline with skills as keycaps that reveal titles and descriptions on hover.
-- **Slick Interactions**: Powered by GSAP and Framer Motion for smooth animations on scroll, hover, and element reveal.
-- **Space Theme**: Particles on a dark background to simulate a cosmic environment, making the experience out of this world.
-- **Responsive Design**: Fully responsive across all devices to ensure the best user experience.
-- **Innovative Web Design**: Combining creativity with functionality to push the boundaries of modern web design.
+- **Framework**: Next.js 14 (App Router), React 18, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui, Radix primitives
+- **Motion**: Framer Motion, GSAP, Lenis
+- **3D**: Spline runtime (interactive keycap scene, lazy-loaded on desktop only)
+- **Mail**: Resend
 
-## 🛠️ Tech Stack
+## Local development
 
-- **Frontend**: Next.js, React, Tailwind CSS, Shadcn, Aceternity UI
-- **Animations**: GSAP, Framer Motion, Spline Runtime
-- **Misc**: Resend, Socketio, Zod
+```bash
+npm install
+npm run dev
+```
 
-## 🚀 Getting Started
+Open http://localhost:3000.
 
-### Prerequisites
+### Environment
 
-- Node.js (v14+)
-- npm or yarn
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `RESEND_API_KEY` | yes, for the contact form | Sends contact-form submissions. Without it the form fails loudly and falls back to a `mailto:` link — it never reports a false success. |
+| `UMAMI_DOMAIN` | no | Analytics script src. Omitted entirely when unset. |
+| `UMAMI_SITE_ID` | no | Analytics site id. |
 
-### Installation
+## Deployment
 
-1. Clone the repository:
+Deployed on Vercel from `main`. The Open Graph share card is generated at request time by
+`src/app/opengraph-image.tsx`, so it stays in sync with `src/data/config.ts` rather than
+living as a checked-in image that can go stale.
 
-    ```bash
-    git clone https://github.com/Naresh-Khatri/Portfolio.git
-    ```
+After changing metadata, re-run the URL through the
+[LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) — LinkedIn caches
+previews for roughly a week.
 
-2. Navigate to the project directory:
+---
 
-    ```bash
-    cd Portfolio
-    ```
-
-3. Install dependencies:
-
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-
-4. Run the development server:
-
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the magic!
-
-## 🚀 Deployment
-
-This site is deployed on Vercel. For your own deployment, follow these steps:
-
-1. Push your code to a GitHub repository.
-2. Connect your repository to Vercel.
-3. Vercel will handle the deployment process.
-
-## 🤝 Contributing
-
-If you'd like to contribute or suggest improvements, feel free to open an issue or submit a pull request. All contributions are welcome!
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+Built on the MIT-licensed [3D portfolio template by Naresh Khatri](https://github.com/Naresh-Khatri/Portfolio).
+Content, design system, and site architecture are my own.

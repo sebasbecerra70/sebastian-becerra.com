@@ -1,33 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Award,
-  Boxes,
-  Brain,
-  Briefcase,
-  CalendarClock,
-  CandlestickChart,
-  ClipboardCheck,
-  Cloud,
-  Code2,
-  CreditCard,
-  Database,
-  Gauge,
-  GraduationCap,
-  Languages,
-  Layers,
-  LineChart,
-  MapPin,
-  Server,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Terminal,
-  Timer,
-  TrendingUp,
-  Truck,
-  Users,
-  Wallet,
-} from "lucide-react";
 import type { IconType } from "react-icons";
 import { RiNextjsFill, RiNodejsFill, RiReactjsFill, RiRobot2Fill } from "react-icons/ri";
 import {
@@ -47,9 +17,8 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { TbApi, TbBrandFramerMotion } from "react-icons/tb";
+import { TbApi, TbBrandFramerMotion, TbChartLine } from "react-icons/tb";
 
-// thoda zada ts ho gya idhar
 export enum SkillNames {
   JS = "js",
   TS = "ts",
@@ -85,12 +54,18 @@ export type Skill = {
   color: string;
   icon: string;
 };
+
+/**
+ * `shortDescription` renders on the 3D keycap plate when a key is pressed or hovered.
+ * It's one of the first things a visitor reads, so it's written in Sebastian's voice —
+ * the upstream template shipped these as internet slang.
+ */
 export const SKILLS: Record<SkillNames, Skill> = {
   [SkillNames.JS]: {
     id: 1,
     name: "js",
     label: "JavaScript",
-    shortDescription: "yeeting code into the DOM since '95, no cap! 💯🚀",
+    shortDescription: "Where it started. Still the shortest path to something a user can touch.",
     color: "#f0db4f",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
@@ -98,8 +73,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     id: 2,
     name: "ts",
     label: "TypeScript",
-    shortDescription:
-      "JavaScript's overachieving cousin who's always flexing 💯🔒",
+    shortDescription: "Types as documentation. Nine years of production code says it pays for itself.",
     color: "#007acc",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
   },
@@ -107,7 +81,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     id: 3,
     name: "html",
     label: "HTML",
-    shortDescription: "the internet's granddad,  still bussin' fr fr! 💀🔥",
+    shortDescription: "Semantics first. Screen readers and crawlers both read what you actually wrote.",
     color: "#e34c26",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
   },
@@ -115,7 +89,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     id: 4,
     name: "css",
     label: "CSS",
-    shortDescription: "styling with the ultimate drip, no cap 💁‍♂️🔥",
+    shortDescription: "Layout stopped being the hard part. Grid and flexbox did that.",
     color: "#563d7c",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
   },
@@ -123,8 +97,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     id: 5,
     name: "react",
     label: "React",
-    shortDescription: `"use using" 
-using use = useUsing("use")`,
+    shortDescription: "Components, state, and the discipline to keep both small.",
     color: "#61dafb",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   },
@@ -132,8 +105,7 @@ using use = useUsing("use")`,
     id: 6,
     name: "vue",
     label: "Vue",
-    shortDescription:
-      "the chill pill for your frontend, it hits different! 🟢😌",
+    shortDescription: "Reached for it on projects that wanted less ceremony.",
     color: "#41b883",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
   },
@@ -141,8 +113,7 @@ using use = useUsing("use")`,
     id: 7,
     name: "nextjs",
     label: "Next.js",
-    shortDescription:
-      "the drama queen of front-end frameworks, and we stan! 👑📜",
+    shortDescription: "Routing, server components, and picking the render strategy per page.",
     color: "#fff",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
   },
@@ -150,7 +121,7 @@ using use = useUsing("use")`,
     id: 8,
     name: "tailwind",
     label: "Tailwind",
-    shortDescription: "utility classes hitting different fr fr 🌪️🔥",
+    shortDescription: "A design system that lives in the markup. Quick to write, quicker to change.",
     color: "#38bdf8",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
   },
@@ -158,7 +129,7 @@ using use = useUsing("use")`,
     id: 9,
     name: "nodejs",
     label: "Node.js",
-    shortDescription: "JavaScript said 'sike, I'm backend now', deadass! 🔙🔚",
+    shortDescription: "APIs, workers, and the event-driven services under a live marketplace.",
     color: "#6cc24a",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
@@ -166,7 +137,7 @@ using use = useUsing("use")`,
     id: 10,
     name: "express",
     label: "Express",
-    shortDescription: "middlewares go dummy hard, no cap! 🚂💨",
+    shortDescription: "Routes and middleware. Not every service needs more than that.",
     color: "#fff",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
   },
@@ -174,7 +145,7 @@ using use = useUsing("use")`,
     id: 11,
     name: "postgres",
     label: "PostgreSQL",
-    shortDescription: "SQL but make it fashion, purr 💅🐘",
+    shortDescription: "The system of record. Constraints in the database, not in hope.",
     color: "#336791",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
   },
@@ -182,7 +153,7 @@ using use = useUsing("use")`,
     id: 12,
     name: "mongodb",
     label: "MongoDB",
-    shortDescription: "flexin' with that NoSQL drip, respectfully! 💪🍃",
+    shortDescription: "Right call for documents that genuinely don't have a shape yet.",
     color: "#336791",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
   },
@@ -190,7 +161,7 @@ using use = useUsing("use")`,
     id: 13,
     name: "git",
     label: "Git",
-    shortDescription: "the code's personal bodyguard, no cap! 🕵️‍♂️🔄",
+    shortDescription: "Small commits, honest messages, diffs a reviewer can actually read.",
     color: "#f1502f",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
@@ -198,7 +169,7 @@ using use = useUsing("use")`,
     id: 14,
     name: "github",
     label: "GitHub",
-    shortDescription: "sliding into those pull requests, IYKYK! 🐙",
+    shortDescription: "Where the reviews, the CI, and the argument about naming all happen.",
     color: "#000000",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
   },
@@ -206,7 +177,7 @@ using use = useUsing("use")`,
     id: 15,
     name: "prettier",
     label: "Prettier",
-    shortDescription: "making your code not a whole mess, thank u next 🧹✨",
+    shortDescription: "Formatting should never cost a code review comment.",
     color: "#f7b93a",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prettier/prettier-original.svg",
   },
@@ -214,7 +185,7 @@ using use = useUsing("use")`,
     id: 16,
     name: "npm",
     label: "NPM",
-    shortDescription: "package manager said 'I gotchu fam', period! 📦💯",
+    shortDescription: "Dependencies are liabilities. Take few, pin them, read the changelog.",
     color: "#fff",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
   },
@@ -222,8 +193,7 @@ using use = useUsing("use")`,
     id: 17,
     name: "firebase",
     label: "Firebase",
-    shortDescription:
-      "your app's ultimate wingman, but watch out, vendor lock-in vibes! 🔥👌",
+    shortDescription: "Fast to start on. Know the exit cost before you build the business on it.",
     color: "#ffca28",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
   },
@@ -231,7 +201,7 @@ using use = useUsing("use")`,
     id: 18,
     name: "wordpress",
     label: "WordPress",
-    shortDescription: "the grandpa of CMS, still rocking that cane 🧓👴",
+    shortDescription: "Still runs a serious slice of the internet, whatever engineers say about it.",
     color: "#007acc",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
   },
@@ -239,7 +209,7 @@ using use = useUsing("use")`,
     id: 19,
     name: "linux",
     label: "Linux",
-    shortDescription: "where 'chmod 777' is the ultimate flex 🔓🙌",
+    shortDescription: "Where the services actually run, and where you go when the logs stop making sense.",
     color: "#fff",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
   },
@@ -247,7 +217,7 @@ using use = useUsing("use")`,
     id: 20,
     name: "docker",
     label: "Docker",
-    shortDescription: "The best containerization! 🐳🔥",
+    shortDescription: "Same image locally and in production, or it doesn't count as reproducible.",
     color: "#2496ed",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
   },
@@ -255,7 +225,7 @@ using use = useUsing("use")`,
     id: 21,
     name: "nginx",
     label: "NginX",
-    shortDescription: "reverse proxy go zoom zoom, sheesh! 🚗💨",
+    shortDescription: "Reverse proxy, TLS termination, and static files served properly.",
     color: "#008000",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
   },
@@ -263,8 +233,7 @@ using use = useUsing("use")`,
     id: 22,
     name: "aws",
     label: "AWS",
-    shortDescription:
-      "always extra, making everything more complicated, period! 🌐👨‍💻",
+    shortDescription: "Where most of it is deployed. Read the bill every month.",
     color: "#ff9900",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg",
   },
@@ -272,8 +241,7 @@ using use = useUsing("use")`,
     id: 25,
     name: "gcp",
     label: "Google Cloud",
-    shortDescription:
-      "cloud computing but make it Google vibes, living rent free! ☁️🔥",
+    shortDescription: "Used it for the data and ML side of things.",
     color: "#4285f4",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
   },
@@ -281,7 +249,7 @@ using use = useUsing("use")`,
     id: 23,
     name: "vim",
     label: "Vim",
-    shortDescription: "exit? In this economy? Ight, imma head out! 🚪🏃",
+    shortDescription: "Muscle memory at this point. :wq",
     color: "#e34c26",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg",
   },
@@ -289,8 +257,7 @@ using use = useUsing("use")`,
     id: 24,
     name: "vercel",
     label: "Vercel",
-    shortDescription:
-      "The triangle compony, helps you deploy and go touch grass! 🚀🌿",
+    shortDescription: "Preview deploy on every pull request. Review the thing, not the description.",
     color: "#6cc24a",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
   },
@@ -302,6 +269,7 @@ export type Experience = {
   endDate: string;
   title: string;
   company: string;
+  /** Trimmed to 2-4 lines per role. A recruiter reads the first two. */
   description: string[];
   skills: SkillNames[];
 };
@@ -315,15 +283,10 @@ export const EXPERIENCE: Experience[] = [
     company: "C&S Wholesale Grocers",
     description: [
       "Own the daily delivery plan for a grocery network serving Winn-Dixie, Fresco y Más, and Presidente — 90+ deliveries a day matched against available trucks, drivers, and dock capacity, held at 98% on-time against contract SLAs.",
-      "Redesigned how work enters the plan. Cut 40 minutes of dwell per load, reduced inter-facility delays 35%, and raised throughput 18% by reallocating routing and labor.",
-      "Run the recurring operations review that keeps warehouse, receiving, and transportation leads aligned on capacity and on the downstream cost when a date moves, with a root-cause writeup behind every repeat exception.",
-      "Hold operational records at 97%+ accuracy across integrated systems so planning, billing, and reporting all run off one dataset.",
+      "Redesigned how work enters the plan: cut 40 minutes of dwell per load, reduced inter-facility delays 35%, and raised throughput 18% by reallocating routing and labor.",
+      "Hold operational records at 97%+ accuracy across integrated systems, so planning, billing, and reporting all run off one dataset.",
     ],
-    skills: [
-      SkillNames.NODEJS,
-      SkillNames.POSTGRES,
-      SkillNames.DOCKER,
-    ],
+    skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.DOCKER],
   },
   {
     id: 3,
@@ -334,9 +297,8 @@ export const EXPERIENCE: Experience[] = [
     description: [
       "Built and launched an AI-native, commission-free freight marketplace on Next.js, React, TypeScript, Node.js, and Python — onboarding 300+ carrier companies representing 3,000+ trucks.",
       "Owned the money layer end to end: Stripe Connect payouts, billing and settlement flows, and the transaction data model behind carrier payments and shipper invoicing.",
-      "Shipped AI copilots and agent workflows — LLMs, RAG, MCP integrations, tool calling, structured outputs — that read documents, triaged exceptions, and let users run complex logistics work conversationally, always behind human review.",
-      "Designed the capacity model that replaced deal-by-deal guesswork with one integrated forecast, published on a fixed cadence against on-time rate, tender acceptance, dwell, cost per load, and exception rate.",
-      "Ran the real-time infrastructure underneath it — event-driven services, WebSockets, async processing — plus the design system, CI/CD, Docker, and cloud deployment.",
+      "Shipped AI copilots and agent workflows — LLMs, RAG, MCP integrations, tool calling, structured outputs — that read documents and triaged exceptions, always behind human review.",
+      "Ran the real-time infrastructure underneath it: event-driven services, WebSockets, async processing, plus the design system, CI/CD, Docker, and cloud deployment.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -344,11 +306,8 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.TS,
       SkillNames.NODEJS,
       SkillNames.POSTGRES,
-      SkillNames.MONGODB,
-      SkillNames.TAILWIND,
       SkillNames.DOCKER,
       SkillNames.AWS,
-      SkillNames.GITHUB,
     ],
   },
   {
@@ -358,17 +317,11 @@ export const EXPERIENCE: Experience[] = [
     title: "Senior Logistics Coordinator",
     company: "MCI Express Inc",
     description: [
-      "Planned and locked capacity for multimillion-dollar concurrent programs (Carnival, Royal Caribbean, Ritz-Carlton) against fixed vessel and delivery windows, where commitments had to be made early and could not be re-cut.",
-      "Ran the trade-off calls whenever a date or equipment tranche moved: reassessed the plan, decided which program absorbed the slip, and pushed the change to accounts the same day.",
+      "Planned and locked capacity for multimillion-dollar concurrent programs (Carnival, Royal Caribbean, Ritz-Carlton) against fixed vessel and delivery windows, where commitments were made early and could not be re-cut.",
       "Connected transportation platforms and carrier networks through REST and webhook APIs, EDI exchanges, and automated ETL pipelines, retiring an entirely manual reporting cycle.",
-      "Standardized reporting with SQL and BI dashboards, using cost and performance data to find bottlenecks and support pricing and routing decisions.",
+      "Standardized reporting with SQL and BI dashboards, using cost and performance data to support pricing and routing decisions.",
     ],
-    skills: [
-      SkillNames.NODEJS,
-      SkillNames.POSTGRES,
-      SkillNames.MONGODB,
-      SkillNames.AWS,
-    ],
+    skills: [SkillNames.NODEJS, SkillNames.POSTGRES, SkillNames.AWS],
   },
   {
     id: 5,
@@ -379,9 +332,7 @@ export const EXPERIENCE: Experience[] = [
     description: [
       "Founded and ran an operation that moved several million dollars in freight over four years, owning capacity procurement, rate and contract negotiation, and the margin on every load.",
       "Built the internal system of record (TypeScript, React, Next.js, Node.js, Python, PostgreSQL, Redis) covering dispatch, shipment lifecycle, route optimization, and driver assignment — the software the business actually ran on.",
-      "Shipped live dashboards for capacity planning, unit economics, anomaly detection, and predictive reporting, and made daily pricing and allocation calls from them.",
-      "Integrated carrier APIs, GPS and telematics providers, and mapping services into one operational data platform with real-time tracking over WebSockets.",
-      "Wrote the SOPs and training library that let the operation absorb new lanes and volume without adding headcount.",
+      "Shipped live dashboards for unit economics, anomaly detection, and predictive reporting, and made daily pricing and allocation calls from them.",
     ],
     skills: [
       SkillNames.NEXTJS,
@@ -389,7 +340,6 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.TS,
       SkillNames.NODEJS,
       SkillNames.POSTGRES,
-      SkillNames.DOCKER,
       SkillNames.GITHUB,
     ],
   },
@@ -401,9 +351,7 @@ export const EXPERIENCE: Experience[] = [
     company: "Amazon",
     description: [
       "Supported Amazon's delivery network at scale against strict service-level targets, working the operational signals behind millions of package events.",
-      "Traced data synchronization failures across internal platforms back to root cause, validating event consistency through the package lifecycle.",
-      "Used internal dashboards and monitoring to diagnose delivery anomalies, correlate system events, and shorten incident resolution.",
-      "Recognized as a top performer, working in English and Spanish across distributed teams.",
+      "Traced data synchronization failures across internal platforms back to root cause, and used internal dashboards and monitoring to diagnose delivery anomalies and shorten incident resolution.",
     ],
     skills: [SkillNames.AWS, SkillNames.LINUX],
   },
@@ -411,26 +359,24 @@ export const EXPERIENCE: Experience[] = [
 
 export const themeDisclaimers = {
   light: [
-    "Warning: Light mode emits a gazillion lumens of pure radiance!",
-    "Caution: Light mode ahead! Please don't try this at home.",
-    "Only trained professionals can handle this much brightness. Proceed with sunglasses!",
-    "Brace yourself! Light mode is about to make everything shine brighter than your future.",
-    "Flipping the switch to light mode... Are you sure your eyes are ready for this?",
+    "Light mode. Bold choice.",
+    "Switching to light mode — hope you're somewhere sunny.",
+    "Light mode on. The dark side will be here when you get back.",
+    "Fine. Light mode. Don't say I didn't warn you.",
+    "Light mode engaged. Somewhere, a designer is nodding.",
   ],
   dark: [
-    "Light mode? I thought you went insane... but welcome back to the dark side!",
-    "Switching to dark mode... How was life on the bright side?",
-    "Dark mode activated! Thanks you from the bottom of my heart, and my eyes too.",
-    "Welcome back to the shadows. How was life out there in the light?",
-    "Dark mode on! Finally, someone who understands true sophistication.",
+    "Back to dark mode. Your retinas thank you.",
+    "Dark mode. How was it out there in the light?",
+    "Dark mode on. This is how it was meant to be read.",
+    "Welcome back to the shadows.",
+    "Dark mode restored. Equilibrium.",
   ],
 };
 
-
-
 export type About = {
   paragraphs: string[];
-  facts: { label: string; value: string; icon: LucideIcon }[];
+  facts: { label: string; value: string }[];
 };
 
 export const ABOUT: About = {
@@ -441,10 +387,10 @@ export const ABOUT: About = {
     "Lately most of my work is AI-native: LLM and RAG pipelines, agent orchestration, and the ETL and API plumbing that keeps a system current without anyone keying it in by hand — always behind human review gates, because automation you can't audit isn't automation, it's a liability.",
   ],
   facts: [
-    { label: "Based in", value: "Miami, FL", icon: MapPin },
-    { label: "Focus", value: "Full-stack + AI systems", icon: Target },
-    { label: "Experience", value: "9+ years", icon: Briefcase },
-    { label: "Off the clock", value: "Markets & investing", icon: CandlestickChart },
+    { label: "Based in", value: "Miami, FL" },
+    { label: "Focus", value: "Full-stack + AI systems" },
+    { label: "Experience", value: "9+ years" },
+    { label: "Languages", value: "EN · ES · PT" },
   ],
 };
 
@@ -452,133 +398,63 @@ export type Metric = {
   value: number;
   suffix: string;
   label: string;
-  icon: LucideIcon;
 };
 
+/**
+ * Five, not eight. A row that reads in one pass beats a grid that reads as decoration.
+ */
 export const IMPACT_METRICS: Metric[] = [
-  { value: 98, suffix: "%", label: "On-time vs. contract SLAs", icon: ShieldCheck },
-  { value: 18, suffix: "%", label: "Throughput increase from workflow redesign", icon: TrendingUp },
-  { value: 35, suffix: "%", label: "Reduction in inter-facility delays", icon: Timer },
-  { value: 3000, suffix: "+", label: "Trucks of capacity planned", icon: Truck },
-  { value: 300, suffix: "+", label: "Carrier companies onboarded", icon: Users },
-  { value: 90, suffix: "+", label: "Deliveries dispatched daily", icon: Gauge },
-  { value: 97, suffix: "%+", label: "Data accuracy across integrated systems", icon: Database },
-  { value: 9, suffix: "+", label: "Years running live operations", icon: CalendarClock },
+  { value: 98, suffix: "%", label: "On-time against contract SLAs" },
+  { value: 3000, suffix: "+", label: "Trucks of capacity planned" },
+  { value: 300, suffix: "+", label: "Carrier companies onboarded" },
+  { value: 18, suffix: "%", label: "Throughput gain from workflow redesign" },
+  { value: 9, suffix: "+", label: "Years running live operations" },
 ];
 
 export type Capability = {
   title: string;
-  blurb: string;
   items: string[];
-  icon: LucideIcon;
-  accent: string;
 };
 
+/**
+ * Rendered as a compact line-list, not a card grid. Breadth matters when applying
+ * broadly; six pastel icon cards did not convey it.
+ */
 export const CAPABILITIES: Capability[] = [
   {
     title: "Software Engineering",
-    blurb:
-      "End-to-end product work, from schema to shipped interface — the systems teams run their day out of.",
-    items: [
-      "TypeScript",
-      "React & Next.js",
-      "Node.js",
-      "PostgreSQL",
-      "REST & webhook APIs",
-      "System design",
-    ],
-    icon: Code2,
-    accent: "sky",
+    items: ["TypeScript", "React & Next.js", "Node.js", "PostgreSQL", "System design"],
   },
   {
     title: "AI & Automation",
-    blurb:
-      "Applied AI that does real work: reads the documents, triages the exceptions, and keeps a human in the loop.",
-    items: [
-      "LLM integration",
-      "RAG pipelines",
-      "Agent orchestration",
-      "MCP integrations",
-      "Document processing",
-      "Human review gates",
-    ],
-    icon: Sparkles,
-    accent: "violet",
+    items: ["LLM integration", "RAG pipelines", "Agent orchestration", "MCP", "Human review gates"],
   },
   {
     title: "Data & Systems of Record",
-    blurb:
-      "One dataset everyone plans from, plus the pipelines and integrations that keep it honest.",
-    items: [
-      "SQL & data modeling",
-      "KPI / BI dashboards",
-      "ETL pipelines",
-      "EDI",
-      "TMS / WMS / ERP",
-      "Telematics platforms",
-    ],
-    icon: Database,
-    accent: "cyan",
+    items: ["SQL & data modeling", "ETL pipelines", "BI dashboards", "EDI", "TMS / WMS / ERP"],
   },
   {
     title: "Payments & Financial Systems",
-    blurb:
-      "The money layer: getting funds to the right party, on time, with a reconciliation trail behind every cent.",
-    items: [
-      "Stripe Connect",
-      "Payouts & settlement",
-      "Billing & invoicing",
-      "Reconciliation",
-      "Transaction modeling",
-      "Financial reporting",
-    ],
-    icon: CreditCard,
-    accent: "emerald",
+    items: ["Stripe Connect", "Payouts & settlement", "Billing", "Reconciliation", "Transaction modeling"],
   },
   {
     title: "Commercial & Unit Economics",
-    blurb:
-      "Knowing what a unit costs, what it should cost, and which lever actually moves the margin.",
-    items: [
-      "Rate & contract negotiation",
-      "Cost-per-unit analytics",
-      "Margin & P&L ownership",
-      "Budget planning",
-      "Financial scenario modeling",
-      "Pricing strategy",
-    ],
-    icon: TrendingUp,
-    accent: "amber",
+    items: ["Rate negotiation", "Cost-per-unit analytics", "Margin & P&L", "Pricing strategy"],
   },
   {
     title: "Planning & Operations",
-    blurb:
-      "The operator half: forecasting capacity, running the trade-off calls, and designing the process that holds.",
-    items: [
-      "Capacity forecasting",
-      "Scenario modeling",
-      "Process & SOP design",
-      "Cross-functional execution",
-      "Risk escalation",
-      "Continuous improvement",
-    ],
-    icon: ClipboardCheck,
-    accent: "rose",
+    items: ["Capacity forecasting", "Scenario modeling", "SOP design", "Risk escalation"],
   },
 ];
 
 export type TechCategory = {
   title: string;
-  icon: LucideIcon;
-  accent: string;
-  items: { label: string; icon?: IconType | LucideIcon }[];
+  items: { label: string; icon?: IconType }[];
 };
 
 export const TECH_STACK: TechCategory[] = [
   {
-    title: "Languages & Query",
-    icon: Terminal,
-    accent: "sky",
+    title: "Languages",
     items: [
       { label: "TypeScript", icon: SiTypescript },
       { label: "JavaScript", icon: SiJavascript },
@@ -588,8 +464,6 @@ export const TECH_STACK: TechCategory[] = [
   },
   {
     title: "Frontend",
-    icon: Layers,
-    accent: "violet",
     items: [
       { label: "React", icon: RiReactjsFill },
       { label: "Next.js", icon: RiNextjsFill },
@@ -600,8 +474,6 @@ export const TECH_STACK: TechCategory[] = [
   },
   {
     title: "Backend & Data",
-    icon: Server,
-    accent: "cyan",
     items: [
       { label: "Node.js", icon: RiNodejsFill },
       { label: "PostgreSQL", icon: SiPostgresql },
@@ -613,8 +485,6 @@ export const TECH_STACK: TechCategory[] = [
   },
   {
     title: "AI Engineering",
-    icon: Brain,
-    accent: "fuchsia",
     items: [
       { label: "LLM integration", icon: SiOpenai },
       { label: "RAG pipelines" },
@@ -626,8 +496,6 @@ export const TECH_STACK: TechCategory[] = [
   },
   {
     title: "Cloud & Infrastructure",
-    icon: Cloud,
-    accent: "orange",
     items: [
       { label: "AWS", icon: SiAmazonaws },
       { label: "Google Cloud", icon: SiGooglecloud },
@@ -639,14 +507,11 @@ export const TECH_STACK: TechCategory[] = [
   },
   {
     title: "Finance & Business Systems",
-    icon: Wallet,
-    accent: "emerald",
     items: [
       { label: "Stripe Connect", icon: SiStripe },
       { label: "Billing & settlement" },
-      { label: "Unit economics", icon: LineChart },
+      { label: "Unit economics", icon: TbChartLine },
       { label: "BI & KPI dashboards" },
-      { label: "TMS / WMS / ERP", icon: Boxes },
       { label: "Forecasting models" },
     ],
   },
@@ -657,40 +522,28 @@ export type Credential = {
   org: string;
   period?: string;
   detail?: string;
-  icon: LucideIcon;
 };
 
 export const CREDENTIALS: Credential[] = [
   {
     title: "B.S. Computer Science",
     org: "University of the People",
-    period: "2021 - 2024",
-    detail:
-      "Relational database systems, data analysis, and applied AI/LLM engineering.",
-    icon: GraduationCap,
+    period: "2021 — 2024",
+    detail: "Relational database systems, data analysis, and applied AI/LLM engineering.",
   },
   {
     title: "NVIDIA Inception",
     org: "Member",
     detail: "Startup program for AI and accelerated-computing companies.",
-    icon: Award,
   },
   {
     title: "AWS Activate",
     org: "Member",
     detail: "Cloud infrastructure credits and technical enablement program.",
-    icon: Cloud,
-  },
-  {
-    title: "Cloud & Infrastructure",
-    org: "Self-directed",
-    detail: "AWS, GCP, Docker, and Kubernetes for LLM, RAG, and agent workloads.",
-    icon: Server,
   },
   {
     title: "Languages",
     org: "Fluent",
     detail: "English, Spanish, and Portuguese.",
-    icon: Languages,
   },
 ];

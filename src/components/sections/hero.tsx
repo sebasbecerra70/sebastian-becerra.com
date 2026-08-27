@@ -1,139 +1,163 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
-import { File, Github, Linkedin } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { usePreloader } from "../preloader";
-import { BlurIn, BoxReveal } from "../reveal-animations";
+import { ArrowUpRight, FileText } from "lucide-react";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { config } from "@/data/config";
-
+import { ABOUT } from "@/data/constants";
 import SectionWrapper from "../ui/section-wrapper";
+import { scrollToSection } from "@/lib/scroll-to-section";
+
+/**
+ * Staggered entrance, CSS-only.
+ *
+ * The hero used to be built out of Framer `BlurIn` wrappers gated on
+ * `!isLoading`. Two problems: the content didn't exist in the DOM until the
+ * preloader cleared (bad for crawlers and for anyone whose JS is slow), and the
+ * tweens froze at `opacity: 0` whenever the Spline scene starved the frame loop
+ * — leaving a completely blank hero. This renders immediately and animates via
+ * the browser's own animation timeline.
+ */
+const Enter = ({
+  delay = 0,
+  className,
+  children,
+}: {
+  delay?: number;
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <div
+    className={cn("enter", className)}
+    style={{ ["--enter-delay" as string]: `${delay}ms` }}
+  >
+    {children}
+  </div>
+);
 
 const HeroSection = () => {
-  const { isLoading } = usePreloader();
+
+  // Same reason as the header: Lenis owns the scroll position, so a plain
+  // in-page link moves the URL but not the viewport.
+  const goToContact = (e: React.MouseEvent) => {
+    if (!document.querySelector("#contact")) return;
+    e.preventDefault();
+    scrollToSection("#contact");
+  };
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen")}>
-      <div className="grid md:grid-cols-2">
-        <div
-          className={cn(
-            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
-            "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
-          )}
-        >
-          {!isLoading && (
-            <div className="flex flex-col">
-              <div>
-                <BlurIn delay={0.7}>
-                  <p
-                    className={cn(
-                      "md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
-                    )}
-                  >
-                    Hi, I am
-                    <br className="md:hidden" />
-                  </p>
-                </BlurIn>
-
-                <BlurIn delay={1}>
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <h1
-                        className={cn(
-                          "-ml-[6px] leading-none font-thin text-transparent text-slate-800 text-left",
-                          "font-thin text-6xl md:text-6xl lg:text-7xl xl:text-8xl",
-                          "cursor-default text-edge-outline font-display "
-                        )}
-                      >
-                        {config.author.split(" ")[0]}
-                        <br className="md:block hiidden" />
-                        {config.author.split(" ")[1]}
-                      </h1>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      side="top"
-                      className="dark:bg-white dark:text-black"
-                    >
-                      theres something waiting for you in devtools
-                    </TooltipContent>
-                  </Tooltip>
-                </BlurIn>
-                {/* <div className="md:block hidden bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 w-screen h-px animate-fade-right animate-glow" /> */}
-                <BlurIn delay={1.2}>
-                  <p
-                    className={cn(
-                      "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
-                    )}
-                  >
-                    Software Engineer
-                  </p>
-                </BlurIn>
-                <BlurIn delay={1.4}>
-                  <p
-                    className={cn(
-                      "md:self-start md:mt-1 font-thin text-xs text-slate-500 dark:text-zinc-500",
-                      "cursor-default font-display sm:text-sm md:text-sm bg-clip-text "
-                    )}
-                  >
-                    building the systems I run on
-                  </p>
-                </BlurIn>
+  <SectionWrapper id="hero" className="relative w-full min-h-[100svh]">
+    <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <div className="grid md:grid-cols-12 items-center min-h-[100svh] pt-28 pb-24 md:py-0">
+        <div className="md:col-span-7 lg:col-span-6 z-[2]">
+          <div className="flex flex-col items-start">
+            {/* Status line. The live dot is the one piece of ambient motion in
+                the hero — everything else holds still. */}
+            <Enter delay={120}>
+              <div className="flex items-center gap-3 mb-8">
+                <span className="pulse-dot relative inline-block h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
+                <span className="eyebrow">
+                  Miami, FL — open to software engineering roles
+                </span>
               </div>
-              <div className="mt-8 flex flex-col gap-3 w-fit">
-                <div className="md:self-start flex gap-3">
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <Link href={"#contact"}>
-                        <Button
-                          variant={"outline"}
-                          className="block w-full overflow-hidden"
-                        >
-                          Hire Me
-                        </Button>
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">
-                      <p>pls 🥹 🙏</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <div className="flex items-center h-full gap-2">
-                    <Link
-                      href={config.social.twitter}
-                      target="_blank"
-                    >
-                      <Button variant={"outline"}>
-                        <SiX size={24} />
-                      </Button>
-                    </Link>
-                    <Link
-                      href={config.social.linkedin}
-                      target="_blank"
-                      className="cursor-can-hover"
-                    >
-                      <Button variant={"outline"}>
-                        <SiLinkedin size={24} />
-                      </Button>
-                    </Link>
-                  </div>
+            </Enter>
+
+            <Enter delay={220}>
+              <h1
+                className={cn(
+                  "font-display leading-[0.82] tracking-tight text-foreground",
+                  "text-[clamp(2.75rem,9vw,6.5rem)]"
+                )}
+              >
+                Sebastian
+                <br />
+                Becerra
+              </h1>
+            </Enter>
+
+            <Enter delay={340}>
+              <p className="mt-7 max-w-xl text-lg md:text-xl leading-relaxed text-foreground/90">
+                Software engineer who builds the systems he runs on —
+                full-stack products, applied AI, and the data and payments
+                infrastructure underneath live operations.
+              </p>
+            </Enter>
+
+            <Enter delay={460}>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Link
+                  href={config.resume}
+                  target="_blank"
+                  rel="noopener"
+                  className={cn(
+                    "group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium",
+                    "bg-[var(--brand)] text-background",
+                    "transition-transform duration-200 hover:-translate-y-0.5"
+                  )}
+                >
+                  <FileText className="h-4 w-4" />
+                  Résumé
+                </Link>
+                <a
+                  href="#contact"
+                  onClick={goToContact}
+                  className={cn(
+                    "group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium",
+                    "border border-border text-foreground",
+                    "transition-colors duration-200 hover:border-[var(--brand)]"
+                  )}
+                >
+                  Get in touch
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+                <div className="flex items-center gap-1 ml-1">
+                  <Link
+                    href={config.social.linkedin}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="LinkedIn"
+                    className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <SiLinkedin size={18} />
+                  </Link>
+                  <Link
+                    href={config.social.github}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="GitHub"
+                    className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <SiGithub size={18} />
+                  </Link>
                 </div>
               </div>
-            </div>
-          )}
+            </Enter>
+
+            {/* Facts read as a data strip, not as four pastel tiles. */}
+            <Enter delay={580} className="w-full">
+              <dl className="mt-14 flex flex-wrap gap-x-10 gap-y-5 border-t border-border pt-6 max-w-xl">
+                {ABOUT.facts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt className="eyebrow">{fact.label}</dt>
+                    <dd className="mt-1.5 text-sm font-medium text-foreground">
+                      {fact.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Enter>
+          </div>
         </div>
-        <div className="grid col-span-1"></div>
+        {/* Right column is deliberately empty: the 3D keyboard parks here on
+            desktop, and on mobile the copy simply gets the full width. */}
+        <div className="hidden md:block md:col-span-5 lg:col-span-6" />
       </div>
-      <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
+    </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <ScrollDownIcon />
       </div>
     </SectionWrapper>

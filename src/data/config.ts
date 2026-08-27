@@ -1,9 +1,10 @@
 const config = {
-  title: "Sebastian Becerra | Software Engineer & Operations Leader",
+  title: "Sebastian Becerra — Software Engineer",
   description: {
     long:
-      "Portfolio of Sebastian Becerra, a software engineer who runs the operations he builds for - full-stack products, AI-assisted automation, and the data systems behind live logistics networks.",
-    short: "Sebastian Becerra | Software engineer who runs real operations",
+      "Sebastian Becerra is a software engineer in Miami who builds the systems he runs on: full-stack products, applied AI and automation, and the payments and data infrastructure behind live logistics networks.",
+    short:
+      "Software engineer building full-stack products, applied AI, and the data and payments systems behind live operations.",
   },
   keywords: [
     "Sebastian Becerra",
@@ -13,33 +14,33 @@ const config = {
     "LLM",
     "RAG",
     "agent orchestration",
-    "operations",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "PostgreSQL",
+    "Stripe Connect",
+    "payments engineering",
+    "data engineering",
     "logistics technology",
     "capacity planning",
-    "data engineering",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "PostgreSQL",
-    "portfolio",
+    "Miami",
   ],
   author: "Sebastian Becerra",
   email: "sebasbecerra70@gmail.com",
-  site: "https://sebasbecerra.com",
+  site: "https://sebastian-becerra.com",
+  resume: "/Sebastian-Becerra-CV.pdf",
 
   // for github stars button
-  githubUsername: "",
+  githubUsername: "sebasbecerra70",
   githubRepo: "",
 
-  get ogImg() {
-    return this.site + "/assets/seo/og-image.png";
-  },
   social: {
     twitter: "https://x.com/Sebasbecerrax",
     linkedin: "https://www.linkedin.com/in/sebastian-becerra-8b499b231/",
-    instagram: "https://www.instagram.com/sebasflx/",
+    github: "https://github.com/sebasbecerra70",
+    instagram: "",
     facebook: "",
-    github: "",
   },
 };
 export { config };

@@ -1,94 +1,136 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import styles from "./style.module.scss";
-import { opacity, background } from "./anim";
-import Nav from "./nav";
+import { links } from "./config";
 import { cn } from "@/lib/utils";
 import FunnyThemeToggle from "../theme/funny-theme-toggle";
-import { Button } from "../ui/button";
 import { config } from "@/data/config";
-import { GitHubStarsButton } from "../ui/shadcn-io/github-stars-button";
+import { Menu, X } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
-interface HeaderProps {
-  loader?: boolean;
-}
+/**
+ * Nav is visible on desktop rather than hidden behind a hamburger — a reviewer
+ * skimming for "work" or "experience" shouldn't have to open a menu to find them.
+ */
+const Header = () => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-const Header = ({ loader }: HeaderProps) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  /**
+   * Section links scroll the page directly instead of routing.
+   *
+   * `<Link href="/#work">` re-navigated the route without moving the viewport —
+   * clicking a nav item did nothing except replay the hero's entrance
+   * animations. Lenis owns the scroll position, so it has to do the scrolling.
+   */
+  const goToSection = (hash: string) => (e: React.MouseEvent) => {
+    if (!document.querySelector(hash)) return;
+    e.preventDefault();
+    setOpen(false);
+    scrollToSection(hash);
+    history.replaceState(null, "", hash);
+  };
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <motion.header
+    <header
       className={cn(
-        styles.header,
-        "transition-colors delay-100 duration-500 ease-in z-[1000]"
+        "enter fixed inset-x-0 top-0 z-[1000] transition-colors duration-300",
+        scrolled || open
+          ? "bg-background/85 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
       )}
-      style={{
-        background: isActive ? "hsl(var(--background) / .8)" : "transparent",
-        // backgroundImage:
-        //   "linear-gradient(0deg, rgba(0, 0, 0, 0), rgb(0, 0, 0))",
-      }}
-      initial={{
-        y: -80,
-      }}
-      animate={{
-        y: 0,
-      }}
-      transition={{
-        delay: loader ? 3.5 : 0, // 3.5 for loading, .5 can be added for delay
-        duration: 0.8,
-      }}
     >
-      {/* <div
-        className="absolute inset-0 "
-        style={{
-          mask: "linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 12.5%)",
-        }}
-      >
-      </div> */}
-      <div className={cn(styles.bar, "flex items-center justify-between")}>
-        <Link href="/" className="flex items-center justify-center">
-          <Button variant={"link"} className="text-md">
-            {config.author}
-          </Button>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
+        <Link
+          href="/"
+          className="font-mono text-[13px] tracking-tight text-foreground hover:text-brand transition-colors"
+        >
+          {config.author}
         </Link>
 
-        <FunnyThemeToggle className="w-6 h-6 mr-4 hidden md:flex" />
-        <Button
-          variant={"ghost"}
-          onClick={() => setIsActive(!isActive)}
-          className={cn(
-            styles.el,
-            "m-0 p-0 h-6 bg-transparent flex items-center justify-center"
-          )}
-        >
-          <div className="relative hidden md:flex items-center">
-            <motion.p
-              variants={opacity}
-              animate={!isActive ? "open" : "closed"}
+        <nav className="hidden md:flex items-center gap-8">
+          {links.map((item) => (
+            <a
+              key={item.href}
+              href={item.href.replace("/", "")}
+              onClick={goToSection(item.href.replace("/", ""))}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Menu
-            </motion.p>
-            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>
-              Close
-            </motion.p>
-          </div>
-          <div
-            className={`${styles.burger} ${isActive ? styles.burgerActive : ""
-              }`}
-          ></div>
-        </Button>
+              {item.title}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2 md:gap-4">
+          <FunnyThemeToggle className="w-5 h-5" />
+          <Link
+            href={config.resume}
+            target="_blank"
+            rel="noopener"
+            className="hidden sm:inline-flex items-center border border-border px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--brand)]"
+          >
+            Résumé
+          </Link>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden p-1.5 text-foreground"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
-      <motion.div
-        variants={background}
-        initial="initial"
-        animate={isActive ? "open" : "closed"}
-        className={styles.background}
-      ></motion.div>
-      <AnimatePresence mode="wait">
-        {isActive && <Nav setIsActive={setIsActive} />}
+
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="md:hidden overflow-hidden border-t border-border"
+          >
+            <ul className="flex flex-col px-6 py-3">
+              {links.map((item) => {
+                const hash = item.href.replace("/", "");
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={hash}
+                      onClick={goToSection(hash)}
+                      className="block py-3 text-base text-foreground/90 hover:text-brand transition-colors"
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                );
+              })}
+              <li>
+                <Link
+                  href={config.resume}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-base text-brand"
+                >
+                  Résumé
+                </Link>
+              </li>
+            </ul>
+          </motion.nav>
+        )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 

@@ -1,7 +1,7 @@
 "use client";
-import { useDevToolsOpen } from "@/hooks/use-devtools-open";
 import { useKonami } from "@/hooks/use-konami";
 import { unlockAchievement } from "@/lib/achievements";
+import { config } from "@/data/config";
 import React, { useEffect } from "react";
 import confetti from "canvas-confetti";
 import NyanCat from "./nyan-cat";
@@ -17,8 +17,6 @@ const BANNER = `
 `;
 
 const EasterEggs = () => {
-  const { isDevToolsOpen } = useDevToolsOpen();
-
   // Konami code -> emoji confetti
   useKonami(() => {
     const scalar = 2;
@@ -37,32 +35,32 @@ const EasterEggs = () => {
   });
 
   useEffect(() => {
-    if (!isDevToolsOpen) return;
     if (typeof console === "undefined") return;
 
-    unlockAchievement("devtools");
-
+    // Printed unconditionally. This used to be gated on a devtools-detector
+    // heuristic that also fired an "Achievement unlocked" toast — and it
+    // false-positived with devtools closed, popping a toast at visitors for no
+    // reason. Only someone with the console open ever sees this anyway.
     console.log(
       `%c${BANNER}`,
-      "color:#38bdf8; font-family:monospace; font-size:12px; line-height:1.1;"
+      "color:#f97316; font-family:monospace; font-size:12px; line-height:1.1;"
     );
     console.log(
-      "%cSoftware engineer & operations leader — Miami, FL\n" +
-        "I build the systems I run on: full-stack products, AI automation, and the money and data plumbing underneath.\n\n" +
-        "sebasbecerra70@gmail.com  ·  sebastian-becerra.com  ·  linkedin.com/in/sebastian-becerra-8b499b231",
+      "%cSoftware engineer — Miami, FL\n" +
+        "I build the systems I run on: full-stack products, applied AI, and the data and payments plumbing underneath.\n\n" +
+        `${config.email}  ·  sebastian-becerra.com  ·  linkedin.com/in/sebastian-becerra-8b499b231`,
       "color:#a1a1aa; font-family:monospace; font-size:13px; line-height:1.6;"
     );
     console.log(
       "%cSince you're already in here — type %csebastian%c and hit enter. 🪄\n" +
-        "There are 5 easter eggs on this site. Two of them are in this console.",
+        "There are 4 easter eggs on this site. Two of them are in this console.",
       "color:#fbbf24; font-family:monospace; font-size:13px; font-weight:bold;",
       "color:#34d399; font-family:monospace; font-size:13px; font-weight:bold;",
       "color:#fbbf24; font-family:monospace; font-size:13px; font-weight:bold;"
     );
 
     SUMMON_NAMES.forEach((name) => {
-      // @ts-ignore - Object.hasOwn lib target
-      if (Object.hasOwn(window, name)) return;
+      if (Object.prototype.hasOwnProperty.call(window, name)) return;
       Object.defineProperty(window, name, {
         configurable: true,
         get() {
@@ -74,17 +72,13 @@ const EasterEggs = () => {
               "One more: press 'n' somewhere on the page. 🐱",
             "color:#f472b6; font-family:monospace; font-size:14px; font-weight:bold; line-height:1.6;"
           );
-          return "sebasbecerra70@gmail.com";
+          return config.email;
         },
       });
     });
-  }, [isDevToolsOpen]);
+  }, []);
 
-  return (
-    <>
-      <NyanCat />
-    </>
-  );
+  return <NyanCat />;
 };
 
 export default EasterEggs;
