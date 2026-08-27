@@ -97,7 +97,7 @@ const ImpactSection = () => (
   <SectionWrapper id="impact" className="py-16 md:py-24 z-10">
     <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
       <Reveal className="eyebrow mb-8">Measured in production</Reveal>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
         {IMPACT_METRICS.map((metric, index) => (
           <MetricCell key={metric.label} metric={metric} index={index} />
         ))}

@@ -459,8 +459,8 @@ export type Metric = {
 
 /**
  * Eight, in two rows of four. Every figure here is one he can defend in an interview;
- * nothing in this row is estimated. Grid is `lg:grid-cols-4` so eight fill two clean
- * rows rather than leaving a three-wide orphan under a five-column layout.
+ * nothing in this row is estimated. Grid steps 2 -> 4 at `md` so eight always divide
+ * evenly; the intermediate three-column step left an orphan row of two.
  */
 export const IMPACT_METRICS: Metric[] = [
   { value: 98, suffix: "%", label: "On-time against contract SLAs" },

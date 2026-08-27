@@ -48,13 +48,17 @@ const HeroSection = () => {
     <SectionWrapper id="hero" className="relative w-full min-h-[100svh]">
       <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
         <div className="grid md:grid-cols-12 items-center min-h-[100svh] pt-28 pb-24 md:py-0">
-          <div className="md:col-span-7 lg:col-span-6 z-[2]">
+          <div className="md:col-span-7 z-[2]">
             <div className="flex flex-col items-start">
               <Enter delay={120}>
+                {/* line-height is an arbitrary property, not `leading-[…]`, on purpose:
+                    cn() runs twMerge, which reads `text-[<length>]` as a font-size
+                    utility and strips any preceding `leading-*`. That silently reverted
+                    this to 1.5 and blew the two-line name lockup apart. */}
                 <h1
                   className={cn(
-                    "font-display leading-[0.82] tracking-tight text-foreground",
-                    "text-[clamp(2.75rem,9vw,6.5rem)]"
+                    "font-display [line-height:0.85] tracking-tight text-foreground",
+                    "text-[clamp(2.75rem,8vw,6.5rem)]"
                   )}
                 >
                   Sebastian
@@ -113,7 +117,7 @@ const HeroSection = () => {
           </div>
           {/* Right column is deliberately empty: the 3D keyboard parks here on
               desktop, and on mobile the copy simply gets the full width. */}
-          <div className="hidden md:block md:col-span-5 lg:col-span-6" />
+          <div className="hidden md:block md:col-span-5" />
         </div>
       </div>
 

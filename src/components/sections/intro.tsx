@@ -8,7 +8,7 @@ import Reveal from "../ui/reveal";
  * four-paragraph block under the hero is a wall a recruiter scrolls past.
  */
 const IntroSection = () => (
-  <SectionWrapper id="intro" className="py-24 md:py-36 z-10">
+  <SectionWrapper id="intro" className="py-24 md:py-32 z-10">
     <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
       <div className="grid md:grid-cols-12 gap-8 md:gap-12">
         <Reveal className="md:col-span-4">
